@@ -1,0 +1,15 @@
+{% extends "bima_back/forms/form_base.html" %}
+{% load i18n %}
+
+{% block form_buttons %}
+  <input type="hidden" name="next" value="{{ request.GET.next|default:'/' }}"/>
+  <div class="form-group col-md-12">
+    <button type="submit" class="btn btn-default pull-right">{% trans 'Login' %}</button>
+  </div>
+{% endblock form_buttons %}
+
+{% block field_errors %}
+  {% if form.errors %}
+    <span class="help-block">{% trans 'Wrong user or password' %}</span>
+  {% endif %}
+{% endblock %}

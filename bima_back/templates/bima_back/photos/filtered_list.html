@@ -1,0 +1,14 @@
+{# Template used to list photos of public album and personal photos #}
+{% extends 'bima_back/photos/photo.html' %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block content_title %}{{ title }}{% endblock content_title %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% include 'bima_back/includes/breadcrumbs.html' %}
+{% endblock breadcrumbs %}
+
+{% block search_form %}{% endblock search_form %}
+
+{% block page_js_uncompress %}{% endblock page_js_uncompress %}

@@ -1,0 +1,18 @@
+{% extends 'bima_back/base.html' %}
+{% load i18n static bima_back_tags %}
+
+{% block content %}
+    <div class="box box-search">
+      <div class="box-header with-border">
+        <h3 class="box-title">{% trans "BIMA" %}</h3>
+      </div>
+      <div class="box-body">
+        {% url 'photo_list' as photo_list_url %}
+        {% include 'bima_back/forms/photo_filter_form.html' with visible_fields='q'|split:',' action=photo_list_url form_class="search" %}
+      </div>
+    </div>
+{% endblock content %}
+
+{% block page_js_uncompress %}
+  <script type="text/javascript" src="{% static 'bima_back/plugins/select2/i18n/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+{% endblock page_js_uncompress %}

@@ -1,0 +1,39 @@
+{% extends 'bima_back/create_update.html' %}
+{% load i18n bima_back_tags %}
+
+{% block page_css %}{% endblock page_css %}
+
+{% block content_title %}{{ title }}{% endblock %}
+
+{% block box_css %}actionContent{% endblock box_css %}
+
+{% block boxBody_css %}box-actions{% endblock boxBody_css %}
+
+{% block content_form %}
+  <div class="deleteBox">
+    {% if object.image_thumbnail %}
+      <img src="{{ object.image_thumbnail }}"/>
+    {% endif %}
+    {% if object.name %}
+      <p>{% trans 'Name' %}: {{ object.name }}</p>
+    {% endif %}
+    {% if object.title %}
+      <p>{% trans 'Title' %}: {{ object.title }}</p>
+    {% endif %}
+    {% if object.description %}
+      <p>{% trans 'Description' %}: {{ object.description }}</p>
+    {% endif %}
+    {% if object.username %}
+      <p>{% trans 'Username' %}: {{ object.username }}</p>
+    {% endif %}
+    {% if object.full_name %}
+      <p>{% trans 'Name' %}: {{ object.full_name }}</p>
+    {% endif %}
+  </div>
+  {% include 'bima_back/forms/delete_form.html' %}
+{% endblock content_form %}
+
+
+{% block page_js %}{% endblock page_js %}
+
+{% block page_js_uncompress %}{% endblock page_js_uncompress %}

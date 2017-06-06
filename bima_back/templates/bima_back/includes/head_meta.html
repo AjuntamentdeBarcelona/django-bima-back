@@ -1,0 +1,11 @@
+{% load static i18n %}
+
+<meta charset="UTF-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="{% block keywords %}{% endblock keywords %}">
+<meta name="description" content="{% block description %}{% endblock description %}">
+<meta name="author" content="apsl.net">
+
+<link rel="shortcut icon" href="{% static 'bima_back/img/favicon.ico' %}">
+<title>{% block title %}{% trans 'BIMA' %}{% endblock title %}</title>

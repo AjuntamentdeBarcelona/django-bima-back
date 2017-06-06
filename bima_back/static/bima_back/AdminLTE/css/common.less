@@ -1,0 +1,396 @@
+// Typography
+// -------------------------
+@font-family-sans-serif: 'Source Sans Pro', sans-serif;
+@font-size-base: 14px;
+@font-size-large: ceil(@font-size-base * 1.25);
+// ~18px
+@font-size-small: ceil(@font-size-base * 0.85);
+// ~12px
+
+
+/* Valores */
+@first: #000000;
+@second: #A5A5A5;
+@third: #1c7877;
+@fourth: #1f6376;
+@fifth: #666666;
+@sixth: #8e8e8e;
+@error: #a94442;
+@colorBackground: #ededed;
+@colorText: #4b4b4b;
+
+
+.rounded(@value:0px) {
+  -webkit-border-radius: @value;
+  -moz-border-radius: @value;
+  border-radius: @value;
+}
+
+.gradient (@origin: top, @start:#1f6376, @stop:#1c7877) {
+  background-color: @start;
+  background-image: -webkit-linear-gradient(@origin, @start, @stop);
+  background-image: -moz-linear-gradient(@origin, @start, @stop);
+  background-image: -o-linear-gradient(@origin, @start, @stop);
+  background-image: -ms-linear-gradient(@origin, @start, @stop);
+  background-image: linear-gradient(@origin, @start, @stop);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@stop, endColorstr=@stop, GradientType=0);
+}
+
+.horizontal-gradient (@start:#1f6376, @stop:#1c7877) {
+ 	background-color: @start;
+	background-image: -webkit-gradient(linear, left top, right top, from(@start), to(@stop));
+	background-image: -webkit-linear-gradient(left, @start, @stop);
+	background-image: -moz-linear-gradient(left, @start, @stop);
+	background-image: -ms-linear-gradient(left, @start, @stop);
+	background-image: -o-linear-gradient(left, @start, @stop);
+}
+
+select {
+ -webkit-appearance:none;
+ }
+
+.transform {
+  transform: rotate(7deg);
+  -ms-transform: rotate(7deg); /* IE 9 */
+  -moz-transform: rotate(7deg); /* Firefox */
+  -webkit-transform: rotate(7deg); /* Safari and Chrome */
+  -o-transform: rotate(7deg); /* Opera */
+}
+
+.box-shadow (@x: 0px, @y: 2px, @blur: 10px, @alpha: 0.5) {
+  -webkit-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  -moz-box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+  box-shadow: @x @y @blur rgba(0, 0, 0, @alpha);
+}
+
+.noMargin {
+  margin: 0;
+}
+
+.noPadding{
+  &.noPadding-right{
+    padding-right: 0;
+  }
+  &.noPadding-left{
+    padding-left: 0;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.clear {
+  clear: both;
+}
+
+.with_100 {
+  width: 100%;
+  padding: 0;
+}
+
+
+
+body,
+html {
+  font-family: @font-family-sans-serif;
+  color: @first;
+  height: 100%;
+  background: #FFF;
+}
+
+ul {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+}
+
+/* Buttons */
+.btn{
+  &.btn-default{
+    background-color: @third;
+    border-color: @fourth;
+    color: #FFF;
+    background-image: none;
+    text-shadow: none;
+    font-weight: bold;
+    i{
+      color: #FFF !important;
+    }
+    &:hover{
+      .horizontal-gradient(@fourth, @third);
+    }
+  }
+  &.btn-default-gradient{
+    .horizontal-gradient (@fourth, @third);
+    color: #FFF;
+  }
+  &.btn-info{
+    background-color: @sixth;
+    border: @sixth;
+    color: #FFF;
+    background-image: none;
+    &:hover{
+      background: @third;
+    }
+  }
+  &.btn-pagination{
+    background-color: @colorBackground;
+    border: 1px solid #ddd;
+    color: @sixth;
+    &:hover,
+    .active{
+      background: @third;
+      color: #FFF;
+      font-weight: bold;
+    }
+  }
+}
+
+header{
+  nav{
+    &.navbar-custom{
+      min-height: 60px;
+      background: @colorBackground;
+      margin: 0;
+      border: 0;
+      .rounded(0);
+      .navbar-header{
+        background: @colorBackground;
+        .navbar-brand{
+          height: 60px;
+          padding: 7px 15px 7px 0;
+          img{
+            height: 42px;
+          }
+        }
+      }
+      .navbar-collapse{
+        .navbar-left{
+          h1{
+            margin: 0;
+            font-size: 30px;
+            color: @first;
+            padding-top: 2%;
+            font-weight: 700;
+          }
+        }
+        .navbar-right{
+          .user{
+            padding: 9px;
+            margin-right: 20px;
+            .contentFoto{
+              width: 40px;
+              height: 40px;
+              background: @fifth;
+              .rounded(50%);
+              display: inline-block;
+              float: left;
+            }
+            .user-body{
+              padding-left: 10px;
+              display: inline-block;
+              .username{
+                color: @first;
+                margin: 0;
+                font-weight: 600;
+                white-space: nowrap;
+                padding-top: 3%;
+                font-size: 15px;
+              }
+              a{
+                display: inline-block;
+                line-height: 1;
+                white-space: nowrap;
+                color: @first;
+                font-weight: 300;
+                font-size: 15px;
+              }
+            }
+          }
+          .buttonOptions{
+            padding-right: 15px;
+            a{
+              display: inline-block;
+              padding: 16px 4px;
+              i{
+                font-size: 2.2em;
+                color: #a5a5a5;
+              }
+              &:active,
+              &:focus{
+                background: transparent;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Breadcrumbs */
+.content-header{
+	&> .breadcrumb{
+		&> li + li::before{
+			content: "/ ";
+		}
+		li{
+			font-size: 16px;
+			a{
+				color: @fifth;
+			}
+			&.active{
+				color: @third;
+			}
+		}
+	}
+}
+
+
+/* BOX */
+.box{
+	.box-header{
+		border-bottom: 1px solid #ededed;
+		i{
+			color: @second;
+		}
+		.box-title{
+			color: @third;
+			font-weight: 600;
+      text-align: left;
+		}
+		.box-tools{
+			button{
+				&.btn{
+					&.btn-transparent{
+						background: transparent;
+						border: 0;
+            margin-top: 0;
+					}
+				}
+			}
+		}
+	}
+	&.box-base{
+		border-top:0;
+	}
+}
+
+
+/* FORMS */
+
+
+/* Footer */
+footer{
+  .gradient(top, #ededed, #d4d4d4);
+  border-top: 1px solid #ccc;
+  position: relative;
+	margin-top: -32px; /* negative value of footer height */
+	min-height: 32px;
+	clear:both;
+  p{
+    font-size: 12px;
+    color: @sixth;
+    font-weight: 100;
+    padding-top: 4px;
+  }
+  .dateUpdate{
+    border-left: 1px solid #ccc;
+  }
+}
+
+
+
+@media(max-width:991px){
+  footer{
+    margin-left: 0;
+    .dateUpdate{
+      border-left: 0;
+      border-top: 1px solid #ccc;
+    }
+  }
+}
+
+@media(max-width:767px){
+  header{
+    nav{
+      &.navbar-custom{
+        .navbar-header{
+          button{
+            background: #FFF;
+            .rounded(0);
+            span{
+              background: @sixth;
+            }
+          }
+          .navbar-right{
+            display: inline-block;
+            width: 65%;
+            float: right;
+            li{
+              &.user{
+                width: 50%;
+                display: inline-block;
+                float: left;
+                margin-right: 0;
+                padding-left: 20px;
+                .contentFoto{
+                  width: 40px;
+                  height: 40px;
+                  background: @fifth;
+                  .rounded(50%);
+                  display: inline-block;
+                  float: left;
+                  margin-right: 5px;
+                }
+                .user-body{
+                  line-height: 0;
+                }
+              }
+              &.buttonOptions{
+                width: 50%;
+                display: inline-block;
+                float: left;
+                text-align: right;
+                a{
+                  display: inline-block;
+                  padding: 13px 8px 12px;
+                  i{color: @second;}
+                }
+              }
+            }
+          }
+        }
+        .navbar-collapse{
+          .navbar-right{
+            li{
+              &.user{
+                width: 65%;
+                display: inline-block;
+                float: left;
+                margin-right: 0;
+              }
+              &.buttonOptions{
+                width: 35%;
+                display: inline-block;
+                float: left;
+                text-align: right;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width:600px) and (max-width:767px){
+  header nav.navbar-custom .navbar-header .navbar-right{
+    width: 45%;
+  }
+}

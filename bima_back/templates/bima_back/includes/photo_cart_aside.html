@@ -1,0 +1,44 @@
+{% load i18n static bima_back_tags %}
+
+  <div id="photo-cart" data-remove-url="{% url 'cart_remove' %}">
+    <a href="javascript:void(0)" class="pull-left close-cart"><i class="fa fa-window-close"></i></a>
+    <p class="message" data-size="{% trans 'You reached the maximum number of photos that can be edited simultaneously' %}"
+       data-error="{% trans 'An error has occurred. Please try again or refresh the page' %}"
+       data-max="{{ config.MAX_EDIT_MULTIPLE }}"></p>
+    <div>
+      <h5>
+        <i class="fa fa-bookmark"></i> {% trans 'Photo Edit Cart' %}
+      </h5>
+      <ul>
+          {% for key, data in cart.items %}
+            <li class="itemCart">
+              <a href="{% url 'photo_detail' data.id %}" target="_blank">
+                <img src="{{ data.thumbnail }}" class="col-xs-4 col-sm-4 col-md-4"/>
+              </a>
+              <div class="col-xs-8 col-sm-8 col-md-8 namePhoto">
+                {{ data.title }}
+                <a href="javascript:void(0)" class="remove-photo" data-photo="{{ key }}">
+                  <i class="fa fa-times"></i>
+                </a>
+              </div>
+            </li>
+          {% endfor %}
+      </ul>
+      <p id="no-photos-in-cart" class="{% if cart.items %}hidden{% endif %}">
+        <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
+        {% trans 'There are no photos selected for massive editation' %}
+      </p>
+    </div>
+    <div class="buttonOptionsCart">
+      <button class="btn btn-info delete empty-cart {% if not cart.items %}hidden{% endif %}">
+        <i class="fa fa-undo"></i> {% trans 'Empty' %}
+      </button>
+      <a href="{% url 'photo_edit_multiple' %}"
+         class="btn btn-default pull-right edit-cart {% if not cart.items %}hidden{% endif %}">
+        <i class="fa fa-edit"></i> {% trans 'Edit' %}
+      </a>
+      {% if photo_detail_page and cart.items %}
+        <p><a href="{% url 'photo_copy_tags' instance.id %}">{% trans 'Copy tags from current photo' %}</a></p>
+      {% endif %}
+    </div>
+  </div>

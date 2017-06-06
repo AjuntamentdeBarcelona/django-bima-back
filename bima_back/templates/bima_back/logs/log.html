@@ -1,0 +1,74 @@
+{% extends 'bima_back/list.html' %}
+{% load i18n static bima_back_tags compress django_bootstrap_breadcrumbs %}
+
+
+{% block content_title %}{% trans 'Logs' %}{% endblock %}
+
+
+{% block content_header %}
+  {{ block.super }}
+  {% include 'bima_back/forms/logger_filter_form.html' %}
+{% endblock content_header %}
+
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Logs List" "log_list" %}
+{% endblock breadcrumbs %}
+
+
+{% block content_body %}
+  <table class="table logTable">
+    <tr>
+      <th>{% trans 'Photo' %}</th>
+      <th>{% trans 'Action' %}</th>
+      <th>{% trans 'User' %}</th>
+      <th>{% trans 'Date' %}</th>
+    </tr>
+  {% for log in logs %}
+    <tr>
+      <td>
+        <a href="{% url 'photo_detail' log.photo %}" target="_blank">{{ log.title }}</a>
+      </td>
+      <td>{{ log.get_action_display }}</td>
+      <td>{{ log.user.full_name|default:log.user.id }}</td>
+      <td>{{ log.added_at|to_datetime }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+{% endblock content_body %}
+
+{% block page_js %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/moment.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datepicker/bootstrap-datepicker.js' %}"></script>
+  <script type="text/javascript">
+    $('.select2-container').css('width', '300px');
+      // clean user selector after click clear
+    $('[type="reset"]').click(function(){
+       $('#id_user').val(null).trigger("change");
+       $('#id_user > option').remove();
+      return true;
+    });
+  </script>
+{% endblock page_js %}
+
+
+{% block page_js_uncompress %}
+  <script type="text/javascript" src="{% static 'bima_back/plugins/select2/i18n/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datepicker/locales/bootstrap-datepicker.'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('#id_added_from').datepicker({
+        language: "{{ LANGUAGE_CODE }}",
+        weekStart: 1,
+        format: 'yyyy-mm-dd'
+      });
+      $('#id_added_to').datepicker({
+        language: "{{ LANGUAGE_CODE }}",
+        weekStart: 1,
+        format: 'yyyy-mm-dd'
+      });
+    }); // ready
+  </script>
+{% endblock page_js_uncompress %}

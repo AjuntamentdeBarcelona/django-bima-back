@@ -1,0 +1,49 @@
+{% load i18n bima_back_tags %}
+
+<div class="box box-base">
+  <div class="box-header ui-sortable-handle">
+    <a href="{% url 'photo_detail' instance.id %}">
+      <i class="fa fa-photo"></i>
+    </a>
+    <h3 class="box-title">
+      <a href="{% url 'photo_detail' instance.id %}" class="title-link">
+        {{ instance.description|default:instance.title|truncatechars:71 }}
+      </a>
+    </h3>
+  </div>
+  <div class="box-body">
+    <div class="row fixedInfo">
+      <div class="col-md-3 imageContent">
+        <img src="{{ instance.image_small_fit }}"/>
+      </div>
+      <div class="col-sm-6 col-md-3 infoContent">
+        <ul>
+          <li class="owner">
+            <p class="title">{% trans 'The owner' %}:</p>
+            <p>{{ instance.extra_info.owner.full_name }}</p>
+          </li>
+          <li>
+            <p class="title">{% trans 'Last cataloging' %}:</p>
+            <p>{{ instance.categorize_date|to_date|default:" — " }}</p>
+          </li>
+          <li><p class="title">{% trans 'Dimensions' %}:</p><p>{{ instance.width|default:' — ' }}px x {{ instance.height|default:' — ' }}px</p></li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-md-3 infoContent">
+        <ul>
+          <li><p class="title">{% trans 'Original size' %}:</p><p>{% image_size instance.size %}</p></li>
+          <li>
+            <p class="title">{% trans 'Camera model' %}:</p>
+            <p>{{ instance.camera_model|default:" — " }}</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-6 col-md-3 infoContent">
+        <ul>
+          <li><p class="title">{% trans 'Identifier' %}:</p><p>{{ instance.identifier|default:' — ' }}</p></li>
+          <li><p class="title">{% trans 'Original name' %}:</p><p>{{ instance.original_file_name|default:' — ' }}</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

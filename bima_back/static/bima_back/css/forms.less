@@ -1,0 +1,374 @@
+@import "common";
+
+/*Cambios comunes*/
+.form-group{
+  min-height: 70px;
+//  &.col-md-6{
+//    &:nth-child(2n){
+//      padding-right: 0;
+//    }
+//    &:nth-child(2n+1){
+//      padding-left: 0;
+//    }
+//  }
+}
+
+/*select2*/
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple{
+  .rounded(0) !important;
+  min-height: 34px;
+  border: 1px solid #d2d6de !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice{
+  background: #e0e0e0 !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #333;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+  color: #333 !important;
+}
+
+.button{
+  width: 100%;
+  display: inline-block;
+  padding-top: 10px;
+  border-top: 1px solid @colorBackground;
+  button{
+    margin-left: 7px;
+  }
+}
+
+
+.box-body{
+  .checkbox{
+    margin-top: 22px
+  }
+  .imageInfo{
+    margin-bottom: 25px;
+    img{
+      width: 100%;
+    }
+  }
+  .fixedInfo{
+    margin-bottom: 25px;
+    .imageContent{
+      padding-top: 1%;
+      overflow: hidden;
+      img{
+        width: 100%;
+      }
+    }
+    .infoContent {
+      padding-top: 1%;
+      ul{
+        li{
+          margin-bottom: 5px;
+          p{
+            margin-bottom: 0;
+            display: inline-block;
+            &.title{
+              font-weight: bold;
+              display: inline-block;
+              margin-right: 5px;
+            }
+          }
+          &.owner{
+            border: 1px dotted #ccc;
+            font-size: 15px;
+            background: #f9f9f9;
+            margin-bottom: 8px;
+            padding: 3px 5px;
+          }
+        }
+      }
+      &.col-md-9 {
+        padding-top: 0;
+      }
+    }
+  }
+  .form-language-tabs {
+    margin-bottom: 25px;
+    .nav-tabs{
+      &>li{
+        a{
+          .rounded(0);
+          color: @fifth;
+          background: #f9f9f9;
+          border-bottom: 1px solid #ddd;
+          text-transform: capitalize;
+        }
+        &.active{
+          a{
+            font-weight: bold;
+            background: #e5e5e5;
+            border-bottom: 1px solid #ddd;
+          }
+        }
+        &:hover{
+          a{
+            font-weight: bold;
+          }
+        }
+      }
+    }
+    .tab-content{
+      background: #f9f9f9;
+      border-bottom: 1px solid #ededed;
+    }
+  }
+  .search{
+    display: inline-block;
+    width: 100%;
+    .panel-group{
+      background: @colorSearch;
+    }
+    .advancedSearch{
+      text-align: center;
+      text-transform: uppercase;
+      margin: 15px 0;
+      a{
+        color: @third;
+        font-weight: 600;
+      }
+    }
+    .button{
+      padding-top: 10px;
+      border-top: 1px solid #ededed;
+      button{
+        margin-left: 7px;
+      }
+    }
+    .options-search{
+      .tab-content{
+        padding: 0px 15px 0 15px;
+        display: inline-block;
+        width: 100%;
+        background: transparent;
+        .tab-pane{
+          label{
+            &.control-label{
+              text-align: left;
+            }
+          }
+          .form-group{
+            .select2-container{
+                width: 100% !important;
+            }
+          }
+          &#search_01{
+            .form-group{
+              margin-bottom: 0;
+              .col-sm-10{
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .panel{
+    background-color: transparent;
+    .rounded(0);
+    box-shadow: none;
+    border: 0;
+  }
+  &.photoCreate{
+    .box-body{
+      &:nth-child(2){
+        .wide-form{
+          .form-tabs{
+            width: 50%;
+            float: left;
+          }
+          #album{
+            //width: 50%;
+            //float: left;
+            //padding-top: 49px;
+          }
+        }
+      }
+      .infoDrag{
+        padding: 15px;
+        background: @colorSearch;
+        text-align: center;
+        margin-bottom: 15px;
+        color: @third;
+        font-size: 17px;
+      }
+    }
+  }
+}
+
+#api-streets{
+  background: #fafafa;
+  padding: 10px 15px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 15px;
+  .form-group{
+    min-height: auto;
+    label{
+      display: block;
+    }
+    input{
+      width: 100%;
+      height: 34px;
+    }
+  }
+  .has-error{
+    padding: 5px;
+    background: #dd4b39;
+    border-color: #d73925;
+    .rounded(3px);
+    margin-bottom: 10px;
+    p{
+      position: relative;
+      color: #FFF;
+      font-weight: bold;
+      padding-left: 30px;
+      font-size: 15px;
+      margin-bottom: 0;
+      &:before{
+        content: "\f06a";
+        font-family: 'FontAwesome';
+        left:10px;
+        position:absolute;
+        top:0;
+      }
+    }
+  }
+}
+
+#position{
+  .geoposition-widget{
+    tr{
+      float: left;
+      td{
+        display: block;
+      }
+    }
+  }
+  .geoposition-search{
+    display: none;
+    margin-bottom: 7px;
+  }
+  .geoposition-address{
+    display: none;
+  }
+}
+
+
+/* create photo */
+
+.wide-form{
+  .col-md-6{
+    width: 100%;
+  }
+}
+
+.flickr-import{
+  h3{
+    font-weight: 600;
+    font-size: 18px;
+    color: @third;
+  }
+  .flickr_form{
+    border: 2px solid @third;
+    padding: 10px;
+    #id, #url, #author, #copyright{
+      width: 50%;
+    }
+  }
+  .select2-container{
+    width: 100% !important;
+  }
+}
+
+.photoCreate{
+  #delete-photo{
+    margin: 10px 0 0 20px;
+    .icon{
+      margin: 0 0 0 10px;
+    }
+  }
+  #image-thumbnail {
+    div{
+      margin-bottom: 10px;
+      button {
+        display: block;
+        margin: 5px auto 0 auto;
+      }
+      img{
+        display:block;
+        margin: 0 auto;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+      }
+    }
+  }
+  .form-group.image-input-div{
+    margin-bottom: 5px;
+  }
+  .file-success{
+    padding: 0;
+    margin-bottom: 0;
+    p{
+      margin-bottom: 5px;
+    }
+  }
+  .progress-bar{
+    background-color: @third;
+  }
+  .upload-progress{
+    img{
+      float:left;
+    }
+    p{
+      margin-left: 10px;
+      float:left;
+    }
+  }
+}
+
+
+/* Edit photo */
+.connectedSortable{
+  margin-bottom: 30px;
+  form{
+    .select2.select2-container{
+      width: 100% !important;
+    }
+    [id^=keywords] {
+      width: 100% !important;
+    }
+    #fieldset-location{
+      #position{
+        .geoposition-widget{
+          table{
+            width: 100%;
+            tr{
+              width: 50%;
+            }
+          }
+          .geoposition-map{
+            height: 350px !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width:991px) {
+  .flickr-import {
+    .flickr_form {
+      #id, #url, #author, #copyright {
+        width: 100%;
+      }
+    }
+  }
+}

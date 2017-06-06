@@ -1,0 +1,8 @@
+{% load i18n %}
+<p>
+  {% trans 'Showing' %}
+  {% if showing %}
+    {% trans 'from' %} {{ showing.first }}  {% trans 'to' %} {{ showing.last }} {% trans 'of' %}
+  {% endif %}
+  {{ results }} {% trans 'results' %}
+</p>

@@ -1,0 +1,54 @@
+{% load i18n bima_back_tags %}
+
+
+<div class="title-header">
+  <h1><span>{% trans "Bank of Images" %}</span></h1>
+</div>
+
+<div class="navbar-custom-menu">
+  <ul class="nav navbar-nav">
+
+    <li class="user user-menu">
+      <a href="javascript:void(0)">
+        <div class="user-body">
+          <h5 class="hidden-xs username">{{ request.user.username }}</h5>
+          <span class="hidden-xs usermail">{{ request.user.email }}</span>
+        </div>
+      </a>
+    </li>
+
+    <li class="dropdown notifications-menu filter-dropdown">
+      {% saved_filters request.user.username request.GET.keys %}
+    </li>
+
+    <li class="dropdown basket">
+      <a href="#" data-toggle="control-sidebar">
+        <i class="fa fa-bookmark" aria-hidden="true"></i><span class="badge"></span>
+      </a>
+    </li>
+
+    {% if request.user.permissions.user.write or request.user.permissions.accesslog.read %}
+    <li class="buttonOptions dropdown hidden-xs hidden-sm">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="fa fa-gear fa-2x"></i>
+      </a>
+      <ul class="dropdown-menu">
+        {% if request.user.permissions.user.write %}
+          <li><a href="{% url 'user_manage' %}">{% trans 'Manage users' %}</a></li>
+        {% endif %}
+        {% if request.user.permissions.accesslog.read %}
+          <li><a href="{% url 'log_list' %}">{% trans 'Logs list' %}</a></li>
+        {% endif %}
+        <li><a href="{% url 'photo_log_list' %}">{% trans 'Photo uploads' %}</a></li>
+      </ul>
+    </li>
+    {% endif %}
+
+    <li class="buttonOptions hidden-xs hidden-sm">
+      <a href="{% url 'logout' %}">
+        <i class="fa fa-power-off fa-2x"></i>
+      </a>
+    </li>
+
+  </ul>
+</div>

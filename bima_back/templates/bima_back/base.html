@@ -1,0 +1,118 @@
+{% load static i18n compress django_bootstrap_breadcrumbs %}<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    {% include 'bima_back/includes/head_meta.html' %}
+
+    {% block css %}
+        {% include 'bima_back/includes/head_css.html' %}
+    {% endblock %}
+
+    {% compress css %}
+      {% block page_css %}{% endblock page_css %}
+    {% endcompress %}
+
+    {% block page_css_uncompress %}
+    {% endblock page_css_uncompress %}
+
+    {% compress js %}
+        <!-- jQuery 2.2.3 -->
+        <script type="text/javascript" src="{% static 'bima_back/plugins/jQuery/jquery-2.2.3.min.js' %}"></script>
+        <!--less -- quitar-->
+        <script  type="text/javascript" src="{% static 'bima_back/AdminLTE/js/less-1.3.1.min.js' %}"></script>
+        <script  type="text/javascript" src="{% static 'bima_back/AdminLTE/js/modernizr.custom.js' %}"></script>
+    {% endcompress %}
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+    <div class="wrapper">
+
+      <header class="main-header nav_menu">
+        <nav class="navbar navbar-static-top {% block nav_css %}{% endblock nav_css %}">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'bima_back/img/logo-bima.png' %}" alt="BIMA"/>
+        </a>
+          {% block navbar %}
+            {% include 'bima_back/includes/body_navbar_menu.html' %}
+          {% endblock navbar %}
+        </nav>
+      </header>
+
+      <aside class="main-sidebar">
+        <section class="sidebar">
+          {% block sidebar %}
+            {% include 'bima_back/includes/body_sidebar.html' %}
+          {% endblock sidebar %}
+        </section>
+      </aside>
+
+      <div class="content-wrapper {% block content_wrapper_class %}{% endblock content_wrapper_class %}">
+        <section class="content-header">
+          <div class="row">
+            <div class="col-md-7">
+              {% block breadcrumbs %}
+                {% clear_breadcrumbs %}
+                {% breadcrumb "Home" "home" %}
+              {% endblock breadcrumbs %}
+
+              {% block breadcrumbs_content %}
+                {% render_breadcrumbs %}
+              {% endblock breadcrumbs_content %}
+
+            </div>
+            <div class="col-md-5">
+              {% block buttons_actions %}{% endblock buttons_actions %}
+            </div>
+          </div>
+        </section>
+
+        <section class="content">
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">
+              <p>{{ message }}</p>
+            </div>
+          {% endfor %}
+          {% block content %}{% endblock content %}
+        </section>
+      </div>
+
+      <footer>
+        {% include 'bima_back/includes/footer.html' %}
+      </footer>
+
+      <aside class="control-sidebar" id="cart_slide">
+        {% include 'bima_back/includes/photo_cart_aside.html' with cart=request.session.cart %}
+      </aside>
+
+    </div>
+
+    {% block modal %}{% endblock modal %}
+
+    {% block javascript %}
+      {% include 'bima_back/includes/footer_js.html' %}
+    {% endblock javascript %}
+
+    {% compress js %}
+      <script type="text/javascript">
+        $(document).ready(function(){
+          // put dummy image in broken images
+          $('img').error(function(){
+            $(this).attr('src', "{% static 'bima_back/img/no-photo.jpg' %}");
+          });
+          // remove error in form fields after focusin
+          $('.has-error').focusin(function(){
+            $(this).removeClass('has-error');
+          });
+        });  // ready
+      </script>
+      {% block page_js %}{% endblock page_js %}
+    {% endcompress js %}
+
+    {% block page_js_uncompress %}{% endblock page_js_uncompress %}
+  </body>
+</html>

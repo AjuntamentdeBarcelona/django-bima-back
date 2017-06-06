@@ -1,0 +1,109 @@
+{% extends 'bima_back/list.html' %}
+{% load i18n static bima_back_tags %}
+
+{% block content_title %}{% trans 'Photos' %}{% endblock %}
+
+{% block buttons_actions %}{% endblock buttons_actions %}
+
+{% block breadcrumbs %}{% endblock breadcrumbs %}
+
+{% block search_form %}
+
+  {# save search filter #}
+  {% if 'q' in request.GET.keys %}
+    <p class="text-right">
+      <button id="save_filter" class="btn btn-default" data-toggle="modal" data-target="#filterModal">{% trans 'Save current filter' %}</button>
+    </p>
+    {# modal #}
+    <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">{% trans 'Save current filter' %}</h4>
+          </div>
+          <div class="modal-body">
+            <div id="filter_form" data-add-filter-url="{% url 'filter_add' %}">
+              <form>
+                <div class="form-group">
+                  <label for="filter_name">{% trans 'Filter name' %}*</label>
+                  <input type="text" id="filter_name" class="form-control"/>
+                </div>
+                <span class="hidden">{% trans 'This field is required' %}</span>
+              </form>
+            </div>
+            <p id="filter-error" class="hidden">{% trans 'Ooops! Something went wrong.' %}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" id="add-filter">{% trans 'Save' %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  {% url 'photo_list' as photo_list_url %}
+  {% include 'bima_back/forms/photo_filter_form.html' with visible_fields='q'|split:',' action=photo_list_url form_class="search" %}
+
+{% endblock search_form %}
+
+{% block content_body %}
+  <div class="box-body pd0 cercaHome">
+      {% for photo in photos %}
+        {% include 'bima_back/includes/photos/list_item.html' %}
+      {% empty %}
+        <div class="no-yet">
+          <div class="info">
+            <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
+            <p>{% trans 'No results found' %}<p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+{% endblock content_body %}
+
+{% block page_js %}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var photoSearch = $('form > .photoSearch');
+      var slidingDiv = $(".slidingDiv");
+      var showHide = $(".show_hide");
+
+      slidingDiv.hide();
+      showHide.show();
+
+      showHide.click(function(){
+        slidingDiv.slideToggle(400, function() {
+          // if advanced search is shown, add class to disable free search
+          photoSearch.toggleClass("disabled_search");
+
+          // disable q input button if advanced search is displayed
+          if (photoSearch.hasClass('disabled_search')){
+            slidingDiv.find('[name="btn_q"]').attr('disabled', 'disabled');
+            $('#id_q').val('');
+          } else {
+            slidingDiv.find('[name="btn_q"]').removeAttr('disabled');
+            var inputsToClear = '#id_title, #id_description, #id_status, #id_album, #id_categories, #id_gallery';
+            $(inputsToClear).val('').trigger('change');  // select2 inputs need to trigger "change" event.
+          }
+        });
+      });
+
+    });
+  </script>
+{% endblock page_js %}
+
+{% block page_js_uncompress %}
+  <script type="text/javascript" src="{% static 'bima_back/plugins/select2/i18n/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('.tooltipInfo').tooltip({
+        'placement': 'bottom'
+      });
+      {% if form.is_advanced_search %}
+        $(".slidingDiv").show();
+        $('form > .photoSearch').addClass("disabled_search");
+      {% endif %}
+    });
+  </script>
+{% endblock page_js_uncompress %}

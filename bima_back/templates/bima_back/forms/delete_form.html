@@ -1,0 +1,11 @@
+{% extends "bima_back/forms/form_base.html" %}
+{% load i18n bima_back_tags %}
+
+{% block form_buttons %}
+  <div class="box-footer">
+    <a href="{% go_back_url page_breadcrumbs %}" class="btn btn-info delete">
+      <i class="fa fa-times"></i> {% trans "Cancel" %}
+    </a>
+    <button class="btn btn-default" type="submit"><i class="fa fa-check"></i> {% trans 'Confirm' %}</button>
+  </div>
+{% endblock form_buttons %}

@@ -1,0 +1,18 @@
+{% load static compress %}
+{% compress css %}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'bima_back/font-awesome/css/font-awesome.min.css' %}">
+  <!-- Bootstrap 3.3.6 -->
+  <link rel="stylesheet" href="{% static 'bima_back/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'bima_back/AdminLTE/css/AdminLTE.min.css' %}">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="{% static 'bima_back/plugins/datepicker/datepicker3.css' %}">
+  <link rel="stylesheet" href="{% static 'bima_back/AdminLTE/css/common.less' %}" type="text/less">
+  <link rel="stylesheet" href="{% static 'bima_back/AdminLTE/css/main.less' %}" type="text/less">
+  <!-- custom -->
+  <link rel="stylesheet" type="text/less" href="{% static 'bima_back/css/common.less' %}">
+  <link rel="stylesheet" type="text/less" href="{% static 'bima_back/css/lists.less' %}">
+  <link rel="stylesheet" type="text/less" href="{% static 'bima_back/css/forms.less' %}">
+  <link rel="stylesheet" type="text/less" href="{% static 'bima_back/css/main.less' %}">
+{% endcompress %}

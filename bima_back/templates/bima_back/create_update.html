@@ -1,0 +1,80 @@
+{% extends 'bima_back/base.html' %}
+{% load i18n staticfiles compress bima_back_tags %}
+{% get_available_languages as LANGUAGES %}
+
+{% block page_css %}
+  <link rel="stylesheet" href="{% static 'bima_back/plugins/select2/select2.min.css' %}">
+{% endblock page_css %}
+
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% include 'bima_back/includes/breadcrumbs.html' %}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+  <div class="box {% block boxBody_css %}{% endblock boxBody_css %} ">
+    <div class="box-header">
+      {% block content_header %}
+        <h3 class="box-title titleDelete">
+          {% block content_title %}
+            {% if instance %}
+              {% if instance.title %}
+                {{ instance.title }}
+              {% elif instance.name %}
+                {{ instance.name }}
+              {% endif %}
+            {% else %}
+              {{ title }}
+              {% if create_to_album %}
+                {% trans 'in album' %}: {{ request.GET.album }}
+              {% endif %}
+            {% endif %}
+          {% endblock %}
+        </h3>
+        {% endblock content_header %}
+    </div>
+
+    <div class="box-body {% block box_css %}{% endblock box_css %}">
+      {% block content_form %}
+        {% include 'bima_back/forms/form_base.html' %}
+      {% endblock content_form %}
+      {% block content_extra %}{% endblock content_extra %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_js_uncompress %}
+  {% include 'bima_back/includes/create_update_js.html' %}
+  {% if not create_to_album %}
+    <script type="text/javascript" src="{% static 'bima_back/plugins/select2/i18n/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+  {% endif %}
+  <script type="text/javascript">
+    $(function() {
+        $('form').i18nfields({
+          languages: [{% for code, lang in LANGUAGES %}['{{ code }}', '{{ lang }}']{% if not forloop.last %},{% endif %}{% endfor %}],
+          defaultLanguage: '{{ LANGUAGE_CODE }}'
+        });
+    });
+
+    {% block show_required_js %}
+    $(document).ready(function(){
+      // before submit, show tabs/sections with required (language) fields
+      $("form[action='.'] button[type='submit']").click(function(){
+        // open collapsed sections with required fields
+        $("#fieldset-general").collapse('show');
+        $("#fieldset-copyright").collapse('show');
+
+        // active required language tab
+        var containerSelector = $('.form-language-tabs .language-content');
+        containerSelector.find('ul li[id^=tab_]').removeClass('active');
+        containerSelector.find('div.row').removeClass('active');
+        var requiredLang = containerSelector.find(':input[required]').first().attr('lang');
+        containerSelector.find('ul li[id^=tab_' + requiredLang + ']').addClass('active');
+        containerSelector.find('div.row[id^=' + requiredLang + '_]').addClass('active');
+      });
+    });
+    {% endblock show_required_js %}
+  </script>
+{% endblock page_js_uncompress %}

@@ -1,0 +1,30 @@
+{% extends 'bima_back/base.html' %}
+{% load i18n bootstrap_pagination %}
+
+{% block content %}
+
+  {% block search_form %}{% endblock search_form %}
+
+  <div class="box box-transparent">
+    {# Header #}
+    <div class="box-header with-border text-left">
+      {% block content_header %}
+        <h3 class="box-title">{% block content_title %}{% trans "List" %}{% endblock %}</h3>
+      {% endblock content_header %}
+    </div>
+
+    {# Body #}
+    <div class="box-body pd0 {% block class_booxBody %}{% endblock class_booxBody %}">
+      {% block content_body %}
+        {% include 'bima_back/includes/no_elements.html' %}
+      {% endblock content_body %}
+    </div>
+
+    {# Footer #}
+    <div class="box-footer">
+      {% block content_paginator %}
+        {% bootstrap_paginate page range=5 %}
+      {% endblock content_paginator %}
+    </div>
+  </div>
+{% endblock content %}

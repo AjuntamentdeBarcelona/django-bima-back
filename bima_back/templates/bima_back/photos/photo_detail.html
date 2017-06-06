@@ -1,0 +1,372 @@
+{% extends 'bima_back/detail.html' %}
+{% load i18n l10n staticfiles bima_back_tags django_bootstrap_breadcrumbs %}
+{% get_available_languages as LANGUAGES %}
+
+{% block content_title %}
+  {{ instance.description|default:instance.title|truncatechars:71 }}
+{% endblock content_title %}
+
+{% block content_header %}
+  {{ block.super }}
+  <div class="buttonsHeader">
+    {% if instance.permissions.destroy %}
+    <a class="btn btn-info delete pull-right" href="{% url 'photo_delete' instance.id %}">
+      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete Photo' %}
+    </a>
+    {% endif %}
+    {% if instance.permissions.update %}
+    <a class="btn btn-default pull-right" href="{% url 'photo_edit' instance.id %}">
+      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Photo' %}
+    </a>
+    {% endif %}
+    {% if instance.image_original %}
+    {# if user has no download permissions, api only returns thumbnail and small fit images #}
+      <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download Image' %} <span class="caret"></span></button>
+          <ul class="dropdown-menu text-left" role="menu">
+              {% include 'bima_back/includes/photos/download_buttons.html' %}
+          </ul>
+      </div>
+    {% endif %}
+    {% if instance.image_flickr %}
+        <a class="btn btn-default" href="{{ instance.image_flickr }}" target="_blank"><i class="fa fa-flickr"></i> {% trans 'Flickr url' %}</a>
+    {% endif %}
+  </div>
+{% endblock content_header %}
+
+
+{% block breadcrumbs %}
+  {% trans "Photo Detail" as photo_detail_breadcrumb %}
+  {% trans "Albums" as albums_breadcrumb %}
+  {{ block.super }}
+  {% breadcrumb albums_breadcrumb "album_list" %}
+  {% breadcrumb instance.extra_info.album.title|default:" — " "album_detail" instance.album %}
+  {% breadcrumb photo_detail_breadcrumb "photo_detail" instance.id %}
+{% endblock breadcrumbs %}
+
+
+{% block content_body %}
+
+  <div class="row">
+    <div class="col-lg-12 connectedSortable ui-sortable">
+
+      {# Photo Preview #}
+      <div class="box box-base">
+        <div class="box-body">
+          <div class="row fixedInfo">
+            <section class="col-md-12 photo-download">
+              <div class="col-md-4 image_photo">
+                <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
+                <div class="infoPhoto">
+                  <div class="col-md-12 photo-exif infoContent">
+                    <ul>
+                      <li class="owner">
+                        <p class="title">{% trans 'The owner' %}:</p>
+                        <p>{{ instance.extra_info.owner.full_name }}</p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Last cataloging' %}:</p>
+                        <p>{{ instance.categorize_date|to_date|default:" — " }}</p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Dimension' %}:</p>
+                        <p>{{ instance.width }}px x {{ instance.height }}px</p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Original size' %}:</p>
+                        <p>{% image_size instance.size %}</p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Camera model' %}:</p>
+                        <p>{{ instance.camera_model|default:" — " }}</p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Original filename' %}:</p>
+                        <p>{{ instance.original_file_name|default:" — " }}</p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-8">
+                <section class="col-md-12 photo-detail">
+                  <div class="form-language-tabs col-md-6">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                      {% for lang in LANGUAGES %}
+                      <li role="presentation" {% if not forloop.counter0 %}class="active"{% endif %}><a href="#{{ lang.0 }}_general" aria-controls="{{ lang.0 }}" role="tab" data-toggle="tab">{{ lang.1 }}</a></li>
+                      {% endfor %}
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                      {% for language_code, language_name in LANGUAGES %}
+                      <div role="tabpanel" class="tab-pane {% if not forloop.counter0 %}active{% endif %}" id="{{ language_code }}_general">
+                        <ul>
+                          <li><p class="title">{% trans 'Title' %}:</p> <p>{% lang_content instance 'title' language_code %}</p></li>
+                          <li><p class="title">{% trans 'Description' %}:</p> <p>{% lang_content instance 'description' language_code %}</p></li>
+                        </ul>
+                      </div>
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="col-md-6 infoPhotoDetail">
+                    <ul class="more_info">
+                      <li>
+                        <p class="title">{% trans 'Status' %}:</p>
+                        {% if not instance.status %}
+                        <p class="private"><i class="fa fa-times-circle-o"></i> {% trans 'Private Image' %}</p>
+                        {% else %}
+                        <p class="publish"><i class="fa fa-check-circle-o"></i> {% trans 'Published Image' %}</p>
+                        {% endif %}
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Album' %}:</p>
+                        <p>
+                          <a href="{% url 'album_detail' instance.extra_info.album.id  %}">{{ instance.extra_info.album.title }}</a>
+                        </p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Galleries' %}:</p>
+                        <p>
+                          {% for gallery in instance.extra_info.photo_galleries %}
+                            <a href="{% url 'gallery_detail' gallery.gallery %}">{{ gallery.title }}</a>{% if not forloop.last %}, {% endif %}
+                          {% empty %}
+                             —
+                          {% endfor %}
+                        </p>
+                      </li>
+                      <li>
+                        <p class="title">{% trans 'Capture date' %}:</p>
+                        <p>
+                          {{ instance.exif_date|to_datetime|date:'d/m/Y'|default:" — " }}
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </section>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      {#  Metadata  #}
+      <div class="box box-base">
+        {# Box header #}
+        <div class="box-header ui-sortable-handle">
+          <i class="fa fa-file-o"></i>
+          <h3 class="box-title">{% trans 'Metadata' %}</h3>
+          <div class="pull-right box-tools">
+          <button class="btn btn-transparent btn-sm pull-right" title="{% trans 'Metadata' %}" data-toggle="tooltip"
+              data-widget="collapse" type="button" data-original-title="{% trans 'Metadata' %}">
+          <i class="fa fa-minus"></i>
+          </button>
+          </div>
+        </div>
+        {# Box body #}
+        <div class="box-body">
+          <section class="col-md-12 photo-detail">
+            <div class="form-language-tabs col-md-6">
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                {% for lang in LANGUAGES %}
+                <li role="presentation" {% if not forloop.counter0 %}class="active"{% endif %}><a href="#{{ lang.0 }}_metadata" aria-controls="{{ lang.0 }}" role="tab" data-toggle="tab">{{ lang.1 }}</a></li>
+                {% endfor %}
+              </ul>
+              <!-- Tab panes -->
+              <div class="tab-content">
+                {% get_ordered_keywords instance.keywords as keywords %}
+                {% for language_code, language_name in LANGUAGES %}
+                  <div role="tabpanel" class="tab-pane {% if not forloop.counter0 %}active{% endif %}" id="{{ language_code }}_metadata">
+                    <ul>
+                      <li><p class="title">{% trans 'Keywords' %}:</p> <p>{% lang_content keywords 'keywords' language_code %}</p></li>
+                    </ul>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="col-md-6">
+              <ul class="more_info">
+                <li>
+                  <p class="title">{% trans 'Categories' %}:</p>
+                  <p>
+                    {% for category in instance.extra_info.categories %}
+                      <a href="{% url 'photo_list' %}?categories={{ category.id }}&btn_advanced=">{{ category.title }}</a>{% if not forloop.last %}, {% endif %}
+                    {% empty %}
+                       —
+                    {% endfor %}
+                  </p>
+                </li>
+                <li>
+                  <p class="title">{% trans 'Names' %}:</p> <p>{% if instance.names %}{{ instance.names|join:', ' }}{% else %}  —  {% endif %}</p>
+                </li>
+                {% if "PHOTO_TYPES_ENABLED"|settings_value %}
+                  {% trans 'Type' as default_type_name %}
+                  <li>
+                    <p class="title">{{ "PHOTO_TYPES_NAME"|settings_value|default:default_type_name }}:</p> <p>{{ instance.extra_info.photo_type.name|default:" — " }}</p>
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {#  Copyright  #}
+      <div class="box box-base">
+        {# Box header #}
+        <div class="box-header ui-sortable-handle">
+          <i class="fa fa-file-o"></i>
+          <h3 class="box-title">{% trans 'Copyright' %}</h3>
+          <div class="pull-right box-tools">
+          <button class="btn btn-transparent btn-sm pull-right" title="{% trans 'Copyright' %}" data-toggle="tooltip"
+              data-widget="collapse" type="button" data-original-title="{% trans 'Copyright' %}">
+          <i class="fa fa-minus"></i>
+          </button>
+          </div>
+        </div>
+        {# Box body #}
+        <div class="box-body">
+          <section class="col-md-12 photo-detail">
+            <div class="col-md-6">
+              <ul>
+                <li>
+                  <p class="title">{% trans 'Author' %}:</p>
+                  <p>{{ instance.extra_info.author_display|default:" — " }}</p>
+                </li>
+                <li>
+                  <p class="title">{% trans 'Copyright' %}:</p>
+                  <p>{{ instance.extra_info.copyright_display|default:" — " }}</p>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul>
+                <li>
+                  <p class="title">{% trans 'Internal restriction' %}:</p>
+                  <p>{{ instance.extra_info.internal_restriction_display|default:" — " }}</p>
+                </li>
+                <li>
+                  <p class="title">{% trans 'External restriction' %}:</p>
+                  <p>{{ instance.extra_info.external_restriction_display|default:" — " }}</p>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {#  Location  #}
+      <div class="box box-base">
+        {# Box header #}
+        <div class="box-header ui-sortable-handle">
+          <i class="fa fa-file-o"></i>
+          <h3 class="box-title">{% trans 'Location' %}</h3>
+          <div class="pull-right box-tools">
+          <button class="btn btn-transparent btn-sm pull-right" title="{% trans 'Location' %}" data-toggle="tooltip"
+              data-widget="collapse" type="button" data-original-title="{% trans 'Location' %}">
+          <i class="fa fa-minus"></i>
+          </button>
+          </div>
+        </div>
+        {# Box body #}
+        <div class="box-body">
+          <section class="col-md-12 photo-detail">
+            {% if instance.longitude and instance.latitude %}
+              <section class="col-md-6 photo-location">
+                {% with title=instance.title|addslashes address=instance.address|addslashes postcode=instance.postcode|addslashes longitude=instance.longitude|unlocalize latitude=instance.latitude|unlocalize %}
+                  <div id="contact-map" class="col-md-12" style="height: 285px;" data-longitude="{{ longitude }}" data-latitude="{{ latitude }}" data-name="{{ title }}"
+                       data-address="{{ address }}{% if address %},&nbsp;{% endif %}{{ postcode }}">
+                  </div>
+                {% endwith %}
+              </section>
+            {% endif %}
+            <div class="col-md-6">
+              <ul class="more_info">
+                <li>
+                  <p class="title">{% trans 'Address' %}:</p>
+                  {% if instance.address or instance.postcode %}
+                  <p>
+                    {{ instance.address }} {{ instance.postcode }}
+                    {% if instance.district and instance.neighborhood %}
+                      ({{ instance.district }}, {{ instance.neighborhood }})
+                    {% endif %}
+                  </p>
+                  {% else %}
+                    <p> — </p>
+                  {% endif %}
+                </li>
+                <li>
+                  <p class="title">{% trans 'Longitude' %}:</p>
+                  {% if instance.longitude %}
+                  <p>{{ instance.longitude|stringformat:'f' }}</p>
+                  {% else %}
+                  <p> — </p>
+                  {% endif %}
+                </li>
+                <li>
+                  <p class="title">{% trans 'Latitude' %}:</p>
+                  {% if instance.latitude %}
+                  <p>{{ instance.latitude|stringformat:'f' }}</p>
+                  {% else %}
+                  <p> — </p>
+                  {% endif %}
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content_body %}
+
+{% block modal %}
+<div class="modal fade" id="enlargeImageModal" tabindex="-1" role="dialog" aria-labelledby="enlargeImageModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div class="modal-body">
+          <img src="" class="enlargeImageModalSource" style="width: 100%;">
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock modal %}
+
+{% block page_js %}
+  {# Scripts to geolocate photo #}
+  <script type="text/javascript" src="{% static 'bima_back/js/geoposition-map.js' %}"></script>
+{% endblock page_js %}
+
+{% block page_js_uncompress %}
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key={{ google_maps_api_key }}&{% now 'c' %}"></script>
+  <script type="text/javascript">
+    {# modal to see the photo bigger #}
+    $(function() {
+      $('img.modal-zoom').on('click', function() {
+        $('.enlargeImageModalSource').attr('src', '{{ instance.image_medium }}');
+        $('#enlargeImageModal').modal('show');
+      });
+    });
+    $(document).ready(function(){
+      {# Register that user has downloaded the picture #}
+      $(".photo-download a").click(function(){
+        $.post(
+          "{% url 'photo_download_log' instance.id %}",
+          {'csrfmiddlewaretoken': "{{ csrf_token }}"}
+        );
+      });
+      {# Initialization geolocate photo into map #}
+      {% if instance.longitude and instance.latitude %}
+        $(document).ready(function(){
+          new GeopositionMap().init('#contact-map');
+        });
+      {% endif %}
+    });
+  </script>
+{% endblock page_js_uncompress %}

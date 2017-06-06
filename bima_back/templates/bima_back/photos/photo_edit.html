@@ -1,0 +1,50 @@
+{% extends 'bima_back/create_update.html' %}
+{% load staticfiles i18n compress bima_back_tags %}
+
+{% block page_css %}
+  <link type="text/css" href="{% static 'bima_back/plugins/jQueryUI/jquery-ui.css' %}" media="screen" rel="stylesheet">
+{% endblock page_css %}
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12 connectedSortable ui-sortable photo-edit">
+      {# general photo information (only readable) #}
+      {% include 'bima_back/includes/photos/detail.html' %}
+
+      {# form fields to edit #}
+      {% include 'bima_back/forms/form_fieldsets.html' %}
+    </div>
+  </div>
+{% endblock %}
+
+{% block page_js %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'bima_back/js/mgrs/mtl.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/mgrs/vector3d.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/mgrs/latlon-ellipsoidal.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/mgrs/utm.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/mgrs/mgrs.js' %}"></script>
+  {% include 'bima_back/includes/photo_chunk_js.html' %}
+  <script type="text/javascript" src="{% static 'bima_back/js/update_photo.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/moment.min.js' %}"></script>
+{% endblock page_js %}
+
+{% block page_js_uncompress %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/bootstrap-datetimepicker.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#id_exif_date').datetimepicker({
+        locale: "{{ LANGUAGE_CODE }}",
+        format: "DD/MM/YYYY",
+        useCurrent: false,
+        defaultDate: "{{ instance.exif_date|default:'' }}"
+      });
+      // resize map after opening collapsed box
+      $('#fieldset-location').on('shown.bs.collapse', function () {
+        google.maps.event.trigger(window, 'resize', {});
+      });
+    });
+  </script>
+{% endblock page_js_uncompress %}

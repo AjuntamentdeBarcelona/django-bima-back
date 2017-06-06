@@ -1,0 +1,9 @@
+{% load django_bootstrap_breadcrumbs %}
+
+{% for bc in page_breadcrumbs %}
+  {% if bc.args %}
+    {% breadcrumb bc.label bc.view bc.args %}
+  {% else %}
+    {% breadcrumb bc.label bc.view %}
+  {% endif %}
+{% endfor %}

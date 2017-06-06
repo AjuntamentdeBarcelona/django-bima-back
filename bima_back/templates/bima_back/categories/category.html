@@ -1,0 +1,76 @@
+{% extends 'bima_back/list.html' %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block content_title %}{% trans 'Category' %}{% endblock content_title %}
+
+{% block class_booxBody %}list-categories{% endblock class_booxBody %}
+
+{% block buttons_actions%}
+  {% if request.user.permissions.damtaxonomy.write %}
+  <a class="btn btn-default pull-right" href="{% url 'category_create' %}">
+    <i class="fa fa-plus" aria-hidden="true"></i> {% trans 'Add Category' %}
+  </a>
+  {% endif %}
+{% endblock buttons_actions %}
+
+{% block breadcrumbs %}
+  {% trans "Categories" as label %}
+  {{ block.super }}
+  {% breadcrumb label "category_list" %}
+{% endblock breadcrumbs %}
+
+{% block search_form %}
+  <div class="box box-search categorySearch">
+    <h3 class="box-title"><i class="fa fa-search"></i> {% trans 'Search by' %}</h3>
+    {% include 'bima_back/forms/filter_form.html' %}
+  </div>
+{% endblock search_form %}
+
+{% block content_body %}
+  {% with permission=request.user.permissions.damtaxonomy.write search=form.cleaned_data %}
+    {% for category in categories %}
+      <div class="col-sm-6 col-md-6 col-lg-6 category">
+        <div class="panel panel-default box {% if not search %}collapsed-box{% endif %}">
+          <div class="panel-heading box-header">
+            <div class="panel-title">
+              <h3 class="col-sm-12 col-md-6 col-lg-5 {% if not category.children.0 and form.cleaned_data %}highlight{% endif %}">
+                {{ category.name|default:' — ' }}
+              </h3>
+              <div class="col-sm-12 col-md-6 col-lg-7 text-right">
+                <a href="{% url 'photo_list' %}?categories={{ category.id }}&btn_advanced=" target="_blank">
+                  <i class="fa fa-search"></i>
+                </a>
+                {% if permission %}
+                  <a href="{% url 'category_edit' category.id %}" data-toggle="tooltip" title="{% trans 'Edit' %}"><i class="fa fa-pencil"></i></a>
+                  <a href="{% url 'category_delete' category.id %}" data-toggle="tooltip" title="{% trans 'Delete' %}"><i class="fa fa-trash"></i></a>
+                {% endif %}
+                <div class="buttonsCategory text-right">
+                  <div class="box-tools">
+                    <button type="button" class="btn btn-transparent btn-sm" data-widget="collapse" data-toggle="tooltip"
+                            title="{% trans 'Show categories' %}" style="margin-right: 5px;">
+                      <span>{{ category.extra_info.children }}</span>&nbsp;<i class="fa fa-eye"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% if category.children.0 %}
+            <div class="panel-body box-body">
+              {% include 'bima_back/categories/item.html' with children=category.children %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  {% endwith %}
+{% endblock content_body %}
+
+
+{% block page_js %}
+  <script type="text/javascript">
+     $('#reset-filters').click(function(){
+       $('#id_name').attr('value', '');
+     });
+  </script>
+{% endblock page_js %}

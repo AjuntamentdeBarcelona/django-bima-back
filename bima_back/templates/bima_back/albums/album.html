@@ -1,0 +1,70 @@
+{% extends 'bima_back/list.html' %}
+{% load i18n static django_bootstrap_breadcrumbs %}
+
+{% block content_title %}{% trans 'Tots el àlbums' %}{% endblock content_title %}
+
+{% block class_booxBody %}list-albums{% endblock class_booxBody %}
+
+{% block buttons_actions %}
+  {% if request.user.permissions.album.write %}
+  <a class="btn btn-default pull-right" href="{% url 'album_create' %}">
+    <i class="fa fa-plus" aria-hidden="true"></i> {% trans 'Add Album' %}
+  </a>
+  {% endif %}
+{% endblock buttons_actions %}
+
+{% block breadcrumbs %}
+  {{ block.super }}
+  {% breadcrumb "Albums" "album_list" %}
+{% endblock breadcrumbs %}
+
+{% block content_body %}
+
+  {# public album #}
+  {% if not request.GET.page or request.GET.page == '1' %}
+  <div class="col-sm-6 col-md-4 col-lg-3 album public-album">
+    <div class="item-lists">
+      <div class="items-images">
+        <a href="{% url 'album_public_list' %}" class="imageContent">
+            <img src="{% static 'bima_back/img/public_album.jpg' %}"/>
+        </a>
+      </div>
+      <div class="infoContent">
+        <h4><i class="fa fa-folder-open"></i> {% trans 'Public Album' %}</h4>
+        <div class="icons-options">
+            <a href="{% url 'album_public_list' %}" class="imageContent"><i class="fa fa-eye"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% for album in albums %}
+    <div class="col-sm-6 col-md-4 col-lg-3 album">
+      <div class="item-lists">
+        <div class="items-images">
+          {% if album.permissions.read %}<a href="{% url 'album_detail' album.id %}" class="imageContent">{% endif %}
+            {% if album.image_thumbnail %}
+                <img src="{{ album.image_thumbnail }}"/>
+            {% else %}
+              <img src="{% static 'bima_back/img/no-photo.jpg' %}"/>
+            {% endif %}
+          {% if album.permissions.read %}</a>{% endif %}
+        </div>
+        <div class="infoContent">
+        	<h4><i class="fa fa-folder-open"></i> {{ album.title|default:' — ' }}</h4>
+        	<div class="icons-options">
+            {% if album.permissions.read %}
+              <a href="{% url 'album_detail' album.id %}" class="imageContent" data-toggle="tooltip" title="{% trans 'View' %}"><i class="fa fa-eye"></i></a>
+            {% endif %}
+            {% if album.permissions.write %}
+          	<a href="{% url 'album_edit' album.id %}" data-toggle="tooltip" title="{% trans 'Edit' %}"><i class="fa fa-edit"></i></a>
+          	<a href="{% url 'album_delete' album.id %}" data-toggle="tooltip" title="{% trans 'Remove' %}"><i class="fa fa-trash"></i></a>
+            {% endif %}
+        	</div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+{% endblock content_body %}

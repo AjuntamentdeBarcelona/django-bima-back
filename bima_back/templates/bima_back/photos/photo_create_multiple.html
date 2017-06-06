@@ -1,0 +1,84 @@
+{% extends 'bima_back/create_update.html' %}
+{% load i18n staticfiles compress bima_back_tags %}
+
+{% block content_form %}
+  <div class="box-body">
+    <div class="alert alert-danger hidden" id="error-message" role="alert"
+     data-error-message="{% trans 'An error has occurred. Please, try again.' %}"
+     data-max-size-message="{% trans 'Sorry, the maximum image size allowed is' %} {{ config.MAX_FILE_SIZE }} {% trans 'MB' %}"
+     data-file-type-message="{% trans 'Sorry, only gif, png, jpg, jpeg, tif and tiff images are allowed.' %}">
+      <p></p>
+    </div>
+
+    <div class="form-group image-input-div">
+      <label class="control-label" for="image">{% trans 'Image' %}</label>
+      <input class="form-control" id="id_image" name="image" placeholder="{% trans 'image' %}" type="file" multiple="multiple"
+       data-chunk-url="{% url 'api_chunked_upload' %}" data-chunk-complete-url="{% url 'api_chunked_upload_complete' %}"
+       data-delete-title="{% trans 'Delete' %}" data-max-file-size="{{ config.MAX_FILE_SIZE }}">
+    </div>
+
+    <div class="progress progress-sm active hidden">
+      <div class="progress-bar" role="progressbar"
+           aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+    </div>
+    <div class="upload-progress clearfix hidden">
+      <img src="{% static 'bima_back/img/loader.gif' %}"/>
+      <p>{% trans 'Uploading photo' %} <span class="photo-current"></span> {% trans 'of' %} <span class="photo-total"></span></p>
+    </div>
+
+    <div class="alert file-success hidden" id="message"></div>
+
+    <div id="image-thumbnail" data-dummy-image="{% static 'bima_back/img/check_photos.jpg' %}"></div>
+
+    <div class="infoDrag">
+      <img src="{% static 'bima_back/img/icon_picture.png' %}" class="imageIcon"/>
+      <p>{% trans 'Drag the photos you want to upload' %}</p>
+    </div>
+  </div>
+  {{ block.super }}
+{% endblock content_form %}
+
+{% block box_css %}photoCreate{% endblock box_css %}
+
+{% block content_extra %}
+  {% if flickr_enabled %}
+    {# extra js import needed for select2 translation #}
+    {% if not create_to_album %}
+    <script type="text/javascript" src="{% static 'bima_back/plugins/select2/i18n/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+    {% endif %}
+
+
+    <div class="box-body flickr-import">
+      <h3><i class="fa fa-flickr"></i> {% trans 'Import Photo from Flickr' %}</h3>
+      {% if create_to_album %}
+        {% url 'photo_create_flickr' create_to_album as flickr_url %}
+      {% else %}
+        {% url 'photo_create_flickr' as flickr_url %}
+      {% endif %}
+      {% include 'bima_back/forms/form_base.html' with form=flickrForm action=flickr_url ignore_multilang='True' profile_form='flickr_form' %}
+    </div>
+  {% endif %}
+{% endblock content_extra %}
+
+{% block page_js %}
+  {{ block.super }}
+  {% include 'bima_back/includes/photo_chunk_js.html' %}
+  <script type="text/javascript" src="{% static 'bima_back/js/load-image.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/upload_photo_multiple.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/moment.min.js' %}"></script>
+{% endblock page_js %}
+
+{% block page_js_uncompress %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/bootstrap-datetimepicker.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/plugins/datetimepicker/'|add:LANGUAGE_CODE|add:'.js' %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#id_exif_date').datetimepicker({
+        locale: "{{ LANGUAGE_CODE }}",
+        format: "DD/MM/YYYY",
+        useCurrent: false
+      });
+    });
+  </script>
+{% endblock page_js_uncompress %}

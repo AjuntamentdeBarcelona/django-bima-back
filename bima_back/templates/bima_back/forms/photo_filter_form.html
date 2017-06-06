@@ -1,0 +1,63 @@
+{% extends 'bima_back/forms/filter_form.html' %}
+{% load i18n bima_back_tags %}
+
+{# iterate all fields form #}
+{% block filter_fields %}
+
+  <div class="box box-search photoSearch">
+    <div class="box-body">
+        {% for field in form|select_form_fields:visible_fields  %}
+          {% include 'bima_back/forms/form_inline_fields.html' with column_class='col-md-12' placeholder=field.help_text hidden_help_text=True %}
+        {% endfor %}
+        <div class="button col-md-4">
+          <a href="javascript:void(0)" class="show_hide btn btn-default pull-right" title="{% trans 'Advanced search' %}" data-toggle="tooltip" data-placement="bottom">
+            <i class="fa fa-gear"></i>
+          </a>
+          <a href="#" class="btn btn-info pull-right infoModal tooltipInfo" data-toggle="modal" data-target="#modalHelp" title="{% trans 'How to search?' %}">
+            <i class="fa fa-question-circle"></i>
+          </a>
+        </div>
+    </div>
+  </div>
+
+  <div class="slidingDiv">
+    <div class="box box-search photoSearch advanced">
+      <div class="box-title"><h3>
+          <i class="fa fa-search"></i> {% trans 'Advanced search' %}
+        </h3>
+        <a href="javascript:void(0)" class="btn btn-close show_hide pull-right" data-toggle="tooltip" title="{% trans 'Close advanced search' %}" data-placement="bottom">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+      </div>
+      <div class="box-body">
+        {% for field in form|discard_form_fields:visible_fields  %}
+          {% include 'bima_back/forms/form_fields.html' %}
+        {% endfor %}
+        <button type="submit" class="btn btn-default pull-right" id="advanced_filter"  name="btn_advanced">
+          <i class="fa fa-filter"></i> {{ button_name|default_if_blank:default_button_name }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {# modal #}
+  <div class="modal fade" id="modalHelp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-info-circle"></i> {% trans 'How to execute a search' %}</h4>
+      </div>
+      <div class="modal-body">
+        {% render_search_form_instructions %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  {% block filter_buttons %}{% endblock filter_buttons %}
+
+{% endblock filter_fields %}

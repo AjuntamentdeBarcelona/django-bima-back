@@ -1,0 +1,53 @@
+{% extends 'bima_back/list.html' %}
+{% load i18n bima_back_tags django_bootstrap_breadcrumbs %}
+
+
+{% block content_title %}{% trans "Users list" %}{% endblock %}
+
+
+{% block breadcrumbs %}
+  {% trans "Manage Users" as users_label %}
+  {{ block.super }}
+  {% breadcrumb users_label "user_manage" %}
+{% endblock breadcrumbs %}
+
+
+{% block content_body %}
+<table class="table userList">
+  <tr>
+    <th>{% trans 'Name' %}</th>
+    <th>{% trans 'Group' %}</th>
+    <th>{% trans 'Status' %}</th>
+    <th>{% trans 'Actions' %}</th>
+  </tr>
+  {% for user in users %}
+    <tr>
+      <td>{{ user.full_name|default_if_blank:user.username }}</td>
+      <td>
+        {% for group in user.extra_info.groups %}
+          {{ group.name }}
+        {% empty %}
+          -
+        {% endfor %}
+      </td>
+      {% if user.is_active %}
+        <td>{% trans 'Active' %}</td>
+        <td class="buttonsOptions">
+          <a href="{% url 'user_edit' user.id %}"><i class="fa fa-pencil"></i></a>
+          <a href="{% url 'user_delete' user.id %}" class="margin-left" data-toggle="tooltip" title="{% trans 'Deactivate user' %}">
+            <i class="fa fa-ban"></i>
+          </a>
+        </td>
+      {% else %}
+        <td>{% trans 'Not Active' %}</td>
+        <td class="buttonsOptions">
+          <a href="{% url 'user_edit' user.id %}"><i class="fa fa-pencil"></i></a>
+          <a href="{% url 'user_active' user.id %}" class="margin-left" data-toggle="tooltip" title="{% trans 'Activate user' %}">
+            <i class="fa fa-check"></i>
+          </a>
+        </td>
+      {% endif %}
+    </tr>
+  {% endfor %}
+</table>
+{% endblock content_body %}

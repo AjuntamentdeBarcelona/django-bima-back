@@ -1,0 +1,76 @@
+{% extends 'bima_back/detail.html' %}
+{% load i18n static bootstrap_pagination django_bootstrap_breadcrumbs %}
+
+{% block content_header %}
+  {{ block.super }}
+  <div class="buttonsHeader">
+    {% if instance.permissions.write %}
+    <a class="btn btn-info delete pull-right" href="{% url 'gallery_delete' instance.id %}">
+      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete Gallery' %}
+    </a>
+    <a class="btn btn-default pull-right" href="{% url 'gallery_edit' instance.id %}">
+      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Gallery' %}
+    </a>
+    {% endif %}
+    <a class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-picture-o" aria-hidden="true"></i> {% trans 'Info' %}
+    </a>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {% if instance.title %}
+            <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder-open"></i> {{ instance.title }}</h4>
+          {% endif %}
+        </div>
+        <div class="modal-body">
+          <div class="infoDetail">
+            {% if instance.description %}
+              <p>{{ instance.description }}</p>
+            {% endif %}
+            <h4>{% trans 'Assignees' %}</h4>
+            {% for owner in instance.extra_info.owners %}
+              <div class="infoDetail">
+                <a href="mailto:{{ owner.email }}" target="_top"><i class="fa fa-circle"></i> {{ owner.full_name }}</a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content_header %}
+
+{% block breadcrumbs %}
+  {% trans "Galleries" as galleries_label %}
+  {% trans "Detail" as detail_label %}
+  {{ block.super }}
+  {% breadcrumb galleries_label "gallery_list" %}
+  {% breadcrumb detail_label "category_detail" %}
+{% endblock breadcrumbs %}
+
+{% block content_body %}
+  <section class="col-md-12 gallery-photos">
+    {% for photo in photo_list %}
+      {% include 'bima_back/includes/photos/list_item.html' with base_cover_url='gallery_cover' %}
+    {% empty %}
+      <div class="no-yet">
+        <div class="info">
+          <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
+          <p>{% trans 'This gallery has no photos yet' %}<p>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+
+  <div class="box-footer col-md-12">
+     {% bootstrap_paginate page range=5 %}
+  </div>
+
+{% endblock content_body %}

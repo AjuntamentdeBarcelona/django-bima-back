@@ -1,0 +1,12 @@
+{% extends 'bima_back/create_update.html' %}
+{% load i18n %}
+
+
+{% block page_js %}{% endblock page_js %}
+
+
+{% block content_form %}
+    <p><strong>{% trans 'Username' %}:</strong> {{ instance.username|default:' — ' }}</p>
+    <p><strong>{% trans 'Email' %}:</strong> {{ instance.email|default:' — ' }}</p>
+    {{ block.super }}
+{% endblock content_form %}

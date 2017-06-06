@@ -1,0 +1,31 @@
+{% extends 'bima_back/forms/form_base.html' %}
+{% load i18n bima_back_tags %}
+
+{% block form_fields %}
+  {% for fieldset in form.fieldsets %}
+    <div class="box box-base">
+
+      {# Box header #}
+      <div class="box-header">
+        <i class="fa {{ fieldset.icon|default:'fa-file-o' }}"></i>
+        <h3 class="box-title">{{ fieldset.title }}</h3>
+        <div class="pull-right box-tools">
+          <button class="btn btn-transparent btn-sm pull-right collapsible" type="button"
+                  data-toggle="collapse" data-target="#fieldset-{{ fieldset.name }}" aria-expanded="false">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      {# Box body #}
+      <div class="box-body collapse" id="fieldset-{{ fieldset.name }}">
+        {% if not ignore_multilang %}
+          <div class="form-language-tabs"></div>
+        {% endif %}
+        {% for field in fieldset  %}
+          {% include 'bima_back/forms/form_fields.html' with mark_required=mark_as_required|default_if_blank:True %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+{% endblock form_fields %}

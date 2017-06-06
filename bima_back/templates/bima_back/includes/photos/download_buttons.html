@@ -1,0 +1,57 @@
+{% load i18n bima_back_tags %}
+
+<div class="thumbnails photo-download">
+
+    <ul class="download_thumbs">
+
+      {% if instance.original_file_name|thumbor_supports_file %}
+        {% get_download_filename instance as filename %}
+        <li>
+          <a class="btn btn-default" href="{{ instance.image_thumbnail }}?download_filename={{ filename }}"
+           data-toggle="tooltip" data-placement="bottom" title="{% get_download_dimension instance 'image_thumbnail' %}">
+            <i class="fa fa-angle-download"></i> {% trans "Thumbnail" %}
+          </a>
+        </li>
+
+        <li>
+          <a class="btn btn-default" href="{{ instance.image_small }}?download_filename={{ filename }}"
+           data-toggle="tooltip" data-placement="bottom" title="{% get_download_dimension instance 'image_small' %}">
+            <i class="fa fa-angle-download"></i> {% trans "Small" %}
+          </a>
+        </li>
+
+        <li>
+          <a class="btn btn-default" href="{{ instance.image_medium }}?download_filename={{ filename }}"
+           data-toggle="tooltip" data-placement="bottom" title="{% get_download_dimension instance 'image_medium' %}">
+            <i class="fa fa-angle-download"></i> {% trans "Medium" %}
+          </a>
+        </li>
+
+        <li>
+          <a class="btn btn-default" href="{{ instance.image_large }}?download_filename={{ filename }}"
+           data-toggle="tooltip" data-placement="bottom" title="{% get_download_dimension instance 'image_large' %}">
+            <i class="fa fa-angle-download"></i> {% trans "Large" %}
+          </a>
+        </li>
+
+        <li>
+          <a class="btn btn-default" href="{{ instance.image_original }}?download_filename={{ filename }}"
+           {% if instance.width and instance.height %}
+             data-toggle="tooltip" data-placement="bottom" title="{% get_download_dimension instance 'image_original' %}"
+           {% endif %} >
+            <i class="fa fa-angle-download"></i> {% trans "Natural" %}
+          </a>
+        </li>
+      {% endif %}
+
+      {% if instance.image_file %}
+      <li>
+        <a class="btn btn-default" href="{{ instance.image_file }}" target="_blank"
+           data-toggle="tooltip" data-placement="bottom" title="{% trans 'Original file' %}">
+          <i class="fa fa-angle-download"></i> {% trans "Original" %}
+        </a>
+      </li>
+      {% endif %}
+
+    </ul>
+  </div>

@@ -1,0 +1,35 @@
+{% extends 'bima_back/base.html' %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+
+{% block breadcrumbs %}
+  {% trans "Download Photos" as download_label %}
+  {{ block.super }}
+  {% breadcrumb download_label "photo_download_multiple" %}
+{% endblock breadcrumbs %}
+
+
+{% block content %}
+
+  <div class="box-body edit-multiple-message">
+    <p>{% trans 'You are going to download the following photos:' %}</p>
+    <ul>
+      {% for key, data in request.session.cart.items %}
+        <li>
+          <a href="{% url 'photo_detail' data.id %}" target="_blank"><img src="{{ data.thumbnail }}" width="42" height="42"/>
+          </a>
+          {{ data.title }}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div>
+    <form method="post" action=".">
+      {% csrf_token %}
+      <input type="hidden" name="size" value="small"/>
+      <input type="submit" value="{% trans 'Download Small size' %}" class="btn btn-default"/>
+    </form>
+  </div>
+
+{% endblock content %}

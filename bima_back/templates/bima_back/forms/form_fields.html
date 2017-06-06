@@ -1,0 +1,48 @@
+{% load widget_tweaks bima_back_tags %}
+
+{# Hidden inputs #}
+{% if field.is_hidden %}
+  {{ field }}
+
+{# Non hidden inputs #}
+{% else %}
+  <div class="form-group {{ column_class|default:'col-md-6' }} {% if form.errors %}has-error{% endif %}" id="{{ field.name|slugify }}">
+    {# Special case for checkbox #}
+    {% if field|is_checkbox %}
+      <div class="checkbox">
+        <label>{{ field }}<span>{{ field.label }}</span></label>
+      </div>
+
+    {# Special case for radio select #}
+    {% elif field|is_radio %}
+      <label>{{ field.label }}</label>
+      <div class="radio">
+        {{ field }}
+      </div>
+
+    {# Other input fields form #}
+    {% else %}
+      {% block label_form_horizontal %}
+        <label class="control-label {% if 'form-horizontal' in form_class %}col-sm-2{% endif %}" for="{{ field.name }}">
+          {{ field.label }}{% if field.field.required and mark_required %}*{% endif %}
+        </label>
+      {% endblock label_form_horizontal %}
+      {% block input_form_horizontal %}
+        {# If is an horizontal form is needed extra container field with a specific width #}
+        {% if 'form-horizontal' in form_class %}<div class="col-sm-10">{% endif %}
+        {% render_field field class+="form-control" placeholder=placeholder|default:field.label %}
+        {% if 'form-horizontal' in form_class %}</div>{% endif %}
+        {# Show field errors #}
+        {% block field_errors %}
+          {% for error in field.errors %}
+            <span class="help-block">{{ error }}</span>
+          {% endfor %}
+        {% endblock %}
+        {# Show field help text #}
+        {% if not hidden_help_text %}
+          <span class="help-block">{{ field.help_text }}</span>
+        {% endif %}
+      {% endblock input_form_horizontal %}
+    {% endif %}
+  </div>
+{% endif %}

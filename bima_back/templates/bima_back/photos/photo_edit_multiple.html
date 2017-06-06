@@ -1,0 +1,41 @@
+{% extends 'bima_back/photos/photo_edit.html' %}
+{% load staticfiles i18n compress django_bootstrap_breadcrumbs %}
+
+
+{% block content_title %}
+  {% trans "Update Photos" %}
+{% endblock %}
+
+
+{% block content %}
+  <div class="row">
+    <div class="col-lg-12 connectedSortable ui-sortable">
+
+      <div class="box-body edit-multiple-message">
+        <p class="infotitle"><i class="fa fa-bookmark"></i> {% trans 'You are going to edit the following photos:' %}</p>
+        <ul>
+          {% for key, data in request.session.cart.items %}
+            <li>
+              <a href="{% url 'photo_detail' data.id %}" target="_blank"><img src="{{ data.thumbnail }}" width="42" height="42"/>
+              </a>
+              {{ data.title }}
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      {# form fields to edit #}
+      {% include 'bima_back/forms/form_fieldsets.html' %}
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+  {% trans "Multiple edition" as multiple_label %}
+  {{ block.super }}
+  {% breadcrumb multiple_label "photo_edit_multiple" %}
+{% endblock breadcrumbs %}
+
+
+{% block show_required_js %}{% endblock show_required_js %}

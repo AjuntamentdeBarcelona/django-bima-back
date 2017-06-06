@@ -1,0 +1,18 @@
+{% extends 'bima_back/forms/filter_form.html' %}
+{% load i18n bima_back_tags %}
+
+{% block filter_buttons %}
+  <div class="button buttonsLog">
+    <a {% if logs %}href="{% url 'log_list' %}{% pagination_url_export request.GET %}"{% endif %}
+        id="export-logs" class="btn btn-default pull-right" data-toggle="tooltip" data-placement="bottom"
+        title="{% trans 'Remember to apply filters before exporting' %}" {% if not logs %}disabled{% endif %}>
+      <i class="fa fa-download"></i> {% trans 'Export' %}
+    </a>
+    <button id="reset-filters" type="reset" class="btn btn-info delete filter-btn pull-right post-reset">
+      <i class="fa fa-eraser"></i> {% trans 'Clean' %}
+    </button>
+    <button type="submit" class="btn btn-default pull-right">
+      <i class="fa fa-filter"></i> {{ button_name|default_if_blank:default_button_name }}
+    </button>
+  </div>
+{% endblock filter_buttons %}

@@ -1,0 +1,28 @@
+{% load i18n %}
+
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+  <i class="fa fa-search" aria-hidden="true"></i><span class="badge">{{ filters|length }}</span>
+</a>
+
+<ul class="dropdown-menu filters">
+  <li class="header">
+    <strong>{% trans 'Saved filters' %}</strong>
+  </li>
+
+  <li class="filters-menu">
+    <ul class="menu">
+      {% for filter in filters %}
+        <li>
+          <p class="clearfix">
+            <a href="{{ filter.filter }}">
+              {{ filter.name }}
+            </a>
+            <a href="javascript:void(0)" data-remove-filter-url="{% url 'filter_remove' filter.id %}" class="remove-filter">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </a>
+          </p>
+        </li>
+      {% endfor %}
+    </ul>
+  </li>
+</ul>

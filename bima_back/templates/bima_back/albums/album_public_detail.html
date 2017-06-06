@@ -1,0 +1,14 @@
+{% extends 'bima_back/photos/photo.html' %}
+{% load i18n django_bootstrap_breadcrumbs %}
+
+{% block content_title %}{% trans 'Public Album' %}{% endblock content_title %}
+
+{% block breadcrumbs %}
+  {% trans "Albums" as label_albums %}
+  {% trans "Public Album" as label_public_album %}
+  {{ block.super }}
+  {% breadcrumb label_albums "album_list" %}
+  {% breadcrumb label_public_album "album_public_list" %}
+{% endblock breadcrumbs %}
+
+{% block search_form %}{% endblock search_form %}

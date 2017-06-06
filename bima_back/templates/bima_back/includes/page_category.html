@@ -1,0 +1,13 @@
+{% load i18n %}
+
+{% if active_section == 'album' %}
+  <i class="fa fa-folder-open"></i> {% trans 'Àlbums' %}
+{% endif %}
+
+{% if active_section == 'gallery' %}
+  <i class="fa fa-picture-o"></i> {% trans 'Galleries' %}
+{% endif %}
+
+{% if active_section == 'category' %}
+  <i class="fa fa-slack"></i> {% trans 'Categories' %}
+{% endif %}

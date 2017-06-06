@@ -1,0 +1,1147 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-06-02 12:48+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: constants.py:28
+msgid "All"
+msgstr ""
+
+#: constants.py:35
+msgid "Viewed"
+msgstr ""
+
+#: constants.py:36
+msgid "Downloaded"
+msgstr ""
+
+#: constants.py:43
+msgid "Private"
+msgstr ""
+
+#: constants.py:44
+msgid "Public"
+msgstr ""
+
+#: exports.py:21
+msgid "Photo id"
+msgstr ""
+
+#: exports.py:22
+msgid "Photo title"
+msgstr ""
+
+#: exports.py:23 forms.py:352 templates/bima_back/logs/log.html:24
+msgid "Action"
+msgstr ""
+
+#: exports.py:24 forms.py:353 templates/bima_back/logs/log.html:25
+msgid "User"
+msgstr ""
+
+#: exports.py:25
+msgid "Added at"
+msgstr ""
+
+#: forms.py:58 forms.py:76 forms.py:121 forms.py:194 forms.py:308
+#: templates/bima_back/delete.html:21
+#: templates/bima_back/photos/photo_detail.html:105
+msgid "Title"
+msgstr ""
+
+#: forms.py:59 forms.py:124 forms.py:195 forms.py:309
+#: templates/bima_back/delete.html:24
+#: templates/bima_back/photos/photo_detail.html:106
+msgid "Description"
+msgstr ""
+
+#: forms.py:62 forms.py:198 forms.py:218
+msgid "Slug"
+msgstr ""
+
+#: forms.py:63
+msgid "Assignee"
+msgstr ""
+
+#: forms.py:80 forms.py:138 forms.py:230
+#: templates/bima_back/photos/photo_detail.html:234
+msgid "Author"
+msgstr ""
+
+#: forms.py:81 forms.py:115 forms.py:139 forms.py:231
+#: templates/bima_back/photos/photo_detail.html:220
+#: templates/bima_back/photos/photo_detail.html:222
+#: templates/bima_back/photos/photo_detail.html:223
+#: templates/bima_back/photos/photo_detail.html:238
+msgid "Copyright"
+msgstr ""
+
+#: forms.py:82 forms.py:131 templates/bima_back/photos/photo_detail.html:139
+msgid "Capture date"
+msgstr ""
+
+#: forms.py:89 forms.py:128 forms.py:250
+#: templates/bima_back/photos/photo_detail.html:123
+msgid "Album"
+msgstr ""
+
+#: forms.py:106 templates/bima_back/photos/photo_detail.html:204
+msgid "Type"
+msgstr ""
+
+#: forms.py:112
+msgid "General information"
+msgstr ""
+
+#: forms.py:113 templates/bima_back/photos/photo_detail.html:158
+#: templates/bima_back/photos/photo_detail.html:160
+#: templates/bima_back/photos/photo_detail.html:161
+msgid "Metadata"
+msgstr ""
+
+#: forms.py:117 templates/bima_back/photos/photo_detail.html:264
+#: templates/bima_back/photos/photo_detail.html:266
+#: templates/bima_back/photos/photo_detail.html:267
+msgid "Location"
+msgstr ""
+
+#: forms.py:122 templates/bima_back/photos/photo_detail.html:182
+msgid "Keywords"
+msgstr ""
+
+#: forms.py:129 forms.py:312 templates/bima_back/galleries/gallery.html:4
+#: templates/bima_back/galleries/gallery_detail.html:51
+#: templates/bima_back/includes/body_sidebar.html:32
+#: templates/bima_back/includes/page_category.html:8
+#: templates/bima_back/photos/photo_detail.html:129 views.py:566 views.py:838
+#: views.py:928 views.py:1003
+msgid "Galleries"
+msgstr ""
+
+#: forms.py:130 forms.py:200 forms.py:313
+#: templates/bima_back/logs/photo_upload_log.html:16
+#: templates/bima_back/photos/photo_detail.html:115
+#: templates/bima_back/users/user.html:20
+msgid "Status"
+msgstr ""
+
+#: forms.py:132
+msgid "Change Photo"
+msgstr ""
+
+#: forms.py:135 forms.py:311 templates/bima_back/categories/category.html:17
+#: templates/bima_back/includes/body_sidebar.html:41
+#: templates/bima_back/includes/page_category.html:12
+#: templates/bima_back/photos/photo_detail.html:191 views.py:577 views.py:858
+#: views.py:1014
+msgid "Categories"
+msgstr ""
+
+#: forms.py:136 templates/bima_back/photos/photo_detail.html:201
+msgid "Names"
+msgstr ""
+
+#: forms.py:140 templates/bima_back/photos/photo_detail.html:246
+msgid "Internal restriction"
+msgstr ""
+
+#: forms.py:142 templates/bima_back/photos/photo_detail.html:250
+msgid "External restriction"
+msgstr ""
+
+#: forms.py:145
+msgid "Position"
+msgstr ""
+
+#: forms.py:146 templates/bima_back/photos/photo_detail.html:287
+msgid "Address"
+msgstr ""
+
+#: forms.py:147
+msgid "District"
+msgstr ""
+
+#: forms.py:148
+msgid "Neighborhood"
+msgstr ""
+
+#: forms.py:149
+msgid "Postcode"
+msgstr ""
+
+#: forms.py:159 templates/bima_back/photos/photo_create_multiple.html:7
+msgid "An error has occurred. Please, try again."
+msgstr ""
+
+#: forms.py:162 templates/bima_back/photos/photo_create_multiple.html:8
+msgid "Sorry, the maximum image size allowed is"
+msgstr ""
+
+#: forms.py:162 templates/bima_back/photos/photo_create_multiple.html:8
+msgid "MB"
+msgstr ""
+
+#: forms.py:163 templates/bima_back/photos/photo_create_multiple.html:9
+msgid "Sorry, only gif, png, jpg, jpeg, tif and tiff images are allowed."
+msgstr ""
+
+#: forms.py:199 templates/bima_back/albums/album_detail.html:39
+#: templates/bima_back/galleries/gallery_detail.html:34
+msgid "Assignees"
+msgstr ""
+
+#: forms.py:214 forms.py:367 models.py:29 templates/bima_back/delete.html:18
+#: templates/bima_back/delete.html:30 templates/bima_back/users/user.html:18
+msgid "Name"
+msgstr ""
+
+#: forms.py:217
+msgid "Parent"
+msgstr ""
+
+#: forms.py:232
+msgid "Flickr URL"
+msgstr ""
+
+#: forms.py:233
+msgid "For example: https://www.flickr.com/photos/name/123456789/in/other"
+msgstr ""
+
+#: forms.py:254
+msgid "E-mail"
+msgstr ""
+
+#: forms.py:258
+msgid "New password"
+msgstr ""
+
+#: forms.py:259
+msgid "Repeat new password"
+msgstr ""
+
+#: forms.py:273
+msgid "Passwords don't match"
+msgstr ""
+
+#: forms.py:282
+msgid "First name"
+msgstr ""
+
+#: forms.py:283
+msgid "Last name"
+msgstr ""
+
+#: forms.py:284 templates/bima_back/users/user.html:19
+msgid "Group"
+msgstr ""
+
+#: forms.py:306
+msgid "Set text or part of text you want to search into the photos"
+msgstr ""
+
+#: forms.py:306
+msgid "Text"
+msgstr ""
+
+#: forms.py:310 templates/bima_back/albums/album_detail.html:58
+#: templates/bima_back/albums/album_public_detail.html:7
+#: templates/bima_back/includes/body_sidebar.html:23
+#: templates/bima_back/photos/photo_detail.html:40 views.py:329 views.py:406
+#: views.py:487 views.py:622 views.py:750 views.py:915 views.py:977
+#: views.py:988
+msgid "Albums"
+msgstr ""
+
+#: forms.py:315
+msgid "Types"
+msgstr ""
+
+#: forms.py:354
+msgid "From"
+msgstr ""
+
+#: forms.py:355
+msgid "To"
+msgstr ""
+
+#: mixins.py:124
+msgid "Extra information"
+msgstr ""
+
+#: mixins.py:243 views.py:819
+msgid "Your transaction completed successfully."
+msgstr ""
+
+#: mixins.py:244 mixins.py:274 templates/bima_back/photos/photo.html:35
+msgid "Ooops! Something went wrong."
+msgstr ""
+
+#: mixins.py:267
+msgid "You don't have permissions to do this action! Log in."
+msgstr ""
+
+#: models.py:13
+msgid "token"
+msgstr ""
+
+#: models.py:14
+msgid "DAM groups"
+msgstr ""
+
+#: models.py:15
+msgid "admin"
+msgstr ""
+
+#: models.py:16
+msgid "permissions"
+msgstr ""
+
+#: models.py:24
+msgid "user"
+msgstr ""
+
+#: models.py:28 templates/bima_back/delete.html:27
+#: templates/bima_back/users/user_form.html:9
+msgid "Username"
+msgstr ""
+
+#: models.py:30 templates/bima_back/forms/filter_form.html:2
+msgid "Filter"
+msgstr ""
+
+#: models.py:33
+msgid "Photo filter"
+msgstr ""
+
+#: models.py:34
+msgid "Photo filters"
+msgstr ""
+
+#: templates/403.html:4 templates/403.html:8
+msgid "Log in again"
+msgstr ""
+
+#: templates/403.html:7
+msgid "Session has expired"
+msgstr ""
+
+#: templates/404.html:4 templates/404.html:7
+msgid "Page Not found"
+msgstr ""
+
+#: templates/404.html:8
+msgid "This is not the page you were looking for."
+msgstr ""
+
+#: templates/bima_back/albums/album.html:4
+msgid "Tots el àlbums"
+msgstr ""
+
+#: templates/bima_back/albums/album.html:11
+msgid "Add Album"
+msgstr ""
+
+#: templates/bima_back/albums/album.html:33
+#: templates/bima_back/albums/album_public_detail.html:4
+#: templates/bima_back/albums/album_public_detail.html:8 views.py:323
+#: views.py:330
+msgid "Public Album"
+msgstr ""
+
+#: templates/bima_back/albums/album.html:58
+#: templates/bima_back/galleries/gallery.html:40
+#: templates/bima_back/includes/photos/list_item.html:30
+msgid "View"
+msgstr ""
+
+#: templates/bima_back/albums/album.html:61
+#: templates/bima_back/categories/category.html:44
+#: templates/bima_back/galleries/gallery.html:43
+#: templates/bima_back/includes/photo_cart_aside.html:38
+#: templates/bima_back/includes/photos/list_item.html:34 views.py:622
+#: views.py:838 views.py:858 views.py:1182
+msgid "Edit"
+msgstr ""
+
+#: templates/bima_back/albums/album.html:62
+#: templates/bima_back/galleries/gallery.html:44
+#: templates/bima_back/includes/photos/list_item.html:26
+msgid "Remove"
+msgstr ""
+
+#: templates/bima_back/albums/album_detail.html:9
+msgid "Delete Album"
+msgstr ""
+
+#: templates/bima_back/albums/album_detail.html:12
+msgid "Edit Album"
+msgstr ""
+
+#: templates/bima_back/albums/album_detail.html:17
+#: templates/bima_back/includes/body_sidebar.html:50 views.py:455 views.py:489
+msgid "Upload Photo"
+msgstr ""
+
+#: templates/bima_back/albums/album_detail.html:21
+#: templates/bima_back/galleries/gallery_detail.html:16
+msgid "Info"
+msgstr ""
+
+#: templates/bima_back/albums/album_detail.html:57
+#: templates/bima_back/galleries/gallery_detail.html:52
+msgid "Detail"
+msgstr ""
+
+#: templates/bima_back/albums/album_detail.html:72
+msgid "This album has no photos yet"
+msgstr ""
+
+#: templates/bima_back/categories/category.html:4
+msgid "Category"
+msgstr ""
+
+#: templates/bima_back/categories/category.html:11
+msgid "Add Category"
+msgstr ""
+
+#: templates/bima_back/categories/category.html:24
+msgid "Search by"
+msgstr ""
+
+#: templates/bima_back/categories/category.html:45
+#: templates/bima_back/photos/photo_create_multiple.html:17 views.py:977
+#: views.py:1003 views.py:1014
+msgid "Delete"
+msgstr ""
+
+#: templates/bima_back/categories/category.html:50
+msgid "Show categories"
+msgstr ""
+
+#: templates/bima_back/cover_confirm.html:7
+msgid "Do you really want to set this photo as cover?"
+msgstr ""
+
+#: templates/bima_back/cover_confirm.html:16
+#: templates/bima_back/forms/delete_form.html:7
+msgid "Cancel"
+msgstr ""
+
+#: templates/bima_back/cover_confirm.html:17
+#: templates/bima_back/forms/delete_form.html:9
+msgid "Confirm"
+msgstr ""
+
+#: templates/bima_back/create_update.html:31
+msgid "in album"
+msgstr ""
+
+#: templates/bima_back/forms/filter_form.html:22
+#: templates/bima_back/forms/logger_filter_form.html:12
+msgid "Clean"
+msgstr ""
+
+#: templates/bima_back/forms/form_base.html:24
+#: templates/bima_back/photos/photo.html:38
+msgid "Save"
+msgstr ""
+
+#: templates/bima_back/forms/logger_filter_form.html:8
+msgid "Remember to apply filters before exporting"
+msgstr ""
+
+#: templates/bima_back/forms/logger_filter_form.html:9
+msgid "Export"
+msgstr ""
+
+#: templates/bima_back/forms/login_form.html:7
+msgid "Login"
+msgstr ""
+
+#: templates/bima_back/forms/login_form.html:13
+msgid "Wrong user or password"
+msgstr ""
+
+#: templates/bima_back/forms/photo_filter_form.html:13
+#: templates/bima_back/forms/photo_filter_form.html:26
+msgid "Advanced search"
+msgstr ""
+
+#: templates/bima_back/forms/photo_filter_form.html:16
+msgid "How to search?"
+msgstr ""
+
+#: templates/bima_back/forms/photo_filter_form.html:28
+msgid "Close advanced search"
+msgstr ""
+
+#: templates/bima_back/forms/photo_filter_form.html:49
+msgid "How to execute a search"
+msgstr ""
+
+#: templates/bima_back/galleries/gallery.html:13
+msgid "Add Gallery"
+msgstr ""
+
+#: templates/bima_back/galleries/gallery_detail.html:9
+msgid "Delete Gallery"
+msgstr ""
+
+#: templates/bima_back/galleries/gallery_detail.html:12
+msgid "Edit Gallery"
+msgstr ""
+
+#: templates/bima_back/galleries/gallery_detail.html:66
+msgid "This gallery has no photos yet"
+msgstr ""
+
+#: templates/bima_back/home.html:7
+#: templates/bima_back/includes/head_meta.html:11
+msgid "BIMA"
+msgstr ""
+
+#: templates/bima_back/includes/body_navbar_menu.html:5
+msgid "Bank of Images"
+msgstr ""
+
+#: templates/bima_back/includes/body_navbar_menu.html:37
+#: templates/bima_back/includes/body_sidebar.html:72
+msgid "Manage users"
+msgstr ""
+
+#: templates/bima_back/includes/body_navbar_menu.html:40
+#: templates/bima_back/includes/body_sidebar.html:75
+msgid "Logs list"
+msgstr ""
+
+#: templates/bima_back/includes/body_navbar_menu.html:42
+#: templates/bima_back/includes/body_sidebar.html:78
+#: templates/bima_back/logs/photo_upload_log.html:4
+msgid "Photo uploads"
+msgstr ""
+
+#: templates/bima_back/includes/body_sidebar.html:8
+msgid "Toggle navigation"
+msgstr ""
+
+#: templates/bima_back/includes/body_sidebar.html:15
+msgid "Search"
+msgstr ""
+
+#: templates/bima_back/includes/body_sidebar.html:59 views.py:346 views.py:352
+msgid "My Photos"
+msgstr ""
+
+#: templates/bima_back/includes/body_sidebar.html:68
+msgid "Options"
+msgstr ""
+
+#: templates/bima_back/includes/body_sidebar.html:87
+msgid "Sign Off"
+msgstr ""
+
+#: templates/bima_back/includes/no_elements.html:5
+msgid "There are no elements now"
+msgstr ""
+
+#: templates/bima_back/includes/page_category.html:4
+msgid "Àlbums"
+msgstr ""
+
+#: templates/bima_back/includes/pagination/pagination_results.html:3
+msgid "Showing"
+msgstr ""
+
+#: templates/bima_back/includes/pagination/pagination_results.html:5
+msgid "from"
+msgstr ""
+
+#: templates/bima_back/includes/pagination/pagination_results.html:5
+msgid "to"
+msgstr ""
+
+#: templates/bima_back/includes/pagination/pagination_results.html:5
+#: templates/bima_back/photos/photo_create_multiple.html:26
+#: templates/bootstrap_pagination/pagination.html:36
+msgid "of"
+msgstr ""
+
+#: templates/bima_back/includes/pagination/pagination_results.html:7
+msgid "results"
+msgstr ""
+
+#: templates/bima_back/includes/photo_cart_aside.html:5
+msgid ""
+"You reached the maximum number of photos that can be edited simultaneously"
+msgstr ""
+
+#: templates/bima_back/includes/photo_cart_aside.html:6
+msgid "An error has occurred. Please try again or refresh the page"
+msgstr ""
+
+#: templates/bima_back/includes/photo_cart_aside.html:10
+msgid "Photo Edit Cart"
+msgstr ""
+
+#: templates/bima_back/includes/photo_cart_aside.html:29
+msgid "There are no photos selected for massive editation"
+msgstr ""
+
+#: templates/bima_back/includes/photo_cart_aside.html:34
+msgid "Empty"
+msgstr ""
+
+#: templates/bima_back/includes/photo_cart_aside.html:41
+msgid "Copy tags from current photo"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:22
+#: templates/bima_back/photos/photo_detail.html:64
+msgid "The owner"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:26
+#: templates/bima_back/photos/photo_detail.html:68
+msgid "Last cataloging"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:29
+msgid "Dimensions"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:34
+#: templates/bima_back/photos/photo_detail.html:76
+msgid "Original size"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:36
+#: templates/bima_back/photos/photo_detail.html:80
+msgid "Camera model"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:43
+msgid "Identifier"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:44
+msgid "Original name"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:12
+msgid "Thumbnail"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:19
+msgid "Small"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:26
+msgid "Medium"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:33
+msgid "Large"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:42
+msgid "Natural"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:50
+msgid "Original file"
+msgstr ""
+
+#: templates/bima_back/includes/photos/download_buttons.html:51
+msgid "Original"
+msgstr ""
+
+#: templates/bima_back/includes/photos/list_item.html:39
+#: templates/bima_back/photos/photo_edit_multiple.html:35
+msgid "Multiple edition"
+msgstr ""
+
+#: templates/bima_back/includes/photos/list_item.html:46
+msgid "Set as cover"
+msgstr ""
+
+#: templates/bima_back/includes/saved_filters_menu.html:9
+msgid "Saved filters"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:3
+msgid ""
+"El cercador és una eina del Banc d'Imatge que ens permet trobar les "
+"fotografies a partir de criteris diversos."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:4
+msgid "Ens permet fer tres tipus de cerca:"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:5
+msgid "1. Text lliure"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:6
+#: templates/bima_back/includes/search_form_instructions.html:27
+msgid "2. Cerca avançada"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:7
+msgid "3. Mitjançant operadors"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:11
+msgid "1. Cerca per text lliure"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:13
+msgid ""
+"Cerca la coincidència exacta de la paraula buscada en qualsevol dels camps "
+"de la imatge."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:14
+msgid ""
+"Es permeten cerques per múltiples paraules o frases, si es posen entre "
+"cometes (\"\")."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:18
+msgid "Alguns exemples de cerques són:"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:19
+msgid "· Collserola"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:20
+msgid "· Collserola Hivern"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:21
+msgid "· “Palau Robert”"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:22
+msgid "· ”Palau Robert” jardins"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:29
+msgid ""
+"Cerca dintre de camps específics (títol, descripció). També admet filtrar "
+"per Àlbums, Categories, Galeries i Estat de la publicació (imatges "
+"publicades, despublicades o totes)."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:30
+msgid ""
+"En el cas del títol i la descripció, no cal que la paraula estigui completa. "
+"No s'admeten les cometes."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:34
+msgid "Alguns exemples de cerca per títol:"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:35
+msgid "· Sagrada Família"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:36
+msgid ""
+"· Sagr - retornarà tots els resultats on el títol inclou el text \"sagr\""
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:37
+msgid ""
+"· Collserola Hivern - No retornarà resultats ja que no hi ha cap fotografia "
+"en què  el títol inclogui el text \"Collserola Hivern\""
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:42
+msgid "3. Cerca mitjançant operadors"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:44
+msgid "Ens permet buscar per camps específics de la imatge."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:45
+msgid "Es permeten combinacions de múltiples operadors."
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:46
+msgid "Els operadors s'empren de la següent manera:"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:46
+msgid "Operador:criteri-de-cerca"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:49
+msgid ""
+"Els operadors disponibles són els següents. S’introdueixen alguns exemples:"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:51
+msgid "0 és per a imatges despublicades, 1 és per a imatges publicades"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:65
+msgid "- amplada original de la foto (en píxels)"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:71
+msgid "- altura original de la foto (en píxels)"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:76
+msgid "cerca per títol"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:77
+msgid "familia"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:79
+msgid "cerca per descripció"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:80
+msgid "cerca pel títol i descripció de l'àlbum"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:81
+msgid "cerca per nom i llinatges de l'autor"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:82
+msgid "cerca pel títol de copyright"
+msgstr ""
+
+#: templates/bima_back/includes/search_form_instructions.html:83
+msgid "cerca pel títol de restriccions d'ús intern i extern"
+msgstr ""
+
+#: templates/bima_back/list.html:12
+msgid "List"
+msgstr ""
+
+#: templates/bima_back/logs/log.html:5
+msgid "Logs"
+msgstr ""
+
+#: templates/bima_back/logs/log.html:23
+#: templates/bima_back/logs/photo_upload_log.html:15
+msgid "Photo"
+msgstr ""
+
+#: templates/bima_back/logs/log.html:26
+msgid "Date"
+msgstr ""
+
+#: templates/bima_back/logs/photo_upload_log.html:7
+msgid "Photo Upload Log"
+msgstr ""
+
+#: templates/bima_back/logs/photo_upload_log.html:17
+msgid "Started at"
+msgstr ""
+
+#: templates/bima_back/logs/photo_upload_log.html:18
+msgid "Completed at"
+msgstr ""
+
+#: templates/bima_back/photos/photo.html:4
+msgid "Photos"
+msgstr ""
+
+#: templates/bima_back/photos/photo.html:15
+#: templates/bima_back/photos/photo.html:23
+msgid "Save current filter"
+msgstr ""
+
+#: templates/bima_back/photos/photo.html:29
+msgid "Filter name"
+msgstr ""
+
+#: templates/bima_back/photos/photo.html:32
+msgid "This field is required"
+msgstr ""
+
+#: templates/bima_back/photos/photo.html:58
+msgid "No results found"
+msgstr ""
+
+#: templates/bima_back/photos/photo_create_multiple.html:14
+msgid "Image"
+msgstr ""
+
+#: templates/bima_back/photos/photo_create_multiple.html:15
+msgid "image"
+msgstr ""
+
+#: templates/bima_back/photos/photo_create_multiple.html:26
+msgid "Uploading photo"
+msgstr ""
+
+#: templates/bima_back/photos/photo_create_multiple.html:35
+msgid "Drag the photos you want to upload"
+msgstr ""
+
+#: templates/bima_back/photos/photo_create_multiple.html:52
+msgid "Import Photo from Flickr"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:14 views.py:992
+msgid "Delete Photo"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:19
+msgid "Edit Photo"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:25
+msgid "Download Image"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:32
+msgid "Flickr url"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:39
+msgid "Photo Detail"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:72
+msgid "Dimension"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:84
+msgid "Original filename"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:117
+msgid "Private Image"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:119
+msgid "Published Image"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:300
+msgid "Longitude"
+msgstr ""
+
+#: templates/bima_back/photos/photo_detail.html:308
+msgid "Latitude"
+msgstr ""
+
+#: templates/bima_back/photos/photo_download.html:6
+msgid "Download Photos"
+msgstr ""
+
+#: templates/bima_back/photos/photo_download.html:15
+msgid "You are going to download the following photos:"
+msgstr ""
+
+#: templates/bima_back/photos/photo_download.html:31
+msgid "Download Small size"
+msgstr ""
+
+#: templates/bima_back/photos/photo_edit_multiple.html:6
+msgid "Update Photos"
+msgstr ""
+
+#: templates/bima_back/photos/photo_edit_multiple.html:15
+msgid "You are going to edit the following photos:"
+msgstr ""
+
+#: templates/bima_back/users/login.html:16
+msgid "BIMA Log in"
+msgstr ""
+
+#: templates/bima_back/users/login.html:25
+msgid "Do you want to change your password?"
+msgstr ""
+
+#: templates/bima_back/users/login.html:26
+#: templates/bima_back/users/login.html:34
+#: templates/bima_back/users/login.html:42
+msgid "Visit the following link"
+msgstr ""
+
+#: templates/bima_back/users/login.html:27
+msgid "Change password"
+msgstr ""
+
+#: templates/bima_back/users/login.html:33
+msgid "Did you forget your password?"
+msgstr ""
+
+#: templates/bima_back/users/login.html:35
+msgid "Forgotten password"
+msgstr ""
+
+#: templates/bima_back/users/login.html:41
+msgid "Did you forget your username?"
+msgstr ""
+
+#: templates/bima_back/users/login.html:43
+msgid "Forgotten username"
+msgstr ""
+
+#: templates/bima_back/users/user.html:5
+msgid "Users list"
+msgstr ""
+
+#: templates/bima_back/users/user.html:9 views.py:1182 views.py:1192
+#: views.py:1214
+msgid "Manage Users"
+msgstr ""
+
+#: templates/bima_back/users/user.html:21
+msgid "Actions"
+msgstr ""
+
+#: templates/bima_back/users/user.html:34
+msgid "Active"
+msgstr ""
+
+#: templates/bima_back/users/user.html:37
+msgid "Deactivate user"
+msgstr ""
+
+#: templates/bima_back/users/user.html:42
+msgid "Not Active"
+msgstr ""
+
+#: templates/bima_back/users/user.html:45
+msgid "Activate user"
+msgstr ""
+
+#: templates/bima_back/users/user_form.html:10
+msgid "Email"
+msgstr ""
+
+#: templates/bootstrap_pagination/pagination.html:11
+msgid "Previous page"
+msgstr ""
+
+#: templates/bootstrap_pagination/pagination.html:19
+msgid "First page"
+msgstr ""
+
+#: templates/bootstrap_pagination/pagination.html:30
+msgid "Current page"
+msgstr ""
+
+#: templates/bootstrap_pagination/pagination.html:36
+msgid "Page"
+msgstr ""
+
+#: templates/bootstrap_pagination/pagination.html:51
+msgid "Last page"
+msgstr ""
+
+#: templates/bootstrap_pagination/pagination.html:60
+msgid "Next page"
+msgstr ""
+
+#: utils.py:130
+msgid "Width"
+msgstr ""
+
+#: utils.py:131
+msgid "Height"
+msgstr ""
+
+#: views.py:328 views.py:351
+msgid "Home"
+msgstr ""
+
+#: views.py:403
+msgid "Create album"
+msgstr ""
+
+#: views.py:406 views.py:566 views.py:577
+msgid "Create"
+msgstr ""
+
+#: views.py:415 views.py:496
+msgid "Create photo"
+msgstr ""
+
+#: views.py:416
+msgid ""
+"Your photos have been uploaded successfully and are being processed. If you "
+"don't see them yet, try to reload the browser in a few seconds."
+msgstr ""
+
+#: views.py:549
+msgid "You successfully uploaded"
+msgstr ""
+
+#: views.py:563
+msgid "Create gallery"
+msgstr ""
+
+#: views.py:574
+msgid "Create category"
+msgstr ""
+
+#: views.py:754
+msgid "Update Photo"
+msgstr ""
+
+#: views.py:917 views.py:930
+msgid "Set Cover"
+msgstr ""
+
+#: views.py:974
+msgid "Are you sure you want to delete this album?"
+msgstr ""
+
+#: views.py:985
+msgid "Are you sure you want to delete this photo?"
+msgstr ""
+
+#: views.py:1000
+msgid "Are you sure you want to delete this gallery?"
+msgstr ""
+
+#: views.py:1011
+msgid "Are you sure you want to delete this category?"
+msgstr ""
+
+#: views.py:1189
+msgid "Are you sure you want to deactivate this user?"
+msgstr ""
+
+#: views.py:1192
+msgid "Deactivate"
+msgstr ""
+
+#: views.py:1203
+msgid "Are you sure you want to activate this user?"
+msgstr ""
+
+#: views.py:1214
+msgid "Activate"
+msgstr ""

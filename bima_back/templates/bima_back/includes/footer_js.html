@@ -1,0 +1,14 @@
+{% load static compress %}
+
+{% compress js %}
+  <!-- jQuery UI 1.11.4 -->
+  <script type="text/javascript" src="{% static 'bima_back/plugins/jQueryUI/jquery-ui.min.js' %}"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script type="text/javascript">
+    $.widget.bridge('uibutton', $.ui.button);
+  </script>
+  <script type="text/javascript" src="{% static 'bima_back/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/AdminLTE/js/app.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/photo_cart.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bima_back/js/photo_filters.js' %}"></script>
+{% endcompress %}

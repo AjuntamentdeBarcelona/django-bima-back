@@ -1,0 +1,13 @@
+{% extends "bima_back/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Log in again" %}{% endblock %}
+
+{% block content %}
+  <h1>{% trans "Session has expired" %}</h1>
+  <a href="{% url 'logout' %}">{% trans "Log in again" %}</a>
+{% endblock content %}
+
+{% block navbar %}{% endblock navbar %}
+
+{% block sidebar %}{% endblock sidebar %}

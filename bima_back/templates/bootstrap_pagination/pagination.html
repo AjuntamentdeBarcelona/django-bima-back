@@ -1,0 +1,66 @@
+{% load i18n bima_back_tags bootstrap_pagination %}
+
+{% list_pages page_urls as current_pages %}
+
+<div class="pull-left">{% pagination_render_results page %}</div>
+
+<div class="btn-group pull-right">
+  <ul class="pagination{% if size == "small" %} pagination-sm{% endif %}{% if size == "large" %} pagination-lg{% endif %}">
+    {% if page.has_previous %}
+      <li>
+        <a title="{% trans 'Previous page' %}" class="btn btn-pagination left" href="{{ previous_page_url|default:"#"|escape }}">
+          <i class="fa fa-angle-left"></i>
+        </a>
+      </li>
+    {% endif %}
+
+    {% if 1 not in current_pages %}
+      <li>
+        <a title="{% trans 'First page' %}" class="btn btn-pagination" href="{{ first_page_url|default:"#"|escape }}">1</a>
+      </li>
+      {% if 2 not in current_pages %}
+      <li><span class="btn btn-pagination dots">...</span></li>
+      {% endif %}
+    {% endif %}
+
+    {% if page_urls|length > 1 %}
+    {% for pagenum, index_range, url in page_urls %}
+      {% if page.number == pagenum %}
+        <li>
+          <span title="{% trans 'Current page' %}" class="btn btn-pagination btn-default">
+            {% if show_index_range %} {{ index_range }} {% else %} {{ pagenum }} {%endif %}
+          </span>
+        </li>
+      {% else %}
+        <li>
+          <a title="{% trans 'Page' %} {{ pagenum }} {% trans 'of' %} {{ page.paginator.num_pages }}" href="{{ url|escape }}" class="btn btn-pagination">
+            {% if show_index_range %} {{ index_range }} {% else %} {{ pagenum }} {%endif %}
+          </a>
+        </li>
+      {% endif %}
+    {% endfor %}
+    {% endif %}
+
+    {% if page.number < page.paginator.num_pages %}
+      {% if page.paginator.num_pages not in current_pages %}
+        {# to make sure that the last page number is not repeated and not unnecessary dots are shown #}
+        {% if page.paginator.num_pages|add:"-1 " not in current_pages %}
+          <li><span class="btn btn-pagination dots">...</span></li>
+        {% endif %}
+        <li>
+          <a title="{% trans 'Last page' %}" class="btn btn-pagination" href="{{ last_page_url|default:"#"|escape }}">
+            {{ page.paginator.num_pages }}
+          </a>
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% if page.has_next %}
+      <li>
+        <a title="{% trans 'Next page' %}" class="btn btn-pagination right" href="{{ next_page_url|default:"#"|escape }}">
+          <i class="fa fa-angle-right"></i>
+        </a>
+      </li>
+    {% endif %}
+  </ul>
+</div>

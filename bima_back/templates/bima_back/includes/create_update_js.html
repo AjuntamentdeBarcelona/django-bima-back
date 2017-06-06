@@ -1,0 +1,27 @@
+{% load static %}
+
+<script type="text/javascript" src="{% static 'bima_back/js/jquery.slugify.js' %}"></script>
+<script type="text/javascript" src="{% static 'bima_back/js/i18nfields.js' %}"></script>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    // auto generate slugs
+    var lang = "{{ LANGUAGE_CODE }}";
+    var slug = $("#id_slug");
+    if (slug){
+      // forms with slug and name
+      var name = "#id_name_" + lang;
+      if ($(name)){
+        slug.slugify(name);
+      }
+      // forms with slug and title
+      var title = "#id_title_" +  lang;
+      if ($(title)){
+        slug.slugify(title);
+      }
+    }
+
+  });
+
+</script>

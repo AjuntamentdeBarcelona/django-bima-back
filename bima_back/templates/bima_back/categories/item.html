@@ -1,0 +1,17 @@
+<ul>
+  {% for child in children %}
+    <li {% if not child.children.0 and search %}class="highlight"{% endif %}>
+      {{ child.name }}
+      {% if permission %}
+      <a href="{% url 'category_delete' child.id %}" class="pull-right"><i class="fa fa-trash"></i></a>
+      <a href="{% url 'category_edit' child.id %}" class="pull-right"><i class="fa fa-pencil"></i></a>
+      {% endif %}
+      <a href="{% url 'photo_list' %}?categories={{ child.id }}&btn_advanced=" class="pull-right" target="_blank">
+        <i class="fa fa-search"></i>
+      </a>
+    </li>
+    {% if child.children.0 %}
+      {% include 'bima_back/categories/item.html' with children=child.children %}
+    {% endif %}
+  {% endfor %}
+</ul>

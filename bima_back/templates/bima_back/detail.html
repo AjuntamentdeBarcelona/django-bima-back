@@ -1,0 +1,21 @@
+{% extends 'bima_back/base.html' %}
+
+{% block content %}
+  <div class="box box-transparent">
+    {# Header #}
+    <div class="box-header with-border text-left">
+      {% block content_header %}
+        <h3 class="box-title">
+          {% block content_title %}
+            {{ instance.title|default:"" }}
+          {% endblock %}
+        </h3>
+      {% endblock content_header %}
+    </div>
+
+    {# Body #}
+    <div class="box-body pd0">
+      {% block content_body %}{% endblock content_body %}
+    </div>
+  </div>
+{% endblock content %}

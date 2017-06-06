@@ -1,0 +1,48 @@
+{% extends 'bima_back/base.html' %}
+{% load i18n %}
+
+{% block navbar %}{% endblock navbar %}
+{% block nav_css %}navLogin{% endblock nav_css %}
+
+{% block sidebar %}{% endblock sidebar %}
+
+{% block breadcrumbs_content %}{% endblock breadcrumbs_content %}
+
+{% block content_wrapper_class %}loginWrapper{% endblock content_wrapper_class %}
+
+{% block content %}
+  <div class="box box-base login">
+    <div class="box-header with-border">
+      <h3 class="box-title">{% trans 'BIMA Log in' %}</h3>
+    </div>
+    {% include 'bima_back/forms/login_form.html' with form_class='' mark_as_required=False %}
+  </div>
+
+  {% if config.CHANGE_USER_PASSWORD_URL or config.RESET_USER_PASSWORD_URL or config.REMEMBER_USER_URL %}
+    <div class="row login-links">
+      {% if config.CHANGE_USER_PASSWORD_URL %}
+        <p>
+          <span>{% trans 'Do you want to change your password?' %}</span>
+          {% trans 'Visit the following link' %}:
+          <a href="{{ config.CHANGE_USER_PASSWORD_URL }}" target="_blank">{% trans 'Change password' %}</a>
+        </p>
+      {% endif %}
+
+      {% if config.RESET_USER_PASSWORD_URL %}
+        <p>
+          <span>{% trans 'Did you forget your password?' %}</span>
+          {% trans 'Visit the following link' %}:
+          <a href="{{ config.RESET_USER_PASSWORD_URL }}" target="_blank">{% trans 'Forgotten password' %}</a>
+        </p>
+      {% endif %}
+
+      {% if config.REMEMBER_USER_URL %}
+        <p>
+          <span>{% trans 'Did you forget your username?' %}</span>
+          {% trans 'Visit the following link' %}:
+          <a href="{{ config.REMEMBER_USER_URL }}" target="_blank">{% trans 'Forgotten username' %}</a>
+        </p>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endblock content %}

@@ -1,0 +1,6 @@
+include LICENSE
+include README.rst
+include CHANGELOG.rst
+recursive-include bima_back/locale *
+recursive-include bima_back/templates *
+recursive-include bima_back/static *

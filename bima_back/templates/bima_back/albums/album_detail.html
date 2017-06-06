@@ -1,0 +1,82 @@
+{% extends 'bima_back/detail.html' %}
+{% load i18n static bootstrap_pagination django_bootstrap_breadcrumbs %}
+
+{% block content_header %}
+  {{ block.super }}
+  <div class="buttonsHeader">
+    {% if instance.permissions.write %}
+    <a class="btn btn-info delete pull-right" href="{% url 'album_delete' instance.id %}">
+      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete Album' %}
+    </a>
+    <a class="btn btn-default pull-right" href="{% url 'album_edit' instance.id %}">
+      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Album' %}
+    </a>
+    {% endif %}
+    {% if request.user.permissions.photo.write %}
+    <a class="btn btn-default pull-right" href="{% url 'photo_create' instance.id %}?album={{ instance.title }}">
+      <i class="fa fa-upload" aria-hidden="true"></i> {% trans 'Upload Photo' %}
+    </a>
+    {% endif %}
+    <a class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
+      <i class="fa fa-info-circle" aria-hidden="true"></i> {% trans 'Info' %}
+    </a>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          {% if instance.title %}
+          <h4 class="modal-title" id="myModalLabel"><i class="fa fa-folder-open"></i> {{ instance.title }}</h4>
+          {% endif %}
+        </div>
+        <div class="modal-body">
+          <div class="infoDetail">
+            {% if instance.description %}
+              <p>{{ instance.description }}</p>
+            {% endif %}
+            <h4>{% trans 'Assignees' %}</h4>
+            {% for owner in instance.extra_info.owners %}
+              <div class="infoDetail">
+                <a href="mailto:{{ owner.email }}" target="_top"><i class="fa fa-circle"></i> {{ owner.full_name }}</a>
+                ({{ owner.roles|join:', '|title }})
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content_header %}
+
+{% block breadcrumbs %}
+  {% trans "Detail" as detail_breadcrumb %}
+  {% trans "Albums" as label_breadcrumb %}
+  {{ block.super }}
+  {% breadcrumb label_breadcrumb "album_list" %}
+  {% breadcrumb detail_breadcrumb "album_detail" %}
+{% endblock breadcrumbs %}
+
+{% block content_body %}
+  <section class="col-md-12 album-photos">
+    {% for photo in photo_list %}
+      {% include 'bima_back/includes/photos/list_item.html' with base_cover_url='album_cover' %}
+    {% empty %}
+      <div class="no-yet">
+        <div class="info">
+          <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
+          <p>{% trans 'This album has no photos yet' %}<p>
+        </div>
+      </div>
+    {% endfor %}
+  </section>
+
+  <div class="box-footer col-md-12">
+     {% bootstrap_paginate page range=5 %}
+  </div>
+
+{% endblock content_body %}
