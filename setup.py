@@ -8,7 +8,7 @@ INSTALL_REQUIRES = [
     'django-bootstrap-breadcrumbs>=0.8.1,<0.9',
     'django-bootstrap-pagination>=1.6.2,<1.7',
     'django-braces>=1.10,<1.12',
-    'django-chunked-upload>=1.1.1,<1.2',
+    'django-chunked-upload==1.1.1',
     'django-compressor>=2.1,<2.2',
     'django-constance[database]>=1.3.3,<2',
     'django-geoposition>=0.3,<0.4',

@@ -71,6 +71,9 @@ def upload_photo(form_data, user_id, user_token, lang, create=True):
     data.update({'md5': _checksum_file(image_file, chunk_size)})
     client.action(schema, request_path, params=data)
 
+    # Request is not multipart, so we remove the header, otherwise uwsgi doesn't works
+    client.transports[0].headers._data.pop('content_type', None)
+
     # upload photo information
     form_data['image'] = img_id
     form_data['original_file_name'] = filename
