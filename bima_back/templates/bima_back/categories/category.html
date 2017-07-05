@@ -1,5 +1,5 @@
 {% extends 'bima_back/list.html' %}
-{% load i18n django_bootstrap_breadcrumbs %}
+{% load i18n static compress django_bootstrap_breadcrumbs %}
 
 {% block content_title %}{% trans 'Category' %}{% endblock content_title %}
 
@@ -30,7 +30,7 @@
   {% with permission=request.user.permissions.damtaxonomy.write search=form.cleaned_data %}
     {% for category in categories %}
       <div class="col-sm-6 col-md-6 col-lg-6 category">
-        <div class="panel panel-default box {% if not search %}collapsed-box{% endif %}">
+        <div class="panel panel-default box collapsed-box">
           <div class="panel-heading box-header">
             <div class="panel-title">
               <h3 class="col-sm-12 col-md-6 col-lg-5 {% if not category.children.0 and form.cleaned_data %}highlight{% endif %}">
@@ -46,8 +46,14 @@
                 {% endif %}
                 <div class="buttonsCategory text-right">
                   <div class="box-tools">
-                    <button type="button" class="btn btn-transparent btn-sm" data-widget="collapse" data-toggle="tooltip"
-                            title="{% trans 'Show categories' %}" style="margin-right: 5px;">
+                    <button type="button"
+                            class="btn btn-transparent btn-sm eye"
+                            style="margin-right: 5px;"
+                            title="{% trans 'Show categories' %}"
+                            data-widget="collapse"
+                            data-toggle="tooltip"
+                            data-children="{{ category.extra_info.children }}"
+                            data-categoryid="{{ category.id }}">
                       <span>{{ category.extra_info.children }}</span>&nbsp;<i class="fa fa-eye"></i>
                     </button>
                   </div>
@@ -55,10 +61,8 @@
               </div>
             </div>
           </div>
-          {% if category.children.0 %}
-            <div class="panel-body box-body">
-              {% include 'bima_back/categories/item.html' with children=category.children %}
-            </div>
+          {% if category.extra_info.children %}
+            <div class="panel-body box-body"></div>
           {% endif %}
         </div>
       </div>
@@ -66,11 +70,16 @@
   {% endwith %}
 {% endblock content_body %}
 
-
 {% block page_js %}
   <script type="text/javascript">
-     $('#reset-filters').click(function(){
-       $('#id_name').attr('value', '');
-     });
+    var categoryURLs = {
+      list: "{% url 'category_children_list' %}",
+      edit: "{% url 'category_edit' 1 %}".split('/').slice(0, -2).join('/'),
+      delete: "{% url 'category_delete' 1 %}".split('/').slice(0, -2).join('/'),
+      photos: "{% url 'photo_list' %}"
+    };
   </script>
+  {% compress js %}
+    <script type="text/babel" src="{% static 'bima_back/js/category.js' %}" />
+  {% endcompress js %}
 {% endblock page_js %}

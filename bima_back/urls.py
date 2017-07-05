@@ -57,6 +57,8 @@ urlpatterns = [
     url(r'^category/create/$', views.CategoryCreateView.as_view(), name='category_create'),
     url(r'^category/edit/(?P<pk>[0-9]+)/$', views.CategoryEditView.as_view(), name='category_edit'),
     url(r'^category/delete/(?P<pk>[0-9]+)/$', views.CategoryDeleteView.as_view(), name='category_delete'),
+    url(r'^category/children/$', views.CategoryChildrenAjaxListView.as_view(),
+        name='category_children_list'),
 
     # users
     url(r'^user/create/$', views.UserCreateView.as_view(), name='user_create'),
