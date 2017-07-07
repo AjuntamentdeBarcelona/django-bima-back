@@ -71,7 +71,7 @@
   {% endwith %}
 {% endblock content_body %}
 
-{% block page_js %}
+{% block page_js_uncompress %}
   <script type="text/javascript">
     var categoryURLs = {
       list: "{% url 'category_children_list' %}",
@@ -83,4 +83,4 @@
   {% compress js %}
     <script type="text/javascript" src="{% static 'bima_back/js/category.js' %}" />
   {% endcompress js %}
-{% endblock page_js %}
+{% endblock page_js_uncompress %}
