@@ -2,6 +2,7 @@
 from datetime import datetime
 import re
 
+from braces.views import JSONResponseMixin, AjaxResponseMixin
 from chunked_upload.views import ChunkedUploadView, ChunkedUploadCompleteView
 from django.conf import settings
 from django.contrib import messages
@@ -157,7 +158,7 @@ class GalleryListView(BaseListView):
 class CategoryListView(BaseListView):
     template_name = 'bima_back/categories/category.html'
     lookup_object = 'categories'
-    action_name = 'get_categories_list'
+    action_name = 'get_categories_level_list'
     form_class = CategoryFilterForm
     active_section = 'category'
 
@@ -219,6 +220,14 @@ class CategoryListView(BaseListView):
             })
             final_result.append(category)
         return final_result
+
+
+class CategoryChildrenAjaxListView(JSONResponseMixin, AjaxResponseMixin, LoggedServiceMixin, View):
+    def get_ajax(self, request, *args, **kwargs):
+        action = self.get_client_action('get_categories_level_list')
+        params = {'parent': request.GET.get('parent')}
+        response = action(**params)
+        return self.render_json_response(response)
 
 
 class LogListView(BaseListView):

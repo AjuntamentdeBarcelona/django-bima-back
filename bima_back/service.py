@@ -228,6 +228,12 @@ class DAMWebService(object):
     def get_categories_list(self, **kwargs):
         return self.action_or_logout(['categories', 'list'], params=kwargs, use_cache=True)
 
+    def get_categories_level_list(self, **kwargs):
+        """
+        Like get_categories_list but only for one level, not the entire tree.
+        """
+        return self.action_or_logout(['categories-level', 'list'], params=kwargs, use_cache=True)
+
     def get_category(self, category_id):
         return self.action_or_logout(['categories', 'read'], params={'id': category_id}, use_cache=True)
 
