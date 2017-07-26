@@ -1,8 +1,8 @@
 {% load i18n static %}
 
 {% block page_css_uncompress %}
-<link rel="stylesheet" href="{% static 'bima_back/css/normalize.css' %}">
-<link rel="stylesheet" href="{% static 'bima_back/css/set1.css' %}">
+  <link rel="stylesheet" href="{% static 'bima_back/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'bima_back/css/set1.css' %}">
 {% endblock page_css_uncompress %}
 
 <div class="col-md-4 col-lg-4 list-item photos">
@@ -10,11 +10,21 @@
     <figure class="effect-zoe">
       <div class="items-images">
         <a href="#" class="imageContent">
-          <img src="{{ photo.image_thumbnail }}" class="img-responsive" />
+          {% if photo.upload_status == 0 %}
+            <img src="{% static 'bima_back/img/no-photo.jpg' %}" class="img-responsive" />
+          {% elif photo.upload_status == 1 %}
+            <img src="{% static 'bima_back/img/loading.gif' %}" class="img-responsive" />
+          {% else %}
+            <img src="{{ photo.image_thumbnail }}" class="img-responsive" />
+          {% endif %}
         </a>
       </div>
       <figcaption>
-        <a href="{% url 'photo_detail' photo.id %}">
+        {% if photo.upload_status != 1 %}
+          <a href="{% url 'photo_detail' photo.id %}">
+        {% else %}
+          <a href="#">
+        {% endif %}
           <div class="info">
             <h4>{{ photo.description|default:photo.title|default:""|truncatechars:71 }}</h4>
           </div>
@@ -22,30 +32,34 @@
       </figcaption>
     </figure>
     <div class="icon-links icons-options">
-      {% if photo.permissions.destroy %}
-        <a href="{% url 'photo_delete' photo.id %}" class="pull-right" data-toggle="tooltip" title="{% trans 'Remove' %}">
-          <i class="fa fa-trash"></i>
+      {% if photo.upload_status == 1 %}
+        <span class="uploading">{% trans "Uploading image..." %}</span>
+      {% else %}
+        {% if photo.permissions.destroy %}
+          <a href="{% url 'photo_delete' photo.id %}" class="pull-right" data-toggle="tooltip" title="{% trans 'Remove' %}">
+            <i class="fa fa-trash"></i>
+          </a>
+        {% endif %}
+        <a href="{% url 'photo_detail' photo.id %}" class="imageContent" data-toggle="tooltip" title="{% trans 'View' %}">
+          <i class="fa fa-eye"></i>
         </a>
-      {% endif %}
-      <a href="{% url 'photo_detail' photo.id %}" class="imageContent" data-toggle="tooltip" title="{% trans 'View' %}">
-        <i class="fa fa-eye"></i>
-      </a>
-      {% if photo.permissions.update %}
-        <a href="{% url 'photo_edit' photo.id %}" class="pull-right" data-toggle="tooltip" title="{% trans 'Edit' %}">
-          <i class="fa fa-edit"></i>
-        </a>
-        <a href="javascript:void(0)" data-toggle="tooltip" class="pull-left photo-cart-add
-         {% if photo.id|stringformat:"i" in request.session.cart.keys %}added{% endif %}"
-         data-url="{% url 'cart_add' photo.id %}" data-photo="{{ photo.id }}"  title="{% trans 'Multiple edition' %}"
-         data-title="{{ photo.title }}" data-thumbnail="{{ photo.image_thumbnail }}">
-          <i class="fa fa-bookmark-o" aria-hidden="true"></i>
-        </a>
-      {% endif %}
-      {% if instance.permissions.write and base_cover_url and instance.cover != photo.id %}
-        <a href="{% url base_cover_url instance.id photo.id %}" class=""
-           data-toggle="tooltip" title="{% trans 'Set as cover' %}">
-        <i class="fa fa-object-group"></i>
-        </a>
+        {% if photo.permissions.update %}
+          <a href="{% url 'photo_edit' photo.id %}" class="pull-right" data-toggle="tooltip" title="{% trans 'Edit' %}">
+            <i class="fa fa-edit"></i>
+          </a>
+          <a href="javascript:void(0)" data-toggle="tooltip" class="pull-left photo-cart-add
+          {% if photo.id|stringformat:"i" in request.session.cart.keys %}added{% endif %}"
+          data-url="{% url 'cart_add' photo.id %}" data-photo="{{ photo.id }}"  title="{% trans 'Multiple edition' %}"
+          data-title="{{ photo.title }}" data-thumbnail="{{ photo.image_thumbnail }}">
+            <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+          </a>
+        {% endif %}
+        {% if instance.permissions.write and base_cover_url and instance.cover != photo.id %}
+          <a href="{% url base_cover_url instance.id photo.id %}" class=""
+            data-toggle="tooltip" title="{% trans 'Set as cover' %}">
+          <i class="fa fa-object-group"></i>
+          </a>
+        {% endif %}
       {% endif %}
     </div>
   </div>
