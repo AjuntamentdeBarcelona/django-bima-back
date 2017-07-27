@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+
+from enum import IntEnum, unique
 from os.path import join
 import six
 
@@ -11,6 +13,16 @@ from django.core.cache import cache
 from .utils import get_class_name, cache_set, cache_delete_startswith
 from .constants import HTTP_BAD_REQUEST, ACTION_VIEW_PHOTO, ACTION_DOWNLOAD_PHOTO, CACHE_USER_PROFILE_PREFIX_KEY, \
     CACHE_SCHEMA_PREFIX_KEY, PRIVATE_API_SCHEMA_URL, PUBLIC_API_SCHEMA_URL
+
+
+@unique
+class UploadStatus(IntEnum):
+    """
+    Maps Photo.upload_status from bima-core.
+    """
+    not_uploaded = 0
+    uploading = 1
+    uploaded = 2
 
 
 class ServiceClientException(Exception):

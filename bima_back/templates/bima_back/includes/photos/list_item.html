@@ -9,7 +9,7 @@
   <div class="grid">
     <figure class="effect-zoe">
       <div class="items-images">
-        <a href="#" class="imageContent">
+        <a{% if photo.upload_status != 1 %} href="{% url 'photo_detail' photo.id %}"{% endif %} class="imageContent">
           {% if photo.upload_status == 0 %}
             <img src="{% static 'bima_back/img/no-photo.jpg' %}" class="img-responsive" />
           {% elif photo.upload_status == 1 %}
@@ -20,11 +20,7 @@
         </a>
       </div>
       <figcaption>
-        {% if photo.upload_status != 1 %}
-          <a href="{% url 'photo_detail' photo.id %}">
-        {% else %}
-          <a href="#">
-        {% endif %}
+        <a{% if photo.upload_status != 1 %} href="{% url 'photo_detail' photo.id %}"{% endif %}>
           <div class="info">
             <h4>{{ photo.description|default:photo.title|default:""|truncatechars:71 }}</h4>
           </div>
