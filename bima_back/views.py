@@ -8,8 +8,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core.cache import cache
 from django.core.urlresolvers import reverse, reverse_lazy
-from django.http import HttpResponse
-from django.http import JsonResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import redirect
 from django.utils.translation import ugettext as _
 from django.views.generic.base import View, TemplateView, RedirectView
@@ -26,6 +25,7 @@ from .models import MyChunkedUpload
 from .tasks import upload_photo
 from .utils import get_language_codes, get_class_name, get_choices_ids, get_choices, get_tag_choices, format_date, \
     cache_set, prepare_params, change_form_tag_languages
+from .service import UploadStatus
 
 
 # index
@@ -680,7 +680,7 @@ class PhotoEditView(PhotoMixin, BaseEditView):
         return kwargs
 
     def get_success_url(self):
-        return reverse_lazy('photo_detail', args=[self.kwargs['pk']])
+        return reverse_lazy('photo_list')
 
     def get_context_data(self, **kwargs):
         """
@@ -688,6 +688,8 @@ class PhotoEditView(PhotoMixin, BaseEditView):
         a photo has been viewed by a user
         """
         context = super().get_context_data(**kwargs)
+        if context['instance']['upload_status'] == UploadStatus.uploading:
+            raise Http404('Photo is being uploaded.')
         self.get_client().logger_view({'photo': self.kwargs['pk']})
         return context
 
@@ -1060,6 +1062,9 @@ class PhotoDetailView(BaseDetailView):
         a photo will be downloaded by a user
         """
         context = super().get_context_data(**kwargs)
+        if context['instance']['upload_status'] == UploadStatus.uploading:
+            raise Http404('Photo is being uploaded.')
+
         self.get_client().logger_view({'photo': self.kwargs['pk']})
         context.update({
             'google_maps_api_key': settings.GEOPOSITION_GOOGLE_MAPS_API_KEY,

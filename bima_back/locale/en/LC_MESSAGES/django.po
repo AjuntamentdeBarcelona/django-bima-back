@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-02 12:48+0200\n"
+"POT-Creation-Date: 2017-07-27 16:51+0200\n"
 "PO-Revision-Date: 2017-01-29 22:43-0015\n"
 "Last-Translator: b'Josep Verd <jverd@apsl.net>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -128,8 +128,8 @@ msgstr ""
 #: templates/bima_back/galleries/gallery_detail.html:51
 #: templates/bima_back/includes/body_sidebar.html:32
 #: templates/bima_back/includes/page_category.html:8
-#: templates/bima_back/photos/photo_detail.html:129 views.py:566 views.py:838
-#: views.py:928 views.py:1003
+#: templates/bima_back/photos/photo_detail.html:129 views.py:575 views.py:849
+#: views.py:939 views.py:1014
 msgid "Galleries"
 msgstr ""
 
@@ -147,8 +147,8 @@ msgstr ""
 #: forms.py:135 forms.py:311 templates/bima_back/categories/category.html:17
 #: templates/bima_back/includes/body_sidebar.html:41
 #: templates/bima_back/includes/page_category.html:12
-#: templates/bima_back/photos/photo_detail.html:191 views.py:577 views.py:858
-#: views.py:1014
+#: templates/bima_back/photos/photo_detail.html:191 views.py:586 views.py:869
+#: views.py:1025
 msgid "Categories"
 msgstr ""
 
@@ -261,9 +261,9 @@ msgstr ""
 #: forms.py:310 templates/bima_back/albums/album_detail.html:58
 #: templates/bima_back/albums/album_public_detail.html:7
 #: templates/bima_back/includes/body_sidebar.html:23
-#: templates/bima_back/photos/photo_detail.html:40 views.py:329 views.py:406
-#: views.py:487 views.py:622 views.py:750 views.py:915 views.py:977
-#: views.py:988
+#: templates/bima_back/photos/photo_detail.html:40 views.py:338 views.py:415
+#: views.py:496 views.py:631 views.py:761 views.py:926 views.py:988
+#: views.py:999
 msgid "Albums"
 msgstr ""
 
@@ -283,7 +283,7 @@ msgstr ""
 msgid "Extra information"
 msgstr ""
 
-#: mixins.py:243 views.py:819
+#: mixins.py:243 views.py:830
 msgid "Your transaction completed successfully."
 msgstr ""
 
@@ -358,14 +358,14 @@ msgstr ""
 
 #: templates/bima_back/albums/album.html:33
 #: templates/bima_back/albums/album_public_detail.html:4
-#: templates/bima_back/albums/album_public_detail.html:8 views.py:323
-#: views.py:330
+#: templates/bima_back/albums/album_public_detail.html:8 views.py:332
+#: views.py:339
 msgid "Public Album"
 msgstr ""
 
 #: templates/bima_back/albums/album.html:58
 #: templates/bima_back/galleries/gallery.html:40
-#: templates/bima_back/includes/photos/list_item.html:30
+#: templates/bima_back/includes/photos/list_item.html:39
 msgid "View"
 msgstr ""
 
@@ -373,14 +373,14 @@ msgstr ""
 #: templates/bima_back/categories/category.html:44
 #: templates/bima_back/galleries/gallery.html:43
 #: templates/bima_back/includes/photo_cart_aside.html:38
-#: templates/bima_back/includes/photos/list_item.html:34 views.py:622
-#: views.py:838 views.py:858 views.py:1182
+#: templates/bima_back/includes/photos/list_item.html:43 views.py:631
+#: views.py:849 views.py:869 views.py:1196
 msgid "Edit"
 msgstr ""
 
 #: templates/bima_back/albums/album.html:62
 #: templates/bima_back/galleries/gallery.html:44
-#: templates/bima_back/includes/photos/list_item.html:26
+#: templates/bima_back/includes/photos/list_item.html:35
 msgid "Remove"
 msgstr ""
 
@@ -393,7 +393,7 @@ msgid "Edit Album"
 msgstr ""
 
 #: templates/bima_back/albums/album_detail.html:17
-#: templates/bima_back/includes/body_sidebar.html:50 views.py:455 views.py:489
+#: templates/bima_back/includes/body_sidebar.html:50 views.py:464 views.py:498
 msgid "Upload Photo"
 msgstr ""
 
@@ -424,12 +424,12 @@ msgid "Search by"
 msgstr ""
 
 #: templates/bima_back/categories/category.html:45
-#: templates/bima_back/photos/photo_create_multiple.html:17 views.py:977
-#: views.py:1003 views.py:1014
+#: templates/bima_back/photos/photo_create_multiple.html:17 views.py:988
+#: views.py:1014 views.py:1025
 msgid "Delete"
 msgstr ""
 
-#: templates/bima_back/categories/category.html:50
+#: templates/bima_back/categories/category.html:52
 msgid "Show categories"
 msgstr ""
 
@@ -543,7 +543,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: templates/bima_back/includes/body_sidebar.html:59 views.py:346 views.py:352
+#: templates/bima_back/includes/body_sidebar.html:59 views.py:355 views.py:361
 msgid "My Photos"
 msgstr ""
 
@@ -670,12 +670,16 @@ msgstr ""
 msgid "Original"
 msgstr ""
 
-#: templates/bima_back/includes/photos/list_item.html:39
+#: templates/bima_back/includes/photos/list_item.html:32
+msgid "Uploading image..."
+msgstr ""
+
+#: templates/bima_back/includes/photos/list_item.html:48
 #: templates/bima_back/photos/photo_edit_multiple.html:35
 msgid "Multiple edition"
 msgstr ""
 
-#: templates/bima_back/includes/photos/list_item.html:46
+#: templates/bima_back/includes/photos/list_item.html:55
 msgid "Set as cover"
 msgstr ""
 
@@ -909,7 +913,7 @@ msgstr ""
 msgid "Import Photo from Flickr"
 msgstr ""
 
-#: templates/bima_back/photos/photo_detail.html:14 views.py:992
+#: templates/bima_back/photos/photo_detail.html:14 views.py:1003
 msgid "Delete Photo"
 msgstr ""
 
@@ -1011,8 +1015,8 @@ msgstr ""
 msgid "Users list"
 msgstr ""
 
-#: templates/bima_back/users/user.html:9 views.py:1182 views.py:1192
-#: views.py:1214
+#: templates/bima_back/users/user.html:9 views.py:1196 views.py:1206
+#: views.py:1228
 msgid "Manage Users"
 msgstr ""
 
@@ -1072,76 +1076,76 @@ msgstr ""
 msgid "Height"
 msgstr ""
 
-#: views.py:328 views.py:351
+#: views.py:337 views.py:360
 msgid "Home"
 msgstr ""
 
-#: views.py:403
+#: views.py:412
 msgid "Create album"
 msgstr ""
 
-#: views.py:406 views.py:566 views.py:577
+#: views.py:415 views.py:575 views.py:586
 msgid "Create"
 msgstr ""
 
-#: views.py:415 views.py:496
+#: views.py:424 views.py:505
 msgid "Create photo"
 msgstr ""
 
-#: views.py:416
+#: views.py:425
 msgid ""
 "Your photos have been uploaded successfully and are being processed. If you "
 "don't see them yet, try to reload the browser in a few seconds."
 msgstr ""
 
-#: views.py:549
+#: views.py:558
 msgid "You successfully uploaded"
 msgstr ""
 
-#: views.py:563
+#: views.py:572
 msgid "Create gallery"
 msgstr ""
 
-#: views.py:574
+#: views.py:583
 msgid "Create category"
 msgstr ""
 
-#: views.py:754
+#: views.py:765
 msgid "Update Photo"
 msgstr ""
 
-#: views.py:917 views.py:930
+#: views.py:928 views.py:941
 msgid "Set Cover"
 msgstr ""
 
-#: views.py:974
+#: views.py:985
 msgid "Are you sure you want to delete this album?"
 msgstr ""
 
-#: views.py:985
+#: views.py:996
 msgid "Are you sure you want to delete this photo?"
 msgstr ""
 
-#: views.py:1000
+#: views.py:1011
 msgid "Are you sure you want to delete this gallery?"
 msgstr ""
 
-#: views.py:1011
+#: views.py:1022
 msgid "Are you sure you want to delete this category?"
 msgstr ""
 
-#: views.py:1189
+#: views.py:1203
 msgid "Are you sure you want to deactivate this user?"
 msgstr ""
 
-#: views.py:1192
+#: views.py:1206
 msgid "Deactivate"
 msgstr ""
 
-#: views.py:1203
+#: views.py:1217
 msgid "Are you sure you want to activate this user?"
 msgstr ""
 
-#: views.py:1214
+#: views.py:1228
 msgid "Activate"
 msgstr ""
