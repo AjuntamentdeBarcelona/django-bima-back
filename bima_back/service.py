@@ -20,7 +20,7 @@ class UploadStatus(IntEnum):
     """
     Maps Photo.upload_status from bima-core.
     """
-    not_uploaded = 0
+    upload_error = 0
     uploading = 1
     uploaded = 2
 

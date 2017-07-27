@@ -9,15 +9,15 @@
   <div class="grid">
     <figure class="effect-zoe">
       <div class="items-images">
-        <a{% if photo.upload_status != 1 %} href="{% url 'photo_detail' photo.id %}"{% endif %} class="imageContent">
-          {% if photo.upload_status == 0 %}
-            <img src="{% static 'bima_back/img/no-photo.jpg' %}" class="img-responsive" />
-          {% elif photo.upload_status == 1 %}
+        {% if photo.upload_status == 1 %}
+          <a class="imageContent">
             <img src="{% static 'bima_back/img/loading.gif' %}" class="img-responsive" />
-          {% else %}
+          </a>
+        {% else %}
+          <a href="{% url 'photo_detail' photo.id %}" class="imageContent">
             <img src="{{ photo.image_thumbnail }}" class="img-responsive" />
-          {% endif %}
-        </a>
+          </a>
+        {% endif %}
       </div>
       <figcaption>
         <a{% if photo.upload_status != 1 %} href="{% url 'photo_detail' photo.id %}"{% endif %}>
