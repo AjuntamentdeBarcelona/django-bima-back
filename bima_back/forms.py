@@ -16,6 +16,16 @@ from .constants import LOG_ACTIONS, PHOTO_STATUS_CHOICES, BLANK_CHOICES
 
 EXIF_DATE_FORMAT = '%d/%m/%Y'
 
+IMAGE_FORMATS = ('gif', 'jpeg', 'jpg', 'png', 'tif', 'tiff', 'psd')
+
+# from https://support.google.com/youtube/troubleshooter/2888402?hl=en
+VIDEO_FORMATS = ('mov', 'mpeg4', 'mp4', 'avi', 'wmv', 'mpegps', 'flv', '3gpp', 'webm')
+
+# from https://help.soundcloud.com/hc/en-us/articles/115003452847-Uploading-requirements
+AUDIO_FORMATS = ('aiff', 'wav', 'flac', 'alac', 'ogg', 'mp2', 'mp3', 'aac', 'amr', 'wma')
+
+FORMATS = IMAGE_FORMATS + VIDEO_FORMATS + AUDIO_FORMATS
+
 
 class FilterBase(forms.Form):
     """
@@ -159,8 +169,12 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
             'data-error-msg': _('An error has occurred. Please, try again.'),
             'data-max-file-size': config.MAX_FILE_SIZE,
             'data-max-size-message': "{} {} {}".format(
-                _('Sorry, the maximum image size allowed is'), config.MAX_FILE_SIZE, _('MB')),
-            'data-file-type-message': _('Sorry, only gif, png, jpg, jpeg, tif and tiff images are allowed.'),
+                _('Sorry, the maximum image size allowed is'),
+                config.MAX_FILE_SIZE,
+                _('MB')),
+            'data-file-type-message': "{}: {}.".format(
+                _('Sorry, only the following formats are allowed'),
+                ', '.join(FORMATS)),
             'data-loading-gif': staticfiles_storage.url('bima_back/img/loader.gif'),
         })
 

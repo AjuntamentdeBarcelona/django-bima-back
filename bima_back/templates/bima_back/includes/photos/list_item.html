@@ -13,6 +13,14 @@
           <a class="imageContent">
             <img src="{% static 'bima_back/img/loading.gif' %}" class="img-responsive" />
           </a>
+        {% elif photo.file_type == 'video' %}
+          <a class="imageContent">
+            <img src="{% static 'bima_back/img/video.jpg' %}" class="img-responsive" />
+          </a>
+        {% elif photo.file_type == 'audio' %}
+          <a class="imageContent">
+            <img src="{% static 'bima_back/img/audio.jpg' %}" class="img-responsive" />
+          </a>
         {% else %}
           <a href="{% url 'photo_detail' photo.id %}" class="imageContent">
             <img src="{{ photo.image_thumbnail }}" class="img-responsive" />

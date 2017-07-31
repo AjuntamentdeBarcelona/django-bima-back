@@ -1,4 +1,4 @@
-{% load i18n bima_back_tags %}
+{% load i18n staticfiles bima_back_tags %}
 
 <div class="box box-base">
   <div class="box-header ui-sortable-handle">
@@ -14,7 +14,13 @@
   <div class="box-body">
     <div class="row fixedInfo">
       <div class="col-md-3 imageContent">
-        <img src="{{ instance.image_small_fit }}"/>
+        {% if instance.file_type == 'photo' %}
+          <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" />
+        {% elif instance.file_type == 'video' %}
+          <img src="{% static 'bima_back/img/video.jpg' %}" alt="{{ instance.title }}" />
+        {% else %}
+          <img src="{% static 'bima_back/img/audio.jpg' %}" alt="{{ instance.title }}" />
+        {% endif %}
       </div>
       <div class="col-sm-6 col-md-3 infoContent">
         <ul>
