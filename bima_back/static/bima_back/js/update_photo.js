@@ -75,7 +75,7 @@ $(document).ready(function(){
         visuals_error("data-max-size-message");
         return;
       }
-      var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd|.mov|.mpeg4|.mp4|.avi|.wmv|.mpegps|.flv|.3gpp|.webm|.aiff|.wav|.flac|.alac|.ogg|.mp2|.mp3|.aac|.amr|.wma)$/i;
+      var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd|mov|mpeg4|mp4|avi|wmv|mpegps|flv|3gpp|webm|aiff|wav|flac|alac|ogg|mp2|mp3|aac|amr|wma)$/i;
       if(!acceptFileTypes.test(file.name)) {
         visuals_error("data-file-type-message");
         return;
