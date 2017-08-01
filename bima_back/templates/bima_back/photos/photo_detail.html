@@ -19,8 +19,7 @@
       <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Photo' %}
     </a>
     {% endif %}
-    {% if instance.image_original %}
-    {# if user has no download permissions, api only returns thumbnail and small fit images #}
+    {% if instance.download_permission %}
       <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download Image' %} <span class="caret"></span></button>
           <ul class="dropdown-menu text-left" role="menu">

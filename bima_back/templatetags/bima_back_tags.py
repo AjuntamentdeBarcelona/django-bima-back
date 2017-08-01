@@ -270,14 +270,13 @@ def get_download_filename(instance, extension='jpg'):
 def thumbor_supports_file(filename):
     """
     :param filename: name of the file to download
-    :return: False is the extension is in the thumbor unsupported extensions setting.
-    True otherwise.
+    :return: True if the extension is in the thumbor supported extensions setting, False otherwise.
     """
     if filename:
         name, ext = splitext(filename)
-        if getattr(settings, 'THUMBOR_UNSUPPORTED_EXTENSIONS', []) and ext in settings.THUMBOR_UNSUPPORTED_EXTENSIONS:
-            return False
-    return True
+        if getattr(settings, 'THUMBOR_SUPPORTED_EXTENSIONS', []) and ext in settings.THUMBOR_SUPPORTED_EXTENSIONS:
+            return True
+    return False
 
 
 @register.filter
