@@ -7,7 +7,7 @@
        data-max="{{ config.MAX_EDIT_MULTIPLE }}"></p>
     <div>
       <h5>
-        <i class="fa fa-bookmark"></i> {% trans 'Photo Edit Cart' %}
+        <i class="fa fa-bookmark"></i> {% trans 'Edit Cart' %}
       </h5>
       <ul>
           {% for key, data in cart.items %}
@@ -26,7 +26,7 @@
       </ul>
       <p id="no-photos-in-cart" class="{% if cart.items %}hidden{% endif %}">
         <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
-        {% trans 'There are no photos selected for massive editation' %}
+        {% trans 'There are no selected items for massive edit' %}
       </p>
     </div>
     <div class="buttonOptionsCart">
