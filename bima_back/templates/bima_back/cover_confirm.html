@@ -1,5 +1,5 @@
 {% extends 'bima_back/base.html' %}
-{% load i18n bima_back_tags %}
+{% load i18n staticfiles bima_back_tags %}
 
 {% block content %}
   <div class="box box-actions">
@@ -7,7 +7,15 @@
       <h3 class="box-title">{% trans 'Do you really want to set this photo as cover?' %}</h3>
     </div>
     <div class="box-body actionContent">
-      <img src="{{ cover_item.image_thumbnail }}" />
+      {% if cover_item.image_thumbnail %}
+        <img src="{{ cover_item.image_thumbnail }}" />
+      {% elif cover_item.file_type == 'video' %}
+        <img src="{% static 'bima_back/img/video.jpg' %}"/>
+      {% elif cover_item.file_type == 'audio' %}
+        <img src="{% static 'bima_back/img/audio.jpg' %}"/>
+      {% else %}
+        <img src="{% static 'bima_back/img/no-photo.jpg' %}"/>
+      {% endif %}
       <p>{% verbose_object_name editable_item %}</p>
     </div>
     <div class="box-footer">

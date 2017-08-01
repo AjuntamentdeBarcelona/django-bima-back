@@ -28,6 +28,10 @@
           <a href="{% url 'gallery_detail' gallery.id %}" class="imageContent">
             {% if gallery.image_thumbnail %}
               <img src="{{ gallery.image_thumbnail }}"/>
+            {% elif gallery.image_file_type == 'video' %}
+              <img src="{% static 'bima_back/img/video.jpg' %}"/>
+            {% elif gallery.image_file_type == 'audio' %}
+              <img src="{% static 'bima_back/img/audio.jpg' %}"/>
             {% else %}
               <img src="{% static 'bima_back/img/no-photo.jpg' %}"/>
             {% endif %}
