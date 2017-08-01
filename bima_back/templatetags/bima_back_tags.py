@@ -6,6 +6,7 @@ import six
 from bima_back.models import PhotoFilter
 
 from constance import config
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.core.urlresolvers import resolve, reverse
 from django.forms.widgets import CheckboxInput, RadioSelect
@@ -361,3 +362,17 @@ def saved_filters(username, parameters):
         'filters': PhotoFilter.objects.filter(username=username).order_by('name'),
         'search': 'q' in parameters,
     }
+
+
+@register.simple_tag
+def photo_thumbnail(photo):
+    """
+    Returns the thumbnail of the photo based on it's file type
+    """
+    if photo['file_type'] == 'photo':
+        return photo['image_thumbnail']
+    if photo['file_type'] == 'video':
+        return static('bima_back/img/video.jpg')
+    if photo['file_type'] == 'audio':
+        return static('bima_back/img/audio.jpg')
+    return static('bima_back/img/no-photo.jpg')

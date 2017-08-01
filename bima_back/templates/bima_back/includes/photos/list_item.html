@@ -1,4 +1,4 @@
-{% load i18n static %}
+{% load i18n static bima_back_tags %}
 
 {% block page_css_uncompress %}
   <link rel="stylesheet" href="{% static 'bima_back/css/normalize.css' %}">
@@ -13,17 +13,9 @@
           <a class="imageContent">
             <img src="{% static 'bima_back/img/loading.gif' %}" class="img-responsive" />
           </a>
-        {% elif photo.file_type == 'video' %}
-          <a class="imageContent">
-            <img src="{% static 'bima_back/img/video.jpg' %}" class="img-responsive" />
-          </a>
-        {% elif photo.file_type == 'audio' %}
-          <a class="imageContent">
-            <img src="{% static 'bima_back/img/audio.jpg' %}" class="img-responsive" />
-          </a>
         {% else %}
           <a href="{% url 'photo_detail' photo.id %}" class="imageContent">
-            <img src="{{ photo.image_thumbnail }}" class="img-responsive" />
+            <img src="{% photo_thumbnail photo %}" class="img-responsive" />
           </a>
         {% endif %}
       </div>
@@ -54,7 +46,7 @@
           <a href="javascript:void(0)" data-toggle="tooltip" class="pull-left photo-cart-add
           {% if photo.id|stringformat:"i" in request.session.cart.keys %}added{% endif %}"
           data-url="{% url 'cart_add' photo.id %}" data-photo="{{ photo.id }}"  title="{% trans 'Multiple edition' %}"
-          data-title="{{ photo.title }}" data-thumbnail="{{ photo.image_thumbnail }}">
+          data-title="{{ photo.title }}" data-thumbnail="{% photo_thumbnail photo %}">
             <i class="fa fa-bookmark-o" aria-hidden="true"></i>
           </a>
         {% endif %}
