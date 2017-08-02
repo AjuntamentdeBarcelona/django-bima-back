@@ -14,7 +14,8 @@
       <label class="control-label" for="image">{% trans 'File' %}</label>
       <input class="form-control" id="id_image" name="image" placeholder="{% trans 'assets' %}" type="file" multiple="multiple"
        data-chunk-url="{% url 'api_chunked_upload' %}" data-chunk-complete-url="{% url 'api_chunked_upload_complete' %}"
-       data-delete-title="{% trans 'Delete' %}" data-max-file-size="{{ config.MAX_FILE_SIZE }}">
+       data-delete-title="{% trans 'Delete' %}" data-max-file-size="{{ config.MAX_FILE_SIZE }}"
+       data-chunk-size="{{ config.PHOTO_UPLOAD_CHUNK_SIZE }}">
     </div>
 
     <div class="progress progress-sm active hidden">

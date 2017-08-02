@@ -166,6 +166,7 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
         self.fields['image'].widget.attrs.update({
             'data-chunk-url': reverse_lazy('api_chunked_upload'),
             'data-chunk-complete-url': reverse_lazy('api_chunked_upload_complete'),
+            'data-chunk-size': config.PHOTO_UPLOAD_CHUNK_SIZE,
             'data-error-msg': _('An error has occurred. Please, try again.'),
             'data-max-file-size': config.MAX_FILE_SIZE,
             'data-max-size-message': "{} {} {}".format(
