@@ -26,13 +26,13 @@
     <div class="item-lists">
       <div class="items-images">
         <a href="{% url 'album_public_list' %}" class="imageContent">
-            <img src="{% static 'bima_back/img/public_album.jpg' %}"/>
+          <img src="{% static 'bima_back/img/public_album.jpg' %}"/>
         </a>
       </div>
       <div class="infoContent">
         <h4><i class="fa fa-folder-open"></i> {% trans 'Public Album' %}</h4>
         <div class="icons-options">
-            <a href="{% url 'album_public_list' %}" class="imageContent"><i class="fa fa-eye"></i></a>
+          <a href="{% url 'album_public_list' %}" class="imageContent"><i class="fa fa-eye"></i></a>
         </div>
       </div>
     </div>
@@ -45,7 +45,11 @@
         <div class="items-images">
           {% if album.permissions.read %}<a href="{% url 'album_detail' album.id %}" class="imageContent">{% endif %}
             {% if album.image_thumbnail %}
-                <img src="{{ album.image_thumbnail }}"/>
+              <img src="{{ album.image_thumbnail }}"/>
+            {% elif album.image_file_type == 'video' %}
+              <img src="{% static 'bima_back/img/video.jpg' %}"/>
+            {% elif album.image_file_type == 'audio' %}
+              <img src="{% static 'bima_back/img/audio.jpg' %}"/>
             {% else %}
               <img src="{% static 'bima_back/img/no-photo.jpg' %}"/>
             {% endif %}
