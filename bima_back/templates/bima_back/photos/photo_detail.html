@@ -11,17 +11,17 @@
   <div class="buttonsHeader">
     {% if instance.permissions.destroy %}
     <a class="btn btn-info delete pull-right" href="{% url 'photo_delete' instance.id %}">
-      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete Photo' %}
+      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete' %}
     </a>
     {% endif %}
     {% if instance.permissions.update %}
     <a class="btn btn-default pull-right" href="{% url 'photo_edit' instance.id %}">
-      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Photo' %}
+      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit' %}
     </a>
     {% endif %}
     {% if instance.download_permission %}
       <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download Image' %} <span class="caret"></span></button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download' %} <span class="caret"></span></button>
           <ul class="dropdown-menu text-left" role="menu">
               {% include 'bima_back/includes/photos/download_buttons.html' %}
           </ul>
@@ -35,7 +35,7 @@
 
 
 {% block breadcrumbs %}
-  {% trans "Photo Detail" as photo_detail_breadcrumb %}
+  {% trans "Detail" as photo_detail_breadcrumb %}
   {% trans "Albums" as albums_breadcrumb %}
   {{ block.super }}
   {% breadcrumb albums_breadcrumb "album_list" %}
@@ -119,9 +119,9 @@
                       <li>
                         <p class="title">{% trans 'Status' %}:</p>
                         {% if not instance.status %}
-                        <p class="private"><i class="fa fa-times-circle-o"></i> {% trans 'Private Image' %}</p>
+                        <p class="private"><i class="fa fa-times-circle-o"></i> {% trans 'Private' %}</p>
                         {% else %}
-                        <p class="publish"><i class="fa fa-check-circle-o"></i> {% trans 'Published Image' %}</p>
+                        <p class="publish"><i class="fa fa-check-circle-o"></i> {% trans 'Published' %}</p>
                         {% endif %}
                       </li>
                       <li>

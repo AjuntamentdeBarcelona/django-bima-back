@@ -139,7 +139,7 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
     galleries = Select2MultipleField(data_view='gallery_search', label=_('Galleries'), required=False)
     status = forms.ChoiceField(label=_('Status'), choices=PHOTO_STATUS_CHOICES, required=False)
     exif_date = forms.DateField(label=_('Capture date'), input_formats=[EXIF_DATE_FORMAT])
-    image = forms.FileField(label=_('Change Photo'), required=False)
+    image = forms.FileField(label=_('Change File'), required=False)
     upload_id = forms.CharField(widget=forms.widgets.HiddenInput(), required=False)
     # metadata
     categories = Select2MultipleField(data_view='category_search', label=_('Categories'), required=False)
@@ -169,7 +169,7 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
             'data-error-msg': _('An error has occurred. Please, try again.'),
             'data-max-file-size': config.MAX_FILE_SIZE,
             'data-max-size-message': "{} {} {}".format(
-                _('Sorry, the maximum image size allowed is'),
+                _('Sorry, the maximum file size allowed is'),
                 config.MAX_FILE_SIZE,
                 _('MB')),
             'data-file-type-message': "{}: {}.".format(
@@ -317,7 +317,7 @@ class AdvancedSemanticSearchForm(UnpackingMixin, FilterBase):
         unpack_field_names += ('photo_type', )
 
     # semantic search
-    q = forms.CharField(help_text=_('Set text or part of text you want to search into the photos'), label=_('Text'))
+    q = forms.CharField(help_text=_('Set text or part of text you want to search into the assets'), label=_('Text'))
     # advanced accurate search
     title = forms.CharField(label=_('Title'))
     description = forms.CharField(label=_('Description'))

@@ -3,7 +3,7 @@
 
 
 {% block content_title %}
-  {% trans "Update Photos" %}
+  {% trans "Update" %}
 {% endblock %}
 
 
@@ -12,7 +12,7 @@
     <div class="col-lg-12 connectedSortable ui-sortable">
 
       <div class="box-body edit-multiple-message">
-        <p class="infotitle"><i class="fa fa-bookmark"></i> {% trans 'You are going to edit the following photos:' %}</p>
+        <p class="infotitle"><i class="fa fa-bookmark"></i> {% trans 'You are going to edit the following assets:' %}</p>
         <ul>
           {% for key, data in request.session.cart.items %}
             <li>

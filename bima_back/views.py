@@ -352,13 +352,13 @@ class MyPhotosListView(FilteredPhotoListBaseView):
 
     @staticmethod
     def get_title():
-        return _('My Photos')
+        return _('My Assets')
 
     @staticmethod
     def get_breadcrumbs():
         return [
             {'label': _('Home'), 'view': 'home'},
-            {'label': _('My Photos'), 'view': 'my_photos_list'}
+            {'label': _('My Assets'), 'view': 'my_photos_list'}
         ]
 
 
@@ -421,8 +421,8 @@ class PhotoCreateMultipleView(BaseCreateView):
     success_url = reverse_lazy('photo_list')
     action_name = 'get_client_schema'  # action to get client schema
     active_section = 'upload'
-    title = _('Create photo')
-    form_valid_message = _("Your photos have been uploaded successfully and are being processed. "
+    title = _('Create')
+    form_valid_message = _("Your assets have been uploaded successfully and are being processed. "
                            "If you don't see them yet, try to reload the browser in a few seconds.")
 
     def get_context_data(self, **kwargs):
@@ -461,7 +461,7 @@ class PhotoCreateMultipleView(BaseCreateView):
                                    self.request.LANGUAGE_CODE)
 
     def get_breadcrumbs(self):
-        return [{'label': _('Upload Photo'), 'view': 'photo_create'}]
+        return [{'label': _('Upload'), 'view': 'photo_create'}]
 
 
 class AlbumPhotoCreateMultipleView(PhotoCreateMultipleView):
@@ -495,7 +495,7 @@ class AlbumPhotoCreateMultipleView(PhotoCreateMultipleView):
     def get_breadcrumbs(self):
         return [{'label': _('Albums'), 'view': 'album_list'},
                 {'label': self.request.GET.get('album', ' — '), 'view': 'album_detail', 'args': self.kwargs['album']},
-                {'label': _('Upload Photo'), 'view': 'photo_create'}]
+                {'label': _('Upload'), 'view': 'photo_create'}]
 
 
 class FlickrImportView(BaseCreateView):
@@ -762,7 +762,7 @@ class PhotoEditView(PhotoMixin, BaseEditView):
                 {'label': self.instance['extra_info']['album']['title'],
                  'view': 'album_detail',
                  'args': self.instance['album']},
-                {'label': _('Update Photo'), 'view': 'photo_edit'}]
+                {'label': _('Update'), 'view': 'photo_edit'}]
 
 
 class PhotoEditMultipleView(LoggedServiceMixin, FormView):
@@ -993,14 +993,14 @@ class PhotoDeleteView(BaseDeleteView):
     action_name = 'delete_photo'
     url_name = 'photo_list'
     active_section = 'album'
-    title = _('Are you sure you want to delete this photo?')
+    title = _('Are you sure you want to delete this asset?')
 
     def get_breadcrumbs(self):
         return [{'label': _('Albums'), 'view': 'album_list'},
                 {'label': self.instance['extra_info']['album']['title'],
                  'view': 'album_detail',
                  'args': self.instance['album']},
-                {'label': _('Delete Photo'), 'view': 'photo_delete'}]
+                {'label': _('Delete'), 'view': 'photo_delete'}]
 
 
 class GalleryDeleteView(BaseDeleteView):

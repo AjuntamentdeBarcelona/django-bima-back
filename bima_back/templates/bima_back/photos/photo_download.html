@@ -3,7 +3,7 @@
 
 
 {% block breadcrumbs %}
-  {% trans "Download Photos" as download_label %}
+  {% trans "Download" as download_label %}
   {{ block.super }}
   {% breadcrumb download_label "photo_download_multiple" %}
 {% endblock breadcrumbs %}
@@ -12,7 +12,7 @@
 {% block content %}
 
   <div class="box-body edit-multiple-message">
-    <p>{% trans 'You are going to download the following photos:' %}</p>
+    <p>{% trans 'You are going to download the following assets:' %}</p>
     <ul>
       {% for key, data in request.session.cart.items %}
         <li>

@@ -29,7 +29,7 @@
     </figure>
     <div class="icon-links icons-options">
       {% if photo.upload_status == 1 %}
-        <span class="uploading">{% trans "Uploading image..." %}</span>
+        <span class="uploading">{% trans "Uploading asset..." %}</span>
       {% else %}
         {% if photo.permissions.destroy %}
           <a href="{% url 'photo_delete' photo.id %}" class="pull-right" data-toggle="tooltip" title="{% trans 'Remove' %}">

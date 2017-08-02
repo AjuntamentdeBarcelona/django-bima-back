@@ -1,10 +1,10 @@
 {% extends 'bima_back/list.html' %}
 {% load i18n bima_back_tags django_bootstrap_breadcrumbs %}
 
-{% block content_title %}{% trans 'Photo uploads' %}{% endblock %}
+{% block content_title %}{% trans 'Uploads' %}{% endblock %}
 
 {% block breadcrumbs %}
-  {% trans "Photo Upload Log" as photo_label %}
+  {% trans "Upload Log" as photo_label %}
   {{ block.super }}
   {% breadcrumb  photo_label "photo_log_list" %}
 {% endblock breadcrumbs %}
@@ -12,7 +12,7 @@
 {% block content_body %}
   <table class="table logTable">
     <tr>
-      <th>{% trans 'Photo' %}</th>
+      <th>{% trans 'Asset' %}</th>
       <th>{% trans 'Status' %}</th>
       <th>{% trans 'Started at' %}</th>
       <th>{% trans 'Completed at' %}</th>
