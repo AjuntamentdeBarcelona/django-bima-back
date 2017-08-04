@@ -24,7 +24,7 @@ from .mixins import ServiceClientMixin, LoggedServicePaginatorMixin, LoggedServi
 from .models import MyChunkedUpload
 from .tasks import upload_photo
 from .utils import get_language_codes, get_class_name, get_choices_ids, get_choices, get_tag_choices, format_date, \
-    cache_set, prepare_params, change_form_tag_languages
+    cache_set, prepare_params, prepare_keywords, change_form_tag_languages
 from .service import UploadStatus
 
 
@@ -449,9 +449,10 @@ class PhotoCreateMultipleView(BaseCreateView):
                     'exif_date': "{}T00:00".format(data['exif_date'].isoformat()) if data['exif_date'] else None,
                     'author': data['author'],
                     'copyright': data['copyright'],
-                    # date of the entry of the photo in the sistem
+                    # date of the entry of the photo in the system
                     'categorize_date': format_date(datetime.now(), final="%Y-%m-%d", isoformat=False)
                 })
+                params['keywords'] = prepare_keywords(data)
                 # i18n fields
                 for lang_code, _lang_name in settings.LANGUAGES:
                     title_key = 'title_{}'.format(lang_code)
