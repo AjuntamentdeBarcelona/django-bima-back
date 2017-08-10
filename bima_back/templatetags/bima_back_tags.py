@@ -235,7 +235,7 @@ def get_download_dimension(instance, size):
     """
     width = instance['width']
     height = instance['height']
-    if size != 'image_original':
+    if size != 'image_original' and instance[size]:
         url_size = re.search('\d{1,4}x\d{1,4}', instance[size]).group(0)
         width = int(url_size.split('x')[0])
         height = int(url_size.split('x')[1])

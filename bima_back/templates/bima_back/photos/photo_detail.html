@@ -19,7 +19,7 @@
       <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit' %}
     </a>
     {% endif %}
-    {% if instance.download_permission %}
+    {% if instance.download_permission and instance.file_type != "unknown" %}
       <div class="btn-group">
           <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download' %} <span class="caret"></span></button>
           <ul class="dropdown-menu text-left" role="menu">
@@ -59,8 +59,10 @@
                   <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
                 {% elif instance.file_type == 'video' %}
                   <img src="{% static 'bima_back/img/video.jpg' %}" alt="{{ instance.title }}" />
-                {% else %}
+                {% elif instance.file_type == 'audio' %}
                   <img src="{% static 'bima_back/img/audio.jpg' %}" alt="{{ instance.title }}" />
+                {% else %}
+                  <img src="{% static 'bima_back/img/no-photo.jpg' %}" alt="{{ instance.title }}" />
                 {% endif %}
                 <div class="infoPhoto">
                   <div class="col-md-12 photo-exif infoContent">

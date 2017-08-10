@@ -18,8 +18,10 @@
           <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" />
         {% elif instance.file_type == 'video' %}
           <img src="{% static 'bima_back/img/video.jpg' %}" alt="{{ instance.title }}" />
-        {% else %}
+        {% elif instance.file_type == 'audio' %}
           <img src="{% static 'bima_back/img/audio.jpg' %}" alt="{{ instance.title }}" />
+        {% else %}
+          <img src="{% static 'bima_back/img/no-photo.jpg' %}" alt="{{ instance.title }}" />
         {% endif %}
       </div>
       <div class="col-sm-6 col-md-3 infoContent">
