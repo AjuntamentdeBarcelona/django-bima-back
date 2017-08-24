@@ -681,7 +681,7 @@ class PhotoEditView(PhotoMixin, BaseEditView):
         return kwargs
 
     def get_success_url(self):
-        return reverse_lazy('photo_list')
+        return reverse_lazy('photo_detail', kwargs={'pk': self.instance['id']})
 
     def get_context_data(self, **kwargs):
         """
