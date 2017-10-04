@@ -55,7 +55,7 @@
           <div class="row fixedInfo">
             <section class="col-md-12 photo-download">
               <div class="col-md-4 image_photo">
-                {% if instance.file_type == 'photo' %}
+                {% if instance.image_small_fit %}
                   <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
                 {% elif instance.file_type == 'video' %}
                   <img src="{% static 'bima_back/img/video.jpg' %}" alt="{{ instance.title }}" />

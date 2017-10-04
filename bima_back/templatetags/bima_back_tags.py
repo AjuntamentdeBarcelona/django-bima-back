@@ -368,7 +368,7 @@ def photo_thumbnail(photo):
     """
     Returns the thumbnail of the photo based on it's file type
     """
-    if photo['file_type'] == 'photo':
+    if photo['image_thumbnail']:
         return photo['image_thumbnail']
     if photo['file_type'] == 'video':
         return static('bima_back/img/video.jpg')

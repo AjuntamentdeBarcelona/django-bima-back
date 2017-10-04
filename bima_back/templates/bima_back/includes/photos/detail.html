@@ -14,7 +14,7 @@
   <div class="box-body">
     <div class="row fixedInfo">
       <div class="col-md-3 imageContent">
-        {% if instance.file_type == 'photo' %}
+        {% if instance.image_small_fit %}
           <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" />
         {% elif instance.file_type == 'video' %}
           <img src="{% static 'bima_back/img/video.jpg' %}" alt="{{ instance.title }}" />
