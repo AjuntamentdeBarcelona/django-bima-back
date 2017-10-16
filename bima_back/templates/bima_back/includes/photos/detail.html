@@ -2,14 +2,21 @@
 
 <div class="box box-base">
   <div class="box-header ui-sortable-handle">
-    <a href="{% url 'photo_detail' instance.id %}">
-      <i class="fa fa-photo"></i>
-    </a>
-    <h3 class="box-title">
-      <a href="{% url 'photo_detail' instance.id %}" class="title-link">
-        {{ instance.description|default:instance.title|truncatechars:71 }}
+    <div class="title-wrapper">
+      <a href="{% url 'photo_detail' instance.id %}">
+        <i class="fa fa-photo"></i>
       </a>
-    </h3>
+      <h3 class="box-title">
+        <a href="{% url 'photo_detail' instance.id %}" class="title-link">
+          {{ instance.description|default:instance.title|truncatechars:71 }}
+        </a>
+      </h3>
+    </div>
+    {% if instance.file_type == 'video' %}
+      <a role="button" class="btn btn-default pull-right" href="{% url 'photo_edit_youtube' pk=instance.id %}">
+        <i class="fa fa-youtube"></i> {% trans "Upload to Youtube" %}
+      </a>
+    {% endif %}
   </div>
   <div class="box-body">
     <div class="row fixedInfo">

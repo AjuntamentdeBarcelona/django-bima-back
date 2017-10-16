@@ -766,6 +766,36 @@ class PhotoEditView(PhotoMixin, BaseEditView):
                 {'label': _('Update'), 'view': 'photo_edit'}]
 
 
+class PhotoEditYoutubeView(LoggedServiceMixin, TemplateView):
+    template_name = 'bima_back/photos/photo_edit_youtube.html'
+    active_section = 'album'
+    reverse_url = 'photo_edit'
+
+    # TODO: section selected, breadcrumbs, description to the template.
+
+    def get_context_data(self, **kwargs):
+        """
+        List Youtube channels
+        """
+        context = super().get_context_data(**kwargs)
+        response = self.get_client().youtube_channels()
+        context['youtube_channels'] = response['results']
+        context['photo_pk'] = self.kwargs['pk']
+        return context
+
+    def post(self, request, *args, **kwargs):
+        """
+        Upload video to Youtube
+        """
+        params = {
+            'photo_pk': self.kwargs['pk'],
+            'youtube_channel': self.request.POST['youtube_channel']
+        }
+        response = self.get_client().youtube_upload(params)
+        import ipdb; ipdb.set_trace()
+        return redirect(reverse(self.reverse_url, args=[self.kwargs['pk']]))
+
+
 class PhotoEditMultipleView(LoggedServiceMixin, FormView):
     """
     View to update several photos at the same time, adding or overriding content

@@ -216,6 +216,15 @@ class DAMWebService(object):
     def delete_photo(self, photo_id):
         return self.action_or_logout(['photos', 'delete'], params={'id': photo_id})
 
+    # youtube
+
+    def youtube_channels(self):
+        return self.action_or_logout(['photos', 'youtube', 'list'], params={})
+
+    def youtube_upload(self, photo_pk, youtube_channel_pk):
+        return self.action_or_logout(['photos', 'youtube', 'upload', 'post'], params={
+            'photo_pk': photo_pk, 'youtube_channel_pk': youtube_channel_pk})
+
     # galleries
 
     def get_galleries_list(self, **kwargs):

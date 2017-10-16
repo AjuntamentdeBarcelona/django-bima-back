@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^photo/create/flickr/album/(?P<album>[0-9]+)/$', views.AlbumFlickrImportView.as_view(),
         name='photo_create_flickr'),
     url(r'^photo/edit/(?P<pk>[0-9]+)/$', views.PhotoEditView.as_view(), name='photo_edit'),
+    url(r'^photo/edit/(?P<pk>[0-9]+)/youtube/$', views.PhotoEditYoutubeView.as_view(), name='photo_edit_youtube'),
     url(r'^photo/edit/multiple/$', views.PhotoEditMultipleView.as_view(), name='photo_edit_multiple'),
     url(r'^photo/delete/(?P<pk>[0-9]+)/$', views.PhotoDeleteView.as_view(), name='photo_delete'),
     url(r'^photo/detail/(?P<pk>[0-9]+)/$', views.PhotoDetailView.as_view(), name='photo_detail'),
