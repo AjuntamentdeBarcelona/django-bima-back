@@ -211,6 +211,20 @@ class PhotoEditMultipleForm(PhotoEditForm):
         self.fields['status'].widget.choices = [('', '----')] + PHOTO_STATUS_CHOICES
 
 
+class YoutubeChannelForm(forms.Form):
+    youtube_channel = forms.ChoiceField(label='', widget=forms.RadioSelect)
+
+    def __init__(self, youtube_channels, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = [(ch['id'], self._channel_label(ch)) for ch in youtube_channels]
+        self.fields['youtube_channel'].widget.choices = choices
+        self.fields['youtube_channel'].initial = choices[0][0]
+
+    @staticmethod
+    def _channel_label(ch):
+        return '{} - {} - {}'.format(ch['name'], ch['channel_id'], ch['account']['username'])
+
+
 class GalleryForm(TranslatableFormMixin, forms.Form):
     """
     Form to create a new gallery

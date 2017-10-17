@@ -218,12 +218,12 @@ class DAMWebService(object):
 
     # youtube
 
-    def youtube_channels(self):
-        return self.action_or_logout(['photos', 'youtube', 'list'], params={})
+    def youtube_channels(self, photo_pk):
+        return self.action_or_logout(['photos', 'youtube', 'list'], params={'id': photo_pk})
 
     def youtube_upload(self, photo_pk, youtube_channel_pk):
-        return self.action_or_logout(['photos', 'youtube', 'upload', 'post'], params={
-            'photo_pk': photo_pk, 'youtube_channel_pk': youtube_channel_pk})
+        return self.action_or_logout(['photos', 'youtube', 'create'], params={
+            'id': photo_pk, 'channel_pk': youtube_channel_pk})
 
     # galleries
 
