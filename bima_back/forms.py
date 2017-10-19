@@ -222,7 +222,7 @@ class YoutubeChannelForm(forms.Form):
 
     @staticmethod
     def _channel_label(ch):
-        return '{} - {} - {}'.format(ch['name'], ch['channel_id'], ch['account']['username'])
+        return '{} - {}'.format(ch['name'], ch['account']['username'])
 
 
 class GalleryForm(TranslatableFormMixin, forms.Form):

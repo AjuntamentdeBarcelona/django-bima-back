@@ -14,8 +14,13 @@
     </div>
     {% if instance.file_type == 'video' %}
       <a role="button" class="btn btn-default pull-right" href="{% url 'photo_edit_youtube' pk=instance.id %}">
-        <i class="fa fa-youtube"></i> {% trans "Upload to Youtube" %}
+        <i class="fa fa-upload"></i> {% trans "Upload to Youtube" %}
       </a>
+      {% if instance.youtube_code %}
+        <a role="button" class="btn btn-default pull-right" href="https://www.youtube.com/watch?v={{ instance.youtube_code }}" target="_blank">
+          <i class="fa fa-eye"></i> {% trans "Watch on Youtube" %}
+        </a>
+      {% endif %}
     {% endif %}
   </div>
   <div class="box-body">
