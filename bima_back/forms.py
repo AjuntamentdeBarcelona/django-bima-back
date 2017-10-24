@@ -171,8 +171,10 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
         if self.initial.get('image_flickr', ''):
             self.fields['image'].widget = forms.widgets.HiddenInput()
+
         # add attributes to update image
         self.fields['image'].widget.attrs.update({
             'data-chunk-url': reverse_lazy('api_chunked_upload'),
@@ -189,6 +191,11 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
                 ', '.join(FORMATS)),
             'data-loading-gif': staticfiles_storage.url('bima_back/img/loader.gif'),
         })
+
+        # add youtube code for videos
+        if kwargs.get('initial', {}).get('file_type') == 'video':
+            self.fieldsets[0].fields.append('youtube_code')
+            self.fields['youtube_code'] = forms.CharField(label=_('Youtube code'), required=False)
 
 
 class PhotoEditMultipleForm(PhotoEditForm):
