@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-24 17:25+0200\n"
+"POT-Creation-Date: 2017-10-26 14:47+0200\n"
 "PO-Revision-Date: 2017-01-29 22:43-0015\n"
 "Last-Translator: b'Josep Verd <jverd@apsl.net>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "Downloaded"
 msgstr ""
 
-#: constants.py:43 templates/bima_back/photos/photo_detail.html:131
+#: constants.py:43 templates/bima_back/photos/photo_detail.html:136
 msgid "Private"
 msgstr ""
 
@@ -60,13 +60,13 @@ msgstr ""
 
 #: forms.py:68 forms.py:86 forms.py:100 forms.py:139 forms.py:241 forms.py:355
 #: templates/bima_back/delete.html:21
-#: templates/bima_back/photos/photo_detail.html:112
+#: templates/bima_back/photos/photo_detail.html:117
 msgid "Title"
 msgstr ""
 
 #: forms.py:69 forms.py:145 forms.py:242 forms.py:356
 #: templates/bima_back/delete.html:24
-#: templates/bima_back/photos/photo_detail.html:113
+#: templates/bima_back/photos/photo_detail.html:118
 msgid "Description"
 msgstr ""
 
@@ -79,32 +79,32 @@ msgid "Assignee"
 msgstr ""
 
 #: forms.py:90 forms.py:159 forms.py:277
-#: templates/bima_back/photos/photo_detail.html:248
+#: templates/bima_back/photos/photo_detail.html:253
 msgid "Author"
 msgstr ""
 
 #: forms.py:91 forms.py:133 forms.py:160 forms.py:278
-#: templates/bima_back/photos/photo_detail.html:234
-#: templates/bima_back/photos/photo_detail.html:236
-#: templates/bima_back/photos/photo_detail.html:237
-#: templates/bima_back/photos/photo_detail.html:252
+#: templates/bima_back/photos/photo_detail.html:239
+#: templates/bima_back/photos/photo_detail.html:241
+#: templates/bima_back/photos/photo_detail.html:242
+#: templates/bima_back/photos/photo_detail.html:257
 msgid "Copyright"
 msgstr ""
 
-#: forms.py:92 forms.py:152 templates/bima_back/photos/photo_detail.html:153
+#: forms.py:92 forms.py:152 templates/bima_back/photos/photo_detail.html:158
 msgid "Capture date"
 msgstr ""
 
-#: forms.py:103 forms.py:142 templates/bima_back/photos/photo_detail.html:196
+#: forms.py:103 forms.py:142 templates/bima_back/photos/photo_detail.html:201
 msgid "Keywords"
 msgstr ""
 
 #: forms.py:107 forms.py:149 forms.py:297
-#: templates/bima_back/photos/photo_detail.html:137
+#: templates/bima_back/photos/photo_detail.html:142
 msgid "Album"
 msgstr ""
 
-#: forms.py:124 templates/bima_back/photos/photo_detail.html:218
+#: forms.py:124 templates/bima_back/photos/photo_detail.html:223
 msgid "Type"
 msgstr ""
 
@@ -112,15 +112,15 @@ msgstr ""
 msgid "General information"
 msgstr ""
 
-#: forms.py:131 templates/bima_back/photos/photo_detail.html:172
-#: templates/bima_back/photos/photo_detail.html:174
-#: templates/bima_back/photos/photo_detail.html:175
+#: forms.py:131 templates/bima_back/photos/photo_detail.html:177
+#: templates/bima_back/photos/photo_detail.html:179
+#: templates/bima_back/photos/photo_detail.html:180
 msgid "Metadata"
 msgstr ""
 
-#: forms.py:135 templates/bima_back/photos/photo_detail.html:278
-#: templates/bima_back/photos/photo_detail.html:280
-#: templates/bima_back/photos/photo_detail.html:281
+#: forms.py:135 templates/bima_back/photos/photo_detail.html:283
+#: templates/bima_back/photos/photo_detail.html:285
+#: templates/bima_back/photos/photo_detail.html:286
 msgid "Location"
 msgstr ""
 
@@ -128,14 +128,14 @@ msgstr ""
 #: templates/bima_back/galleries/gallery_detail.html:51
 #: templates/bima_back/includes/body_sidebar.html:32
 #: templates/bima_back/includes/page_category.html:8
-#: templates/bima_back/photos/photo_detail.html:143 views.py:576 views.py:850
+#: templates/bima_back/photos/photo_detail.html:148 views.py:576 views.py:850
 #: views.py:940 views.py:1051
 msgid "Galleries"
 msgstr ""
 
 #: forms.py:151 forms.py:247 forms.py:360
 #: templates/bima_back/logs/photo_upload_log.html:16
-#: templates/bima_back/photos/photo_detail.html:129
+#: templates/bima_back/photos/photo_detail.html:134
 #: templates/bima_back/users/user.html:20
 msgid "Status"
 msgstr ""
@@ -147,20 +147,20 @@ msgstr ""
 #: forms.py:156 forms.py:358 templates/bima_back/categories/category.html:17
 #: templates/bima_back/includes/body_sidebar.html:41
 #: templates/bima_back/includes/page_category.html:12
-#: templates/bima_back/photos/photo_detail.html:205 views.py:587 views.py:870
+#: templates/bima_back/photos/photo_detail.html:210 views.py:587 views.py:870
 #: views.py:1062
 msgid "Categories"
 msgstr ""
 
-#: forms.py:157 templates/bima_back/photos/photo_detail.html:215
+#: forms.py:157 templates/bima_back/photos/photo_detail.html:220
 msgid "Names"
 msgstr ""
 
-#: forms.py:161 templates/bima_back/photos/photo_detail.html:260
+#: forms.py:161 templates/bima_back/photos/photo_detail.html:265
 msgid "Internal restriction"
 msgstr ""
 
-#: forms.py:163 templates/bima_back/photos/photo_detail.html:264
+#: forms.py:163 templates/bima_back/photos/photo_detail.html:269
 msgid "External restriction"
 msgstr ""
 
@@ -168,7 +168,7 @@ msgstr ""
 msgid "Position"
 msgstr ""
 
-#: forms.py:167 templates/bima_back/photos/photo_detail.html:301
+#: forms.py:167 templates/bima_back/photos/photo_detail.html:306
 msgid "Address"
 msgstr ""
 
@@ -608,44 +608,54 @@ msgstr ""
 msgid "Copy tags from current asset"
 msgstr ""
 
-#: templates/bima_back/includes/photos/detail.html:17
+#: templates/bima_back/includes/photos/detail.html:18
 msgid "Upload to Youtube"
 msgstr ""
 
-#: templates/bima_back/includes/photos/detail.html:21
-#: templates/bima_back/photos/photo_detail.html:122
+#: templates/bima_back/includes/photos/detail.html:23
+#: templates/bima_back/photos/photo_detail.html:127
 msgid "Watch on Youtube"
 msgstr ""
 
-#: templates/bima_back/includes/photos/detail.html:42
-#: templates/bima_back/photos/photo_detail.html:71
-msgid "The owner"
+#: templates/bima_back/includes/photos/detail.html:33
+#: templates/bima_back/photos/photo_detail.html:60
+msgid "Sorry, your browser doesn't support embedded videos."
 msgstr ""
 
-#: templates/bima_back/includes/photos/detail.html:46
-#: templates/bima_back/photos/photo_detail.html:75
-msgid "Last cataloging"
+#: templates/bima_back/includes/photos/detail.html:38
+#: templates/bima_back/photos/photo_detail.html:65
+msgid "Sorry, your browser doesn't support embedded audios."
 msgstr ""
 
 #: templates/bima_back/includes/photos/detail.html:49
-msgid "Dimensions"
+#: templates/bima_back/photos/photo_detail.html:76
+msgid "The owner"
 msgstr ""
 
-#: templates/bima_back/includes/photos/detail.html:54
-#: templates/bima_back/photos/photo_detail.html:83
-msgid "Original size"
+#: templates/bima_back/includes/photos/detail.html:53
+#: templates/bima_back/photos/photo_detail.html:80
+msgid "Last cataloging"
 msgstr ""
 
 #: templates/bima_back/includes/photos/detail.html:56
-#: templates/bima_back/photos/photo_detail.html:87
-msgid "Camera model"
+msgid "Dimensions"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:61
+#: templates/bima_back/photos/photo_detail.html:88
+msgid "Original size"
 msgstr ""
 
 #: templates/bima_back/includes/photos/detail.html:63
+#: templates/bima_back/photos/photo_detail.html:92
+msgid "Camera model"
+msgstr ""
+
+#: templates/bima_back/includes/photos/detail.html:70
 msgid "Identifier"
 msgstr ""
 
-#: templates/bima_back/includes/photos/detail.html:64
+#: templates/bima_back/includes/photos/detail.html:71
 msgid "Original name"
 msgstr ""
 
@@ -936,23 +946,23 @@ msgstr ""
 msgid "Flickr url"
 msgstr ""
 
-#: templates/bima_back/photos/photo_detail.html:79
+#: templates/bima_back/photos/photo_detail.html:84
 msgid "Dimension"
 msgstr ""
 
-#: templates/bima_back/photos/photo_detail.html:91
+#: templates/bima_back/photos/photo_detail.html:96
 msgid "Original filename"
 msgstr ""
 
-#: templates/bima_back/photos/photo_detail.html:133
+#: templates/bima_back/photos/photo_detail.html:138
 msgid "Published"
 msgstr ""
 
-#: templates/bima_back/photos/photo_detail.html:314
+#: templates/bima_back/photos/photo_detail.html:319
 msgid "Longitude"
 msgstr ""
 
-#: templates/bima_back/photos/photo_detail.html:322
+#: templates/bima_back/photos/photo_detail.html:327
 msgid "Latitude"
 msgstr ""
 

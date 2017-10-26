@@ -55,12 +55,17 @@
           <div class="row fixedInfo">
             <section class="col-md-12 photo-download">
               <div class="col-md-4 image_photo">
-                {% if instance.image_small_fit %}
-                  <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
-                {% elif instance.file_type == 'video' %}
-                  <img src="{% static 'bima_back/img/video.jpg' %}" alt="{{ instance.title }}" />
+                {% if instance.file_type == 'video' %}
+                  <video src="{{ instance.image_file }}" controls playsinline preload="none" poster="{{ instance.image_small_fit }}">
+                    {% trans "Sorry, your browser doesn't support embedded videos." %}
+                  </video>
                 {% elif instance.file_type == 'audio' %}
                   <img src="{% static 'bima_back/img/audio.jpg' %}" alt="{{ instance.title }}" />
+                  <audio src="{{ instance.image_file }}" controls preload="none">
+                    {% trans "Sorry, your browser doesn't support embedded audios." %}
+                  </audio>
+                {% elif instance.image_small_fit %}
+                  <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
                 {% else %}
                   <img src="{% static 'bima_back/img/no-photo.jpg' %}" alt="{{ instance.title }}" />
                 {% endif %}
