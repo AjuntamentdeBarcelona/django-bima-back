@@ -16,6 +16,7 @@
         {% else %}
           <a href="{% url 'photo_detail' photo.id %}" class="imageContent">
             <img src="{% photo_thumbnail photo %}" class="img-responsive" />
+            {% photo_file_type_icon photo %}
           </a>
         {% endif %}
       </div>

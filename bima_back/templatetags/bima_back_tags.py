@@ -13,6 +13,7 @@ from django.forms.widgets import CheckboxInput, RadioSelect
 from django.template import Library
 from django.template.defaultfilters import stringfilter, slugify, truncatechars
 from django.utils.dateparse import parse_datetime, parse_date
+from django.utils.html import mark_safe
 from django.utils.translation import activate, get_language
 
 from ..utils import get_class_name, order_keywords, is_iterable, calculate_missing_size, popover_string
@@ -375,3 +376,22 @@ def photo_thumbnail(photo):
     if photo['file_type'] == 'audio':
         return static('bima_back/img/audio.jpg')
     return static('bima_back/img/no-photo.jpg')
+
+
+FONT_AWESOME_CLASS_MAP = {
+    'video': 'play-circle-o',
+    'audio': 'volume-up',
+    # 'photo': 'photo',
+}
+
+
+@register.simple_tag
+def photo_file_type_icon(photo):
+    """
+    Returns the proper icon to show in every photo in lists based on the photo
+    file type (video, audio...).
+    """
+    font_awesome_class = FONT_AWESOME_CLASS_MAP.get(photo['file_type'])
+    if font_awesome_class:
+        return mark_safe('<i class="fa fa-{} fileType"></i>'.format(font_awesome_class))
+    return ''
