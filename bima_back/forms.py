@@ -232,6 +232,22 @@ class YoutubeChannelForm(forms.Form):
         return '{} - {}'.format(ch['name'], ch['account']['username'])
 
 
+class VimeoAccountForm(forms.Form):
+    vimeo_account = forms.ChoiceField(label='', widget=forms.RadioSelect)
+
+    def __init__(self, vimeo_accounts, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        choices = [(va['id'], self._account_label(va)) for va in vimeo_accounts]
+        self.fields['vimeo_account'].widget.choices = choices
+        self.fields['vimeo_account'].initial = choices[0][0]
+
+    @staticmethod
+    def _account_label(account):
+        if not account['username']:
+            return account['name']
+        return '{} - {}'.format(account['name'], account['username'])
+
+
 class GalleryForm(TranslatableFormMixin, forms.Form):
     """
     Form to create a new gallery

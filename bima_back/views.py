@@ -18,7 +18,7 @@ from .constants import CACHE_USER_PROFILE_PREFIX_KEY
 from .exports import LogReport
 from .forms import AlbumForm, PhotoCreateForm, UserForm, GalleryForm, PhotoEditForm, \
     CategoryForm, FlickrForm, LogFilterForm, PhotoEditMultipleForm, AdvancedSemanticSearchForm, \
-    AlbumPhotoCreateForm, AlbumFlickrForm, CategoryFilterForm, YoutubeChannelForm
+    AlbumPhotoCreateForm, AlbumFlickrForm, CategoryFilterForm, YoutubeChannelForm, VimeoAccountForm
 from .mixins import ServiceClientMixin, LoggedServicePaginatorMixin, LoggedServiceMixin, FilterFormMixin, \
     PaginatorMixin, PhotoMixin, AlbumMixin, GalleryMixin, CategoryMixin
 from .models import MyChunkedUpload
@@ -1036,6 +1036,42 @@ class PhotoEditYoutubeView(BaseDeleteView):
     def post(self, request, *args, **kwargs):
         self.get_client_action()(kwargs['pk'], request.POST['youtube_channel'])
         msg = _('Video has been enqueued to be uploaded to Youtube. It can take a while to complete.')
+        messages.success(request, msg)
+        return redirect(reverse(self.url_name))
+
+
+class PhotoEditVimeoView(BaseDeleteView):
+    """
+    Show a list of Vimeo accounts and then upload the video to the choosen account.
+
+    The flow is similar to a DeleteView but nothing is deleted.
+    """
+    template_name = 'bima_back/photos/photo_edit_youtube.html'
+    restore_action_name = 'vimeo_accounts'
+    action_name = 'vimeo_upload'
+    url_name = 'photo_list'
+    active_section = 'album'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = VimeoAccountForm(self.instance['vimeo_accounts'])
+        context['column_class'] = 'col-md-12'
+        return context
+
+    def get_breadcrumbs(self):
+        return [{'label': _('Albums'), 'view': 'album_list'},
+                {'label': self.instance['photo']['album']['title'],
+                 'view': 'album_detail',
+                 'args': self.instance['photo']['album']['id']},
+                {'label': _('Vimeo'), 'view': 'photo_edit_vimeo'}]
+
+    def get_title(self):
+        return _('Select Vimeo account to upload video "{}"'.format(
+                 self.instance['photo']['title']))
+
+    def post(self, request, *args, **kwargs):
+        self.get_client_action()(kwargs['pk'], request.POST['vimeo_account'])
+        msg = _('Video has been enqueued to be uploaded to Vimeo. It can take a while to complete.')
         messages.success(request, msg)
         return redirect(reverse(self.url_name))
 

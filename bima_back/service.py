@@ -225,6 +225,15 @@ class DAMWebService(object):
         return self.action_or_logout(['photos', 'youtube', 'create'], params={
             'id': photo_pk, 'channel_pk': youtube_channel_pk})
 
+    # vimeo
+
+    def vimeo_accounts(self, photo_pk):
+        return self.action_or_logout(['photos', 'vimeo', 'list'], params={'id': photo_pk})
+
+    def vimeo_upload(self, photo_pk, vimeo_account_pk):
+        return self.action_or_logout(['photos', 'vimeo', 'create'], params={
+            'id': photo_pk, 'account_pk': vimeo_account_pk})
+
     # galleries
 
     def get_galleries_list(self, **kwargs):
