@@ -192,10 +192,11 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
             'data-loading-gif': staticfiles_storage.url('bima_back/img/loader.gif'),
         })
 
-        # add youtube code for videos
+        # add youtube and vimeo codes for videos
         if kwargs.get('initial', {}).get('file_type') == 'video':
-            self.fieldsets[0].fields.append('youtube_code')
+            self.fieldsets[0].fields.extend(('youtube_code', 'vimeo_code'))
             self.fields['youtube_code'] = forms.CharField(label=_('Youtube code'), required=False)
+            self.fields['vimeo_code'] = forms.CharField(label=_('Vimeo code'), required=False)
 
 
 class PhotoEditMultipleForm(PhotoEditForm):
