@@ -18,13 +18,13 @@ from .constants import CACHE_USER_PROFILE_PREFIX_KEY
 from .exports import LogReport
 from .forms import AlbumForm, PhotoCreateForm, UserForm, GalleryForm, PhotoEditForm, \
     CategoryForm, FlickrForm, LogFilterForm, PhotoEditMultipleForm, AdvancedSemanticSearchForm, \
-    AlbumPhotoCreateForm, AlbumFlickrForm, CategoryFilterForm
+    AlbumPhotoCreateForm, AlbumFlickrForm, CategoryFilterForm, YoutubeChannelForm
 from .mixins import ServiceClientMixin, LoggedServicePaginatorMixin, LoggedServiceMixin, FilterFormMixin, \
     PaginatorMixin, PhotoMixin, AlbumMixin, GalleryMixin, CategoryMixin
 from .models import MyChunkedUpload
 from .tasks import upload_photo
 from .utils import get_language_codes, get_class_name, get_choices_ids, get_choices, get_tag_choices, format_date, \
-    cache_set, prepare_params, change_form_tag_languages
+    cache_set, prepare_params, prepare_keywords, change_form_tag_languages
 from .service import UploadStatus
 
 
@@ -352,13 +352,13 @@ class MyPhotosListView(FilteredPhotoListBaseView):
 
     @staticmethod
     def get_title():
-        return _('My Photos')
+        return _('My Assets')
 
     @staticmethod
     def get_breadcrumbs():
         return [
             {'label': _('Home'), 'view': 'home'},
-            {'label': _('My Photos'), 'view': 'my_photos_list'}
+            {'label': _('My Assets'), 'view': 'my_photos_list'}
         ]
 
 
@@ -421,8 +421,8 @@ class PhotoCreateMultipleView(BaseCreateView):
     success_url = reverse_lazy('photo_list')
     action_name = 'get_client_schema'  # action to get client schema
     active_section = 'upload'
-    title = _('Create photo')
-    form_valid_message = _("Your photos have been uploaded successfully and are being processed. "
+    title = _('Create')
+    form_valid_message = _("Your assets have been uploaded successfully and are being processed. "
                            "If you don't see them yet, try to reload the browser in a few seconds.")
 
     def get_context_data(self, **kwargs):
@@ -449,19 +449,22 @@ class PhotoCreateMultipleView(BaseCreateView):
                     'exif_date': "{}T00:00".format(data['exif_date'].isoformat()) if data['exif_date'] else None,
                     'author': data['author'],
                     'copyright': data['copyright'],
-                    # date of the entry of the photo in the sistem
+                    # date of the entry of the photo in the system
                     'categorize_date': format_date(datetime.now(), final="%Y-%m-%d", isoformat=False)
                 })
+                params['keywords'] = prepare_keywords(data)
                 # i18n fields
                 for lang_code, _lang_name in settings.LANGUAGES:
                     title_key = 'title_{}'.format(lang_code)
                     params[title_key] = data.get(title_key, '')
+                    desc_key = 'description_{}'.format(lang_code)
+                    params[desc_key] = data.get(desc_key, '')
 
                 upload_photo.delay(params, self.request.user.id, self.request.user.token,
                                    self.request.LANGUAGE_CODE)
 
     def get_breadcrumbs(self):
-        return [{'label': _('Upload Photo'), 'view': 'photo_create'}]
+        return [{'label': _('Upload'), 'view': 'photo_create'}]
 
 
 class AlbumPhotoCreateMultipleView(PhotoCreateMultipleView):
@@ -495,7 +498,7 @@ class AlbumPhotoCreateMultipleView(PhotoCreateMultipleView):
     def get_breadcrumbs(self):
         return [{'label': _('Albums'), 'view': 'album_list'},
                 {'label': self.request.GET.get('album', ' — '), 'view': 'album_detail', 'args': self.kwargs['album']},
-                {'label': _('Upload Photo'), 'view': 'photo_create'}]
+                {'label': _('Upload'), 'view': 'photo_create'}]
 
 
 class FlickrImportView(BaseCreateView):
@@ -680,7 +683,7 @@ class PhotoEditView(PhotoMixin, BaseEditView):
         return kwargs
 
     def get_success_url(self):
-        return reverse_lazy('photo_list')
+        return reverse_lazy('photo_detail', kwargs={'pk': self.instance['id']})
 
     def get_context_data(self, **kwargs):
         """
@@ -762,7 +765,7 @@ class PhotoEditView(PhotoMixin, BaseEditView):
                 {'label': self.instance['extra_info']['album']['title'],
                  'view': 'album_detail',
                  'args': self.instance['album']},
-                {'label': _('Update Photo'), 'view': 'photo_edit'}]
+                {'label': _('Update'), 'view': 'photo_edit'}]
 
 
 class PhotoEditMultipleView(LoggedServiceMixin, FormView):
@@ -993,14 +996,50 @@ class PhotoDeleteView(BaseDeleteView):
     action_name = 'delete_photo'
     url_name = 'photo_list'
     active_section = 'album'
-    title = _('Are you sure you want to delete this photo?')
+    title = _('Are you sure you want to delete this asset?')
 
     def get_breadcrumbs(self):
         return [{'label': _('Albums'), 'view': 'album_list'},
                 {'label': self.instance['extra_info']['album']['title'],
                  'view': 'album_detail',
                  'args': self.instance['album']},
-                {'label': _('Delete Photo'), 'view': 'photo_delete'}]
+                {'label': _('Delete'), 'view': 'photo_delete'}]
+
+
+class PhotoEditYoutubeView(BaseDeleteView):
+    """
+    Show a list of Youtube channels and then upload the video to the choosen channel.
+
+    The flow is similar to a DeleteView but nothing is deleted.
+    """
+    template_name = 'bima_back/photos/photo_edit_youtube.html'
+    restore_action_name = 'youtube_channels'
+    action_name = 'youtube_upload'
+    url_name = 'photo_list'
+    active_section = 'album'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = YoutubeChannelForm(self.instance['youtube_channels'])
+        context['column_class'] = 'col-md-12'
+        return context
+
+    def get_breadcrumbs(self):
+        return [{'label': _('Albums'), 'view': 'album_list'},
+                {'label': self.instance['photo']['album']['title'],
+                 'view': 'album_detail',
+                 'args': self.instance['photo']['album']['id']},
+                {'label': _('Youtube'), 'view': 'photo_edit_youtube'}]
+
+    def get_title(self):
+        return _('Select Youtube channel to upload video "{}"'.format(
+                 self.instance['photo']['title']))
+
+    def post(self, request, *args, **kwargs):
+        self.get_client_action()(kwargs['pk'], request.POST['youtube_channel'])
+        msg = _('Video has been enqueued to be uploaded to Youtube. It can take a while to complete.')
+        messages.success(request, msg)
+        return redirect(reverse(self.url_name))
 
 
 class GalleryDeleteView(BaseDeleteView):

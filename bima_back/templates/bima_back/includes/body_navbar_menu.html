@@ -39,7 +39,7 @@
         {% if request.user.permissions.accesslog.read %}
           <li><a href="{% url 'log_list' %}">{% trans 'Logs list' %}</a></li>
         {% endif %}
-        <li><a href="{% url 'photo_log_list' %}">{% trans 'Photo uploads' %}</a></li>
+        <li><a href="{% url 'photo_log_list' %}">{% trans 'Uploads' %}</a></li>
       </ul>
     </li>
     {% endif %}

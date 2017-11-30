@@ -2,12 +2,12 @@
 
   <div id="photo-cart" data-remove-url="{% url 'cart_remove' %}">
     <a href="javascript:void(0)" class="pull-left close-cart"><i class="fa fa-window-close"></i></a>
-    <p class="message" data-size="{% trans 'You reached the maximum number of photos that can be edited simultaneously' %}"
+    <p class="message" data-size="{% trans 'You reached the maximum number of assets that can be edited simultaneously' %}"
        data-error="{% trans 'An error has occurred. Please try again or refresh the page' %}"
        data-max="{{ config.MAX_EDIT_MULTIPLE }}"></p>
     <div>
       <h5>
-        <i class="fa fa-bookmark"></i> {% trans 'Photo Edit Cart' %}
+        <i class="fa fa-bookmark"></i> {% trans 'Edit Cart' %}
       </h5>
       <ul>
           {% for key, data in cart.items %}
@@ -26,7 +26,7 @@
       </ul>
       <p id="no-photos-in-cart" class="{% if cart.items %}hidden{% endif %}">
         <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
-        {% trans 'There are no photos selected for massive editation' %}
+        {% trans 'There are no selected items for massive edit' %}
       </p>
     </div>
     <div class="buttonOptionsCart">
@@ -38,7 +38,7 @@
         <i class="fa fa-edit"></i> {% trans 'Edit' %}
       </a>
       {% if photo_detail_page and cart.items %}
-        <p><a href="{% url 'photo_copy_tags' instance.id %}">{% trans 'Copy tags from current photo' %}</a></p>
+        <p><a href="{% url 'photo_copy_tags' instance.id %}">{% trans 'Copy tags from current asset' %}</a></p>
       {% endif %}
     </div>
   </div>

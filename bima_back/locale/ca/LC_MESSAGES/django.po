@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-27 16:51+0200\n"
+"POT-Creation-Date: 2017-10-26 14:47+0200\n"
 "PO-Revision-Date: 2017-03-13 12:29-0015\n"
 "Last-Translator: b'  <info@apsl.net>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgstr "Vista"
 msgid "Downloaded"
 msgstr "Descarregada"
 
-#: constants.py:43
+#: constants.py:43 templates/bima_back/photos/photo_detail.html:136
 msgid "Private"
 msgstr "Despublicada"
 
@@ -47,11 +47,11 @@ msgstr "ID de la fotografia"
 msgid "Photo title"
 msgstr "Títol del reportatge"
 
-#: exports.py:23 forms.py:352 templates/bima_back/logs/log.html:24
+#: exports.py:23 forms.py:399 templates/bima_back/logs/log.html:24
 msgid "Action"
 msgstr "Acció"
 
-#: exports.py:24 forms.py:353 templates/bima_back/logs/log.html:25
+#: exports.py:24 forms.py:400 templates/bima_back/logs/log.html:25
 msgid "User"
 msgstr "Usuari"
 
@@ -59,227 +59,230 @@ msgstr "Usuari"
 msgid "Added at"
 msgstr "Afegit el"
 
-#: forms.py:58 forms.py:76 forms.py:121 forms.py:194 forms.py:308
+#: forms.py:68 forms.py:86 forms.py:100 forms.py:139 forms.py:241 forms.py:355
 #: templates/bima_back/delete.html:21
-#: templates/bima_back/photos/photo_detail.html:105
+#: templates/bima_back/photos/photo_detail.html:117
 msgid "Title"
 msgstr "Títol del reportatge"
 
-#: forms.py:59 forms.py:124 forms.py:195 forms.py:309
+#: forms.py:69 forms.py:145 forms.py:242 forms.py:356
 #: templates/bima_back/delete.html:24
-#: templates/bima_back/photos/photo_detail.html:106
+#: templates/bima_back/photos/photo_detail.html:118
 msgid "Description"
 msgstr "Descripció"
 
-#: forms.py:62 forms.py:198 forms.py:218
+#: forms.py:72 forms.py:245 forms.py:265
 msgid "Slug"
 msgstr "slug"
 
-#: forms.py:63
+#: forms.py:73
 msgid "Assignee"
 msgstr "Assignat"
 
-#: forms.py:80 forms.py:138 forms.py:230
-#: templates/bima_back/photos/photo_detail.html:234
+#: forms.py:90 forms.py:159 forms.py:277
+#: templates/bima_back/photos/photo_detail.html:253
 msgid "Author"
 msgstr "Autor"
 
-#: forms.py:81 forms.py:115 forms.py:139 forms.py:231
-#: templates/bima_back/photos/photo_detail.html:220
-#: templates/bima_back/photos/photo_detail.html:222
-#: templates/bima_back/photos/photo_detail.html:223
-#: templates/bima_back/photos/photo_detail.html:238
+#: forms.py:91 forms.py:133 forms.py:160 forms.py:278
+#: templates/bima_back/photos/photo_detail.html:239
+#: templates/bima_back/photos/photo_detail.html:241
+#: templates/bima_back/photos/photo_detail.html:242
+#: templates/bima_back/photos/photo_detail.html:257
 msgid "Copyright"
 msgstr "Drets d'autor"
 
-#: forms.py:82 forms.py:131 templates/bima_back/photos/photo_detail.html:139
+#: forms.py:92 forms.py:152 templates/bima_back/photos/photo_detail.html:158
 msgid "Capture date"
 msgstr "Data de captura"
 
-#: forms.py:89 forms.py:128 forms.py:250
-#: templates/bima_back/photos/photo_detail.html:123
-msgid "Album"
-msgstr "Àlbum"
-
-#: forms.py:106 templates/bima_back/photos/photo_detail.html:204
-msgid "Type"
-msgstr "Tipus"
-
-#: forms.py:112
-msgid "General information"
-msgstr "Informació general"
-
-#: forms.py:113 templates/bima_back/photos/photo_detail.html:158
-#: templates/bima_back/photos/photo_detail.html:160
-#: templates/bima_back/photos/photo_detail.html:161
-msgid "Metadata"
-msgstr "Metadades"
-
-#: forms.py:117 templates/bima_back/photos/photo_detail.html:264
-#: templates/bima_back/photos/photo_detail.html:266
-#: templates/bima_back/photos/photo_detail.html:267
-msgid "Location"
-msgstr "Ubicació"
-
-#: forms.py:122 templates/bima_back/photos/photo_detail.html:182
+#: forms.py:103 forms.py:142 templates/bima_back/photos/photo_detail.html:201
 msgid "Keywords"
 msgstr "Paraules clau"
 
-#: forms.py:129 forms.py:312 templates/bima_back/galleries/gallery.html:4
+#: forms.py:107 forms.py:149 forms.py:297
+#: templates/bima_back/photos/photo_detail.html:142
+msgid "Album"
+msgstr "Àlbum"
+
+#: forms.py:124 templates/bima_back/photos/photo_detail.html:223
+msgid "Type"
+msgstr "Tipus"
+
+#: forms.py:130
+msgid "General information"
+msgstr "Informació general"
+
+#: forms.py:131 templates/bima_back/photos/photo_detail.html:177
+#: templates/bima_back/photos/photo_detail.html:179
+#: templates/bima_back/photos/photo_detail.html:180
+msgid "Metadata"
+msgstr "Metadades"
+
+#: forms.py:135 templates/bima_back/photos/photo_detail.html:283
+#: templates/bima_back/photos/photo_detail.html:285
+#: templates/bima_back/photos/photo_detail.html:286
+msgid "Location"
+msgstr "Ubicació"
+
+#: forms.py:150 forms.py:359 templates/bima_back/galleries/gallery.html:4
 #: templates/bima_back/galleries/gallery_detail.html:51
 #: templates/bima_back/includes/body_sidebar.html:32
 #: templates/bima_back/includes/page_category.html:8
-#: templates/bima_back/photos/photo_detail.html:129 views.py:575 views.py:849
-#: views.py:939 views.py:1014
+#: templates/bima_back/photos/photo_detail.html:148 views.py:576 views.py:850
+#: views.py:940 views.py:1051
 msgid "Galleries"
 msgstr "Galeries"
 
-#: forms.py:130 forms.py:200 forms.py:313
+#: forms.py:151 forms.py:247 forms.py:360
 #: templates/bima_back/logs/photo_upload_log.html:16
-#: templates/bima_back/photos/photo_detail.html:115
+#: templates/bima_back/photos/photo_detail.html:134
 #: templates/bima_back/users/user.html:20
 msgid "Status"
 msgstr "Estat"
 
-#: forms.py:132
-msgid "Change Photo"
-msgstr "Canviar fotografia"
+#: forms.py:153
+msgid "Change File"
+msgstr "Canviar arxiu"
 
-#: forms.py:135 forms.py:311 templates/bima_back/categories/category.html:17
+#: forms.py:156 forms.py:358 templates/bima_back/categories/category.html:17
 #: templates/bima_back/includes/body_sidebar.html:41
 #: templates/bima_back/includes/page_category.html:12
-#: templates/bima_back/photos/photo_detail.html:191 views.py:586 views.py:869
-#: views.py:1025
+#: templates/bima_back/photos/photo_detail.html:210 views.py:587 views.py:870
+#: views.py:1062
 msgid "Categories"
 msgstr "Categories"
 
-#: forms.py:136 templates/bima_back/photos/photo_detail.html:201
+#: forms.py:157 templates/bima_back/photos/photo_detail.html:220
 msgid "Names"
 msgstr "Noms"
 
-#: forms.py:140 templates/bima_back/photos/photo_detail.html:246
+#: forms.py:161 templates/bima_back/photos/photo_detail.html:265
 msgid "Internal restriction"
 msgstr "Llicència (ús intern)"
 
-#: forms.py:142 templates/bima_back/photos/photo_detail.html:250
+#: forms.py:163 templates/bima_back/photos/photo_detail.html:269
 msgid "External restriction"
 msgstr "Llicència (ús extern)"
 
-#: forms.py:145
+#: forms.py:166
 msgid "Position"
 msgstr "Posició"
 
-#: forms.py:146 templates/bima_back/photos/photo_detail.html:287
+#: forms.py:167 templates/bima_back/photos/photo_detail.html:306
 msgid "Address"
 msgstr "Adreça"
 
-#: forms.py:147
+#: forms.py:168
 msgid "District"
 msgstr "Districte"
 
-#: forms.py:148
+#: forms.py:169
 msgid "Neighborhood"
 msgstr "Barri"
 
-#: forms.py:149
+#: forms.py:170
 msgid "Postcode"
 msgstr "Codi Postal"
 
-#: forms.py:159 templates/bima_back/photos/photo_create_multiple.html:7
+#: forms.py:183 templates/bima_back/photos/photo_create_multiple.html:7
 msgid "An error has occurred. Please, try again."
 msgstr "S'ha produït un error. Torneu-ho a provar."
 
-#: forms.py:162 templates/bima_back/photos/photo_create_multiple.html:8
-msgid "Sorry, the maximum image size allowed is"
-msgstr "Ho sentim, el tamany màxim de la imatge és"
+#: forms.py:186 templates/bima_back/photos/photo_create_multiple.html:8
+msgid "Sorry, the maximum file size allowed is"
+msgstr "Ho sentim, el tamany màxim de l'arxiu és"
 
-#: forms.py:162 templates/bima_back/photos/photo_create_multiple.html:8
+#: forms.py:188 templates/bima_back/photos/photo_create_multiple.html:8
 msgid "MB"
 msgstr "MB"
 
-#: forms.py:163 templates/bima_back/photos/photo_create_multiple.html:9
-msgid "Sorry, only gif, png, jpg, jpeg, tif and tiff images are allowed."
-msgstr ""
-"Ho sentim, només estan permeses les imatges gif, png, jpg, jpeg, tif i tiff"
+#: forms.py:190
+msgid "Sorry, only the following formats are allowed"
+msgstr "Ho sentim, només estan permesos els següents formats"
 
-#: forms.py:199 templates/bima_back/albums/album_detail.html:39
+#: forms.py:198
+msgid "Youtube code"
+msgstr "Codi Youtube"
+
+#: forms.py:246 templates/bima_back/albums/album_detail.html:39
 #: templates/bima_back/galleries/gallery_detail.html:34
 msgid "Assignees"
 msgstr "Assignats"
 
-#: forms.py:214 forms.py:367 models.py:29 templates/bima_back/delete.html:18
+#: forms.py:261 forms.py:414 models.py:29 templates/bima_back/delete.html:18
 #: templates/bima_back/delete.html:30 templates/bima_back/users/user.html:18
 msgid "Name"
 msgstr "Nom"
 
-#: forms.py:217
+#: forms.py:264
 msgid "Parent"
 msgstr "Pare"
 
-#: forms.py:232
+#: forms.py:279
 msgid "Flickr URL"
 msgstr "URL Flickr"
 
-#: forms.py:233
+#: forms.py:280
 msgid "For example: https://www.flickr.com/photos/name/123456789/in/other"
 msgstr ""
 "Per exemple:\n"
 "https://www.flickr.com/photos/name/123456789/in/other"
 
-#: forms.py:254
+#: forms.py:301
 msgid "E-mail"
 msgstr "E-mail"
 
-#: forms.py:258
+#: forms.py:305
 msgid "New password"
 msgstr "Nova contrasenya"
 
-#: forms.py:259
+#: forms.py:306
 msgid "Repeat new password"
 msgstr "Repeteix nova contrasenya"
 
-#: forms.py:273
+#: forms.py:320
 msgid "Passwords don't match"
 msgstr "La contrasenya no coincideix."
 
-#: forms.py:282
+#: forms.py:329
 msgid "First name"
 msgstr "Nom"
 
-#: forms.py:283
+#: forms.py:330
 msgid "Last name"
 msgstr "Llinatges"
 
-#: forms.py:284 templates/bima_back/users/user.html:19
+#: forms.py:331 templates/bima_back/users/user.html:19
 msgid "Group"
 msgstr "Grup"
 
-#: forms.py:306
-msgid "Set text or part of text you want to search into the photos"
-msgstr "Marca el text o la part del text que vols buscar en les fotografies"
+#: forms.py:353
+msgid "Set text or part of text you want to search into the assets"
+msgstr "Marca el text o la part del text que vols buscar en els arxius"
 
-#: forms.py:306
+#: forms.py:353
 msgid "Text"
 msgstr "Text"
 
-#: forms.py:310 templates/bima_back/albums/album_detail.html:58
+#: forms.py:357 templates/bima_back/albums/album_detail.html:58
 #: templates/bima_back/albums/album_public_detail.html:7
 #: templates/bima_back/includes/body_sidebar.html:23
-#: templates/bima_back/photos/photo_detail.html:40 views.py:338 views.py:415
-#: views.py:496 views.py:631 views.py:761 views.py:926 views.py:988
-#: views.py:999
+#: templates/bima_back/photos/photo_detail.html:39 views.py:338 views.py:415
+#: views.py:497 views.py:632 views.py:762 views.py:927 views.py:989
+#: views.py:1000 views.py:1026
 msgid "Albums"
 msgstr "Àlbums"
 
-#: forms.py:315
+#: forms.py:362
 msgid "Types"
 msgstr "Tipus"
 
-#: forms.py:354
+#: forms.py:401
 msgid "From"
 msgstr "De"
 
-#: forms.py:355
+#: forms.py:402
 msgid "To"
 msgstr "A"
 
@@ -287,7 +290,7 @@ msgstr "A"
 msgid "Extra information"
 msgstr "Informació addicional"
 
-#: mixins.py:243 views.py:830
+#: mixins.py:243 views.py:831
 msgid "Your transaction completed successfully."
 msgstr "La teva transacció s'ha completat correctament. "
 
@@ -367,39 +370,42 @@ msgstr "Afegeix àlbum"
 msgid "Public Album"
 msgstr "Àlbum públic"
 
-#: templates/bima_back/albums/album.html:58
-#: templates/bima_back/galleries/gallery.html:40
+#: templates/bima_back/albums/album.html:62
+#: templates/bima_back/galleries/gallery.html:44
 #: templates/bima_back/includes/photos/list_item.html:39
 msgid "View"
 msgstr "Veure"
 
-#: templates/bima_back/albums/album.html:61
+#: templates/bima_back/albums/album.html:65
+#: templates/bima_back/albums/album_detail.html:12
 #: templates/bima_back/categories/category.html:44
-#: templates/bima_back/galleries/gallery.html:43
+#: templates/bima_back/galleries/gallery.html:47
+#: templates/bima_back/galleries/gallery_detail.html:12
 #: templates/bima_back/includes/photo_cart_aside.html:38
-#: templates/bima_back/includes/photos/list_item.html:43 views.py:631
-#: views.py:849 views.py:869 views.py:1196
+#: templates/bima_back/includes/photos/list_item.html:43
+#: templates/bima_back/photos/photo_detail.html:19 views.py:632 views.py:850
+#: views.py:870 views.py:1233
 msgid "Edit"
 msgstr "Modificar"
 
-#: templates/bima_back/albums/album.html:62
-#: templates/bima_back/galleries/gallery.html:44
+#: templates/bima_back/albums/album.html:66
+#: templates/bima_back/galleries/gallery.html:48
 #: templates/bima_back/includes/photos/list_item.html:35
 msgid "Remove"
 msgstr "Eliminar"
 
 #: templates/bima_back/albums/album_detail.html:9
-msgid "Delete Album"
+#: templates/bima_back/categories/category.html:45
+#: templates/bima_back/galleries/gallery_detail.html:9
+#: templates/bima_back/photos/photo_create_multiple.html:17
+#: templates/bima_back/photos/photo_detail.html:14 views.py:989 views.py:1004
+#: views.py:1051 views.py:1062
+msgid "Delete"
 msgstr "Suprimir"
 
-#: templates/bima_back/albums/album_detail.html:12
-msgid "Edit Album"
-msgstr "Modificar àlbum"
-
-#: templates/bima_back/albums/album_detail.html:17
-#: templates/bima_back/includes/body_sidebar.html:50 views.py:464 views.py:498
-msgid "Upload Photo"
-msgstr "Pujar fotografia"
+#: templates/bima_back/albums/album_detail.html:17 views.py:465 views.py:499
+msgid "Upload"
+msgstr "Pujar"
 
 #: templates/bima_back/albums/album_detail.html:21
 #: templates/bima_back/galleries/gallery_detail.html:16
@@ -408,12 +414,13 @@ msgstr "Info"
 
 #: templates/bima_back/albums/album_detail.html:57
 #: templates/bima_back/galleries/gallery_detail.html:52
+#: templates/bima_back/photos/photo_detail.html:38
 msgid "Detail"
 msgstr "Detall"
 
 #: templates/bima_back/albums/album_detail.html:72
-msgid "This album has no photos yet"
-msgstr "Aquest àlbum encara no té fotografies."
+msgid "This album has no assets yet"
+msgstr "Aquest àlbum encara no té arxius."
 
 #: templates/bima_back/categories/category.html:4
 msgid "Category"
@@ -427,26 +434,20 @@ msgstr "Afegeix categoria"
 msgid "Search by"
 msgstr "Cerca per"
 
-#: templates/bima_back/categories/category.html:45
-#: templates/bima_back/photos/photo_create_multiple.html:17 views.py:988
-#: views.py:1014 views.py:1025
-msgid "Delete"
-msgstr "Suprimir"
-
 #: templates/bima_back/categories/category.html:52
 msgid "Show categories"
 msgstr "Mostrar categories"
 
 #: templates/bima_back/cover_confirm.html:7
-msgid "Do you really want to set this photo as cover?"
-msgstr "Vols marcar aquesta fotografia com a portada?"
+msgid "Do you really want this cover?"
+msgstr "Vols marcar aquest arxiu com a portada?"
 
-#: templates/bima_back/cover_confirm.html:16
+#: templates/bima_back/cover_confirm.html:24
 #: templates/bima_back/forms/delete_form.html:7
 msgid "Cancel"
 msgstr "Cancel·lar"
 
-#: templates/bima_back/cover_confirm.html:17
+#: templates/bima_back/cover_confirm.html:25
 #: templates/bima_back/forms/delete_form.html:9
 msgid "Confirm"
 msgstr "Confirmar"
@@ -502,17 +503,9 @@ msgstr "Com fer la cerca"
 msgid "Add Gallery"
 msgstr "Afegir Galeria"
 
-#: templates/bima_back/galleries/gallery_detail.html:9
-msgid "Delete Gallery"
-msgstr "Suprimir"
-
-#: templates/bima_back/galleries/gallery_detail.html:12
-msgid "Edit Gallery"
-msgstr "Modificar Galeria"
-
 #: templates/bima_back/galleries/gallery_detail.html:66
-msgid "This gallery has no photos yet"
-msgstr "Aquesta galeria encara no té fotografies"
+msgid "This gallery has no assets yet"
+msgstr "Aquesta galeria encara no té arxius"
 
 #: templates/bima_back/home.html:7
 #: templates/bima_back/includes/head_meta.html:11
@@ -536,8 +529,8 @@ msgstr "Llista de logs"
 #: templates/bima_back/includes/body_navbar_menu.html:42
 #: templates/bima_back/includes/body_sidebar.html:78
 #: templates/bima_back/logs/photo_upload_log.html:4
-msgid "Photo uploads"
-msgstr "Fotografies pujades"
+msgid "Uploads"
+msgstr "Pujades"
 
 #: templates/bima_back/includes/body_sidebar.html:8
 msgid "Toggle navigation"
@@ -547,9 +540,13 @@ msgstr "Des/Activar navegació"
 msgid "Search"
 msgstr "Cerca"
 
+#: templates/bima_back/includes/body_sidebar.html:50
+msgid "Upload Assets"
+msgstr "Pujar Arxius"
+
 #: templates/bima_back/includes/body_sidebar.html:59 views.py:355 views.py:361
-msgid "My Photos"
-msgstr "Les meves fotos"
+msgid "My Assets"
+msgstr "Arxius meus"
 
 #: templates/bima_back/includes/body_sidebar.html:68
 msgid "Options"
@@ -580,7 +577,7 @@ msgid "to"
 msgstr "a"
 
 #: templates/bima_back/includes/pagination/pagination_results.html:5
-#: templates/bima_back/photos/photo_create_multiple.html:26
+#: templates/bima_back/photos/photo_create_multiple.html:27
 #: templates/bootstrap_pagination/pagination.html:36
 msgid "of"
 msgstr "de"
@@ -591,10 +588,9 @@ msgstr "resultats"
 
 #: templates/bima_back/includes/photo_cart_aside.html:5
 msgid ""
-"You reached the maximum number of photos that can be edited simultaneously"
+"You reached the maximum number of assets that can be edited simultaneously"
 msgstr ""
-"Heu arribat al màxim nombre de fotografies que poden ser editades "
-"simultàniament."
+"Heu arribat al màxim nombre d'arxius que poden ser editats simultàniament."
 
 #: templates/bima_back/includes/photo_cart_aside.html:6
 msgid "An error has occurred. Please try again or refresh the page"
@@ -602,50 +598,69 @@ msgstr ""
 "Hi ha hagut un error. Per favor intenta-ho de nou o actualitza la pantalla"
 
 #: templates/bima_back/includes/photo_cart_aside.html:10
-msgid "Photo Edit Cart"
-msgstr "Cistella de fotografies"
+msgid "Edit Cart"
+msgstr "Cistella d'arxius"
 
 #: templates/bima_back/includes/photo_cart_aside.html:29
-msgid "There are no photos selected for massive editation"
-msgstr "No hi ha fotografies seleccionades per ser modificades en sèrie."
+msgid "There are no selected items for massive edit"
+msgstr "No hi ha arxius seleccionats per ser modificats en sèrie."
 
 #: templates/bima_back/includes/photo_cart_aside.html:34
 msgid "Empty"
 msgstr "Buit"
 
 #: templates/bima_back/includes/photo_cart_aside.html:41
-msgid "Copy tags from current photo"
-msgstr "Copiar etiquetes de la imatge actual"
+msgid "Copy tags from current asset"
+msgstr "Copiar etiquetes de l'arxiu actual"
 
-#: templates/bima_back/includes/photos/detail.html:22
-#: templates/bima_back/photos/photo_detail.html:64
+#: templates/bima_back/includes/photos/detail.html:18
+msgid "Upload to Youtube"
+msgstr "Pujar a Youtube"
+
+#: templates/bima_back/includes/photos/detail.html:23
+#: templates/bima_back/photos/photo_detail.html:127
+msgid "Watch on Youtube"
+msgstr "Veure a Youtuve"
+
+#: templates/bima_back/includes/photos/detail.html:33
+#: templates/bima_back/photos/photo_detail.html:60
+msgid "Sorry, your browser doesn't support embedded videos."
+msgstr "Ho sentim, el vostre navegador no admet vídeos incrustats."
+
+#: templates/bima_back/includes/photos/detail.html:38
+#: templates/bima_back/photos/photo_detail.html:65
+msgid "Sorry, your browser doesn't support embedded audios."
+msgstr "Ho sentim, el vostre navegador no admet àudios incrustats."
+
+#: templates/bima_back/includes/photos/detail.html:49
+#: templates/bima_back/photos/photo_detail.html:76
 msgid "The owner"
 msgstr "Assignat"
 
-#: templates/bima_back/includes/photos/detail.html:26
-#: templates/bima_back/photos/photo_detail.html:68
+#: templates/bima_back/includes/photos/detail.html:53
+#: templates/bima_back/photos/photo_detail.html:80
 msgid "Last cataloging"
 msgstr "Darrera catalogació"
 
-#: templates/bima_back/includes/photos/detail.html:29
+#: templates/bima_back/includes/photos/detail.html:56
 msgid "Dimensions"
 msgstr "Mides"
 
-#: templates/bima_back/includes/photos/detail.html:34
-#: templates/bima_back/photos/photo_detail.html:76
+#: templates/bima_back/includes/photos/detail.html:61
+#: templates/bima_back/photos/photo_detail.html:88
 msgid "Original size"
 msgstr "Pes original"
 
-#: templates/bima_back/includes/photos/detail.html:36
-#: templates/bima_back/photos/photo_detail.html:80
+#: templates/bima_back/includes/photos/detail.html:63
+#: templates/bima_back/photos/photo_detail.html:92
 msgid "Camera model"
 msgstr "Model de Càmera"
 
-#: templates/bima_back/includes/photos/detail.html:43
+#: templates/bima_back/includes/photos/detail.html:70
 msgid "Identifier"
 msgstr "Identificador"
 
-#: templates/bima_back/includes/photos/detail.html:44
+#: templates/bima_back/includes/photos/detail.html:71
 msgid "Original name"
 msgstr "Nom original"
 
@@ -678,8 +693,8 @@ msgid "Original"
 msgstr "Original"
 
 #: templates/bima_back/includes/photos/list_item.html:32
-msgid "Uploading image..."
-msgstr "Pujant imatge..."
+msgid "Uploading asset..."
+msgstr "Pujant arxiu..."
 
 #: templates/bima_back/includes/photos/list_item.html:48
 #: templates/bima_back/photos/photo_edit_multiple.html:35
@@ -696,8 +711,8 @@ msgstr "Filtres desats"
 
 #: templates/bima_back/includes/search_form_instructions.html:3
 msgid ""
-"El cercador és una eina del Banc d'Imatge que ens permet trobar les "
-"fotografies a partir de criteris diversos."
+"El cercador és una eina del Banc d'Imatge que ens permet trobar arxius a "
+"partir de criteris diversos."
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:4
@@ -724,7 +739,7 @@ msgstr ""
 #: templates/bima_back/includes/search_form_instructions.html:13
 msgid ""
 "Cerca la coincidència exacta de la paraula buscada en qualsevol dels camps "
-"de la imatge."
+"de l'arxiu."
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:14
@@ -756,8 +771,8 @@ msgstr ""
 #: templates/bima_back/includes/search_form_instructions.html:29
 msgid ""
 "Cerca dintre de camps específics (títol, descripció). També admet filtrar "
-"per Àlbums, Categories, Galeries i Estat de la publicació (imatges "
-"publicades, despublicades o totes)."
+"per Àlbums, Categories, Galeries i Estat de la publicació (arxius publicats, "
+"despublicats o tots)."
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:30
@@ -781,8 +796,8 @@ msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:37
 msgid ""
-"· Collserola Hivern - No retornarà resultats ja que no hi ha cap fotografia "
-"en què  el títol inclogui el text \"Collserola Hivern\""
+"· Collserola Hivern - No retornarà resultats ja que no hi ha cap arxiu en "
+"què el títol inclogui el text \"Collserola Hivern\""
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:42
@@ -790,7 +805,7 @@ msgid "3. Cerca mitjançant operadors"
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:44
-msgid "Ens permet buscar per camps específics de la imatge."
+msgid "Ens permet buscar per camps específics de l'arxiu."
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:45
@@ -811,7 +826,7 @@ msgid ""
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:51
-msgid "0 és per a imatges despublicades, 1 és per a imatges publicades"
+msgid "0 és per a arxius despublicats, 1 és per arxius publicats"
 msgstr ""
 
 #: templates/bima_back/includes/search_form_instructions.html:65
@@ -860,16 +875,16 @@ msgstr "Registres"
 
 #: templates/bima_back/logs/log.html:23
 #: templates/bima_back/logs/photo_upload_log.html:15
-msgid "Photo"
-msgstr "Fotografia"
+msgid "Asset"
+msgstr "Arxiu"
 
 #: templates/bima_back/logs/log.html:26
 msgid "Date"
 msgstr "Data"
 
 #: templates/bima_back/logs/photo_upload_log.html:7
-msgid "Photo Upload Log"
-msgstr "Registre de fotografies pujades"
+msgid "Upload Log"
+msgstr "Registre de pujades"
 
 #: templates/bima_back/logs/photo_upload_log.html:17
 msgid "Started at"
@@ -880,8 +895,8 @@ msgid "Completed at"
 msgstr "Completat a les"
 
 #: templates/bima_back/photos/photo.html:4
-msgid "Photos"
-msgstr "Fotografies"
+msgid "Assets"
+msgstr "Arxius"
 
 #: templates/bima_back/photos/photo.html:15
 #: templates/bima_back/photos/photo.html:23
@@ -900,89 +915,80 @@ msgstr "Aquest camp és oligatori"
 msgid "No results found"
 msgstr "No s'han trobat resultats."
 
+#: templates/bima_back/photos/photo_create_multiple.html:9
+msgid ""
+"Sorry, only gif, png, jpg, jpeg, tif, tiff, psd, mov, mpeg4, mp4, avi, wmv, "
+"mpegps, flv, 3gpp, webm, aiff, wav, flac, alac, ogg, mp2, mp3, aac, amr and "
+"wma formats are allowed."
+msgstr ""
+"Ho sentim, només están permesos els formats gif, png, jpg, jpeg, tif, tiff, "
+"psd, mov, mpeg4, mp4, avi, wmv, mpegps, flv, 3gpp, webm, aiff, wav, flac, "
+"alac, ogg, mp2, mp3, aac, amr i wma"
+
 #: templates/bima_back/photos/photo_create_multiple.html:14
-msgid "Image"
-msgstr "Imatge"
+msgid "File"
+msgstr "Arxiu"
 
 #: templates/bima_back/photos/photo_create_multiple.html:15
-msgid "image"
-msgstr "imatge"
+msgid "assets"
+msgstr "arxius"
 
-#: templates/bima_back/photos/photo_create_multiple.html:26
-msgid "Uploading photo"
-msgstr "Pujant fotografia"
+#: templates/bima_back/photos/photo_create_multiple.html:27
+msgid "Uploading assets"
+msgstr "Pujant arxius"
 
-#: templates/bima_back/photos/photo_create_multiple.html:35
-msgid "Drag the photos you want to upload"
-msgstr "Arrossega les fotografies que vols pujar"
+#: templates/bima_back/photos/photo_create_multiple.html:36
+msgid "Drag the files you want to upload"
+msgstr "Arrossega els arxius que vols pujar"
 
-#: templates/bima_back/photos/photo_create_multiple.html:52
+#: templates/bima_back/photos/photo_create_multiple.html:53
 msgid "Import Photo from Flickr"
 msgstr "Importar fotografia de Flickr"
 
-#: templates/bima_back/photos/photo_detail.html:14 views.py:1003
-msgid "Delete Photo"
-msgstr "Suprimir"
-
-#: templates/bima_back/photos/photo_detail.html:19
-msgid "Edit Photo"
-msgstr "Modificar"
-
-#: templates/bima_back/photos/photo_detail.html:25
-msgid "Download Image"
+#: templates/bima_back/photos/photo_detail.html:24
+#: templates/bima_back/photos/photo_download.html:6
+msgid "Download"
 msgstr "Descarregar"
 
-#: templates/bima_back/photos/photo_detail.html:32
+#: templates/bima_back/photos/photo_detail.html:31
 msgid "Flickr url"
 msgstr "URL flickr"
 
-#: templates/bima_back/photos/photo_detail.html:39
-msgid "Photo Detail"
-msgstr "Detall de la fotografia"
-
-#: templates/bima_back/photos/photo_detail.html:72
+#: templates/bima_back/photos/photo_detail.html:84
 msgid "Dimension"
 msgstr "Mida"
 
-#: templates/bima_back/photos/photo_detail.html:84
+#: templates/bima_back/photos/photo_detail.html:96
 msgid "Original filename"
 msgstr "Nom de fitxer original"
 
-#: templates/bima_back/photos/photo_detail.html:117
-msgid "Private Image"
-msgstr "Imatge despublicada"
+#: templates/bima_back/photos/photo_detail.html:138
+msgid "Published"
+msgstr "Publicada"
 
-#: templates/bima_back/photos/photo_detail.html:119
-msgid "Published Image"
-msgstr "Imatge publicada"
-
-#: templates/bima_back/photos/photo_detail.html:300
+#: templates/bima_back/photos/photo_detail.html:319
 msgid "Longitude"
 msgstr "Longitud"
 
-#: templates/bima_back/photos/photo_detail.html:308
+#: templates/bima_back/photos/photo_detail.html:327
 msgid "Latitude"
 msgstr "Latitud"
 
-#: templates/bima_back/photos/photo_download.html:6
-msgid "Download Photos"
-msgstr "Fotografies pujades"
-
 #: templates/bima_back/photos/photo_download.html:15
-msgid "You are going to download the following photos:"
-msgstr "Et descarregaràs les següents fotografies:"
+msgid "You are going to download the following assets:"
+msgstr "Et descarregaràs els següents arxius:"
 
 #: templates/bima_back/photos/photo_download.html:31
 msgid "Download Small size"
 msgstr "Descarrega't mida petita"
 
-#: templates/bima_back/photos/photo_edit_multiple.html:6
-msgid "Update Photos"
-msgstr "Modifica fotografies"
+#: templates/bima_back/photos/photo_edit_multiple.html:6 views.py:766
+msgid "Update"
+msgstr "Modificar"
 
 #: templates/bima_back/photos/photo_edit_multiple.html:15
-msgid "You are going to edit the following photos:"
-msgstr "Aniràs a modificar les següents fotografies"
+msgid "You are going to edit the following assets:"
+msgstr "Aniràs a modificar els següents arxius"
 
 #: templates/bima_back/users/login.html:16
 msgid "BIMA Log in"
@@ -1022,8 +1028,8 @@ msgstr "Oblit d'usuari"
 msgid "Users list"
 msgstr "Llista d'usuaris"
 
-#: templates/bima_back/users/user.html:9 views.py:1196 views.py:1206
-#: views.py:1228
+#: templates/bima_back/users/user.html:9 views.py:1233 views.py:1243
+#: views.py:1265
 msgid "Manage Users"
 msgstr "Gestionar usuaris"
 
@@ -1091,70 +1097,82 @@ msgstr "Inici"
 msgid "Create album"
 msgstr "Crear àlbum"
 
-#: views.py:415 views.py:575 views.py:586
+#: views.py:415 views.py:424 views.py:576 views.py:587
 msgid "Create"
 msgstr "Crear"
 
-#: views.py:424 views.py:505
+#: views.py:425
+msgid ""
+"Your assets have been uploaded successfully and are being processed. If you "
+"don't see them yet, try to reload the browser in a few seconds."
+msgstr ""
+"Els seus arxius s'han pujat correctament i estan sent processats. Si encara "
+"no els veu, intenti recarregar el navegador en uns segons."
+
+#: views.py:506
 msgid "Create photo"
 msgstr "Crear foto"
 
-#: views.py:425
-msgid ""
-"Your photos have been uploaded successfully and are being processed. If you "
-"don't see them yet, try to reload the browser in a few seconds."
-msgstr ""
-"Les teves fotografies s'han pujat correctament i estan sent processades. Si "
-"encara no les veu, intenti recarregar el navegador en uns segons."
-
-#: views.py:558
+#: views.py:559
 msgid "You successfully uploaded"
 msgstr "S'ha pujat correctament"
 
-#: views.py:572
+#: views.py:573
 msgid "Create gallery"
 msgstr "Crear Galeria"
 
-#: views.py:583
+#: views.py:584
 msgid "Create category"
 msgstr "Crear Categoria"
 
-#: views.py:765
-msgid "Update Photo"
-msgstr "Modificar fotografia"
-
-#: views.py:928 views.py:941
+#: views.py:929 views.py:942
 msgid "Set Cover"
 msgstr "Canviar portada"
 
-#: views.py:985
+#: views.py:986
 msgid "Are you sure you want to delete this album?"
 msgstr "Estàs segur que vols eliminar aquest àlbum?"
 
-#: views.py:996
-msgid "Are you sure you want to delete this photo?"
-msgstr "Estàs segur que vols eliminar aquesta foto?"
+#: views.py:997
+msgid "Are you sure you want to delete this asset?"
+msgstr "Estàs segur que vols eliminar aquest arxiu?"
 
-#: views.py:1011
+#: views.py:1030
+msgid "Youtube"
+msgstr ""
+
+#: views.py:1033
+msgid "Select Youtube channel to upload video \"{}\""
+msgstr "Selecciona el canal de Youtube per pujar el vídeo \"{}\""
+
+#: views.py:1038
+msgid ""
+"Video has been enqueued to be uploaded to Youtube. It can take a while to "
+"complete."
+msgstr ""
+"El vídeo s'ha afegit a la coa de pujades a Youtube. Pot trigar un temps a "
+"completar-se."
+
+#: views.py:1048
 msgid "Are you sure you want to delete this gallery?"
 msgstr "Estàs segur que vols eliminar aquesta galeria?"
 
-#: views.py:1022
+#: views.py:1059
 msgid "Are you sure you want to delete this category?"
 msgstr "Estàs segur que vols eliminar aquesta categoria?"
 
-#: views.py:1203
+#: views.py:1240
 msgid "Are you sure you want to deactivate this user?"
 msgstr "Estàs segur que vols desactivar aquest usuari?"
 
-#: views.py:1206
+#: views.py:1243
 msgid "Deactivate"
 msgstr "Desactivar"
 
-#: views.py:1217
+#: views.py:1254
 msgid "Are you sure you want to activate this user?"
 msgstr "Estàs segur que vols activar aquest usuari?"
 
-#: views.py:1228
+#: views.py:1265
 msgid "Activate"
 msgstr "Activar"

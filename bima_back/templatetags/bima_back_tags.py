@@ -6,12 +6,14 @@ import six
 from bima_back.models import PhotoFilter
 
 from constance import config
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.conf import settings
 from django.core.urlresolvers import resolve, reverse
 from django.forms.widgets import CheckboxInput, RadioSelect
 from django.template import Library
 from django.template.defaultfilters import stringfilter, slugify, truncatechars
 from django.utils.dateparse import parse_datetime, parse_date
+from django.utils.html import mark_safe
 from django.utils.translation import activate, get_language
 
 from ..utils import get_class_name, order_keywords, is_iterable, calculate_missing_size, popover_string
@@ -234,7 +236,7 @@ def get_download_dimension(instance, size):
     """
     width = instance['width']
     height = instance['height']
-    if size != 'image_original':
+    if size != 'image_original' and instance[size]:
         url_size = re.search('\d{1,4}x\d{1,4}', instance[size]).group(0)
         width = int(url_size.split('x')[0])
         height = int(url_size.split('x')[1])
@@ -269,14 +271,13 @@ def get_download_filename(instance, extension='jpg'):
 def thumbor_supports_file(filename):
     """
     :param filename: name of the file to download
-    :return: False is the extension is in the thumbor unsupported extensions setting.
-    True otherwise.
+    :return: True if the extension is in the thumbor supported extensions setting, False otherwise.
     """
     if filename:
         name, ext = splitext(filename)
-        if getattr(settings, 'THUMBOR_UNSUPPORTED_EXTENSIONS', []) and ext in settings.THUMBOR_UNSUPPORTED_EXTENSIONS:
-            return False
-    return True
+        if getattr(settings, 'THUMBOR_SUPPORTED_EXTENSIONS', []) and ext in settings.THUMBOR_SUPPORTED_EXTENSIONS:
+            return True
+    return False
 
 
 @register.filter
@@ -361,3 +362,36 @@ def saved_filters(username, parameters):
         'filters': PhotoFilter.objects.filter(username=username).order_by('name'),
         'search': 'q' in parameters,
     }
+
+
+@register.simple_tag
+def photo_thumbnail(photo):
+    """
+    Returns the thumbnail of the photo based on it's file type
+    """
+    if photo['image_thumbnail']:
+        return photo['image_thumbnail']
+    if photo['file_type'] == 'video':
+        return static('bima_back/img/video.jpg')
+    if photo['file_type'] == 'audio':
+        return static('bima_back/img/audio.jpg')
+    return static('bima_back/img/no-photo.jpg')
+
+
+FONT_AWESOME_CLASS_MAP = {
+    'video': 'play-circle-o',
+    'audio': 'volume-up',
+    # 'photo': 'photo',
+}
+
+
+@register.simple_tag
+def photo_file_type_icon(photo):
+    """
+    Returns the proper icon to show in every photo in lists based on the photo
+    file type (video, audio...).
+    """
+    font_awesome_class = FONT_AWESOME_CLASS_MAP.get(photo['file_type'])
+    if font_awesome_class:
+        return mark_safe('<i class="fa fa-{} fileType"></i>'.format(font_awesome_class))
+    return ''

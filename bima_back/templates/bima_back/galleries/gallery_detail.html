@@ -6,10 +6,10 @@
   <div class="buttonsHeader">
     {% if instance.permissions.write %}
     <a class="btn btn-info delete pull-right" href="{% url 'gallery_delete' instance.id %}">
-      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete Gallery' %}
+      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete' %}
     </a>
     <a class="btn btn-default pull-right" href="{% url 'gallery_edit' instance.id %}">
-      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Gallery' %}
+      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit' %}
     </a>
     {% endif %}
     <a class="btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
@@ -63,7 +63,7 @@
       <div class="no-yet">
         <div class="info">
           <img src="{% static 'bima_back/img/icon_alert.png' %}" class="imageIcon"/>
-          <p>{% trans 'This gallery has no photos yet' %}<p>
+          <p>{% trans 'This gallery has no assets yet' %}<p>
         </div>
       </div>
     {% endfor %}

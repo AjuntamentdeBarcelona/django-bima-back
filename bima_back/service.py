@@ -74,6 +74,7 @@ class DAMWebService(object):
 
         self.request = request
         self.user_id = request.user.id
+        self.language = request.META.get('HTTP_ACCEPT_LANGUAGE', request.LANGUAGE_CODE)
 
         # initialize api client with user token
         user_params = cache.get("{}_{}".format(CACHE_USER_PROFILE_PREFIX_KEY, self.user_id))
@@ -81,7 +82,7 @@ class DAMWebService(object):
         if user_params and user_params.get('token'):
             authorization = {'Authorization': 'Token {}'.format(user_params.get('token'))}
         headers = dict(authorization)
-        headers.update({'Accept-Language': request.META.get('HTTP_ACCEPT_LANGUAGE', request.LANGUAGE_CODE)})
+        headers.update({'Accept-Language': self.language})
 
         transports = HTTPTransport(credentials=authorization, headers=headers,
                                    response_callback=self._callback_client_transport)
@@ -121,7 +122,10 @@ class DAMWebService(object):
         # get response from cache if use cache is
         if use_cache:
             cache_suffix_key = "_".join(["{}_{}".format(key, params[key]) for key in sorted(params.keys())])
-            cache_key = "{}_{}_{}".format("_".join(path_list), self.user_id, cache_suffix_key)
+            cache_key = "{}_{}_{}_{}".format("_".join(path_list),
+                                             self.language,
+                                             self.user_id,
+                                             cache_suffix_key)
             response = cache.get(cache_key)
             if response:
                 return response
@@ -211,6 +215,15 @@ class DAMWebService(object):
 
     def delete_photo(self, photo_id):
         return self.action_or_logout(['photos', 'delete'], params={'id': photo_id})
+
+    # youtube
+
+    def youtube_channels(self, photo_pk):
+        return self.action_or_logout(['photos', 'youtube', 'list'], params={'id': photo_pk})
+
+    def youtube_upload(self, photo_pk, youtube_channel_pk):
+        return self.action_or_logout(['photos', 'youtube', 'create'], params={
+            'id': photo_pk, 'channel_pk': youtube_channel_pk})
 
     # galleries
 

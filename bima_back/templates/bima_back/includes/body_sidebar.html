@@ -47,7 +47,7 @@
   <li class="treeview {% if active_section == 'upload' %}active{% endif %}">
     <a href="{% url 'photo_create' %}">
       <i class="fa fa-upload"></i>
-      <span>{% trans 'Upload Photo' %}</span>
+      <span>{% trans 'Upload Assets' %}</span>
     </a>
   </li>
   {% endif %}
@@ -56,7 +56,7 @@
   <li class="treeview {% if active_section == 'my_photos' %}active{% endif %}">
     <a href="{% url 'my_photos_list' %}">
       <i class="fa fa-address-card-o"></i>
-      <span>{% trans 'My Photos' %}</span>
+      <span>{% trans 'My Assets' %}</span>
     </a>
   </li>
   {% endif %}
@@ -75,7 +75,7 @@
         <li><a href="{% url 'log_list' %}">{% trans 'Logs list' %}</a></li>
       {% endif %}
       {% if request.user.permissions.photo.write %}
-        <li><a href="{% url 'photo_log_list' %}">{% trans 'Photo uploads' %}</a></li>
+        <li><a href="{% url 'photo_log_list' %}">{% trans 'Uploads' %}</a></li>
       {% endif %}
     </ul>
   </li>

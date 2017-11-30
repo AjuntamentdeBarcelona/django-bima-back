@@ -15,7 +15,7 @@
 
     {# Special case for radio select #}
     {% elif field|is_radio %}
-      <label>{{ field.label }}</label>
+      {% if field.label %}<label>{{ field.label }}</label>{% endif %}
       <div class="radio">
         {{ field }}
       </div>

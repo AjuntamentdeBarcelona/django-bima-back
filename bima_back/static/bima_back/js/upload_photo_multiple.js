@@ -16,6 +16,7 @@ $(document).ready(function(){
   var error_div = $("#error-message");
   var drag_info = $(".infoDrag");
   var max_photo_size = parseInt(image_input.attr('data-max-file-size'))*1000000; // MB to bytes
+  var chunk_size = parseInt(image_input.attr('data-chunk-size'));
 
   // chunk variables
   var uploading_photo = 1;
@@ -152,7 +153,7 @@ $(document).ready(function(){
   image_input.fileupload({
     url: image_input.attr("data-chunk-url"),
     dataType: "json",
-    maxChunkSize: 1000000, // Chunks of 100 kB
+    maxChunkSize: chunk_size,
     formData: form_data,
     limitMultiFileUploads: 1,
     sequentialUploads: true,
@@ -170,14 +171,14 @@ $(document).ready(function(){
         visuals_error("data-max-size-message");
         return;
       }
-      var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd)$/i;
+      var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd|mov|mpeg4|mp4|avi|wmv|mpegps|flv|3gpp|webm|aiff|wav|flac|alac|ogg|mp2|mp3|aac|amr|wma)$/i;
       if(!acceptFileTypes.test(file.name)) {
         visuals_error("data-file-type-message");
         return;
       }
 
       visuals_before_upload();
-      calculate_md5(data.files[0], 100000);  // Again, chunks of 100 kB
+      calculate_md5(data.files[0], chunk_size);
       data.submit();
     },
     chunkdone: function (e, data) { // Called after uploading each chunk
@@ -198,11 +199,11 @@ $(document).ready(function(){
     },
     done: function (e, data) { // Called when the file has completely uploaded
       calculate_md5(data.files[0], data.files[0].size, chunk_complete, data);
-      var notThumbnailType = /(\.|\/)(tif?f|psd)$/i;
-      if (notThumbnailType.test(data.files[0].name)){
-        generic_thumbnail(data);
-      } else {
+      var thumbnailType = /(\.|\/)(gif|jpe?g|png)$/i;
+      if (thumbnailType.test(data.files[0].name)){
         image_thumbnail(data);
+      } else {
+        generic_thumbnail(data);
       }
     },
     error: function (e, data) {

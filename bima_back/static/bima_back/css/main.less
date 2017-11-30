@@ -428,7 +428,7 @@ img.modal-zoom{
   /*text-align: center;*/
   .image_photo{
     overflow: hidden;
-    img{width: 100%;}
+    img, video, audio{width: 100%;}
     .infoPhoto{
       margin-top: 8px;
       p{
@@ -506,6 +506,10 @@ img.modal-zoom{
 .photo-edit{
   button.collapsible[aria-expanded="true"] i:before{
     content: "\f068";
+  }
+  .title-wrapper{
+    display:inline-block;
+    margin-top: 8px;
   }
   .title-link:hover{
     color: inherit;

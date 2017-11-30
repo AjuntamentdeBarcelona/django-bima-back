@@ -8,6 +8,7 @@ $(document).ready(function(){
   var image_input = $('#id_image');
   var upload_id = $("#id_upload_id");
   var max_photo_size = parseInt(image_input.attr('data-max-file-size'))*1000000; // MB to bytes
+  var chunk_size = parseInt(image_input.attr('data-chunk-size'));
 
   // chunk variables
   var md5 = "";
@@ -34,7 +35,7 @@ $(document).ready(function(){
     upload_id.val("");
   }
 
-  function calculate_md5(file, chunk_size) {
+  function calculate_md5(file) {
     var slice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
     var chunks = Math.ceil(file.size / chunk_size);
     var current_chunk = 0;
@@ -62,7 +63,7 @@ $(document).ready(function(){
   image_input.fileupload({
     url: image_input.attr("data-chunk-url"),
     dataType: "json",
-    maxChunkSize: 100000, // Chunks of 100 kB
+    maxChunkSize: chunk_size,
     formData: form_data,
     add: function(e, data) { // Called before starting upload
       // If this is the second file you're uploading we need to remove the
@@ -75,14 +76,14 @@ $(document).ready(function(){
         visuals_error("data-max-size-message");
         return;
       }
-      var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd)$/i;
+      var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd|mov|mpeg4|mp4|avi|wmv|mpegps|flv|3gpp|webm|aiff|wav|flac|alac|ogg|mp2|mp3|aac|amr|wma)$/i;
       if(!acceptFileTypes.test(file.name)) {
         visuals_error("data-file-type-message");
         return;
       }
 
       visuals_before_upload();
-      calculate_md5(data.files[0], 100000);  // Again, chunks of 100 kB
+      calculate_md5(data.files[0]);
       data.submit();
     },
     chunkdone: function (e, data) { // Called after uploading each chunk

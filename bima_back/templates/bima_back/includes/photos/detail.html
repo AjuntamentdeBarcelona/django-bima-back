@@ -1,20 +1,47 @@
-{% load i18n bima_back_tags %}
+{% load i18n staticfiles bima_back_tags %}
 
 <div class="box box-base">
   <div class="box-header ui-sortable-handle">
-    <a href="{% url 'photo_detail' instance.id %}">
-      <i class="fa fa-photo"></i>
-    </a>
-    <h3 class="box-title">
-      <a href="{% url 'photo_detail' instance.id %}" class="title-link">
-        {{ instance.description|default:instance.title|truncatechars:71 }}
+    <div class="title-wrapper">
+      <a href="{% url 'photo_detail' instance.id %}">
+        <i class="fa fa-photo"></i>
       </a>
-    </h3>
+      <h3 class="box-title">
+        <a href="{% url 'photo_detail' instance.id %}" class="title-link">
+          {{ instance.description|default:instance.title|truncatechars:71 }}
+        </a>
+      </h3>
+    </div>
+    {% if instance.file_type == 'video' %}
+      {% if instance.can_upload_youtube %}
+        <a role="button" class="btn btn-default pull-right" href="{% url 'photo_edit_youtube' pk=instance.id %}">
+          <i class="fa fa-upload"></i> {% trans "Upload to Youtube" %}
+        </a>
+      {% endif %}
+      {% if instance.youtube_code %}
+        <a role="button" class="btn btn-default pull-right" href="https://www.youtube.com/watch?v={{ instance.youtube_code }}" target="_blank">
+          <i class="fa fa-eye"></i> {% trans "Watch on Youtube" %}
+        </a>
+      {% endif %}
+    {% endif %}
   </div>
   <div class="box-body">
     <div class="row fixedInfo">
       <div class="col-md-3 imageContent">
-        <img src="{{ instance.image_small_fit }}"/>
+        {% if instance.file_type == 'video' %}
+          <video src="{{ instance.image_file }}" controls playsinline preload="none" poster="{{ instance.image_small_fit }}">
+            {% trans "Sorry, your browser doesn't support embedded videos." %}
+          </video>
+        {% elif instance.file_type == 'audio' %}
+          <img src="{% static 'bima_back/img/audio.jpg' %}" alt="{{ instance.title }}" />
+          <audio src="{{ instance.image_file }}" controls preload="none">
+            {% trans "Sorry, your browser doesn't support embedded audios." %}
+          </audio>
+        {% elif instance.image_small_fit %}
+          <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" />
+        {% else %}
+          <img src="{% static 'bima_back/img/no-photo.jpg' %}" alt="{{ instance.title }}" />
+        {% endif %}
       </div>
       <div class="col-sm-6 col-md-3 infoContent">
         <ul>

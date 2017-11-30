@@ -11,18 +11,17 @@
   <div class="buttonsHeader">
     {% if instance.permissions.destroy %}
     <a class="btn btn-info delete pull-right" href="{% url 'photo_delete' instance.id %}">
-      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete Photo' %}
+      <i class="fa fa-times" aria-hidden="true"></i> {% trans 'Delete' %}
     </a>
     {% endif %}
     {% if instance.permissions.update %}
     <a class="btn btn-default pull-right" href="{% url 'photo_edit' instance.id %}">
-      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit Photo' %}
+      <i class="fa fa-pencil" aria-hidden="true"></i> {% trans 'Edit' %}
     </a>
     {% endif %}
-    {% if instance.image_original %}
-    {# if user has no download permissions, api only returns thumbnail and small fit images #}
+    {% if instance.download_permission and instance.file_type != "unknown" %}
       <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download Image' %} <span class="caret"></span></button>
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span><i class="fa fa-download"></i></span> {% trans 'Download' %} <span class="caret"></span></button>
           <ul class="dropdown-menu text-left" role="menu">
               {% include 'bima_back/includes/photos/download_buttons.html' %}
           </ul>
@@ -36,7 +35,7 @@
 
 
 {% block breadcrumbs %}
-  {% trans "Photo Detail" as photo_detail_breadcrumb %}
+  {% trans "Detail" as photo_detail_breadcrumb %}
   {% trans "Albums" as albums_breadcrumb %}
   {{ block.super }}
   {% breadcrumb albums_breadcrumb "album_list" %}
@@ -56,7 +55,20 @@
           <div class="row fixedInfo">
             <section class="col-md-12 photo-download">
               <div class="col-md-4 image_photo">
-                <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
+                {% if instance.file_type == 'video' %}
+                  <video src="{{ instance.image_file }}" controls playsinline preload="none" poster="{{ instance.image_small_fit }}">
+                    {% trans "Sorry, your browser doesn't support embedded videos." %}
+                  </video>
+                {% elif instance.file_type == 'audio' %}
+                  <img src="{% static 'bima_back/img/audio.jpg' %}" alt="{{ instance.title }}" />
+                  <audio src="{{ instance.image_file }}" controls preload="none">
+                    {% trans "Sorry, your browser doesn't support embedded audios." %}
+                  </audio>
+                {% elif instance.image_small_fit %}
+                  <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
+                {% else %}
+                  <img src="{% static 'bima_back/img/no-photo.jpg' %}" alt="{{ instance.title }}" />
+                {% endif %}
                 <div class="infoPhoto">
                   <div class="col-md-12 photo-exif infoContent">
                     <ul>
@@ -108,15 +120,22 @@
                       </div>
                       {% endfor %}
                     </div>
+                    {% if instance.youtube_code %}
+                      <br>
+                      <a role="button" class="btn btn-default" href="https://www.youtube.com/watch?v={{ instance.youtube_code }}" target="_blank">
+                        <i class="fa fa-eye"></i>
+                        {% trans "Watch on Youtube" %}
+                      </a>
+                    {% endif %}
                   </div>
                   <div class="col-md-6 infoPhotoDetail">
                     <ul class="more_info">
                       <li>
                         <p class="title">{% trans 'Status' %}:</p>
                         {% if not instance.status %}
-                        <p class="private"><i class="fa fa-times-circle-o"></i> {% trans 'Private Image' %}</p>
+                        <p class="private"><i class="fa fa-times-circle-o"></i> {% trans 'Private' %}</p>
                         {% else %}
-                        <p class="publish"><i class="fa fa-check-circle-o"></i> {% trans 'Published Image' %}</p>
+                        <p class="publish"><i class="fa fa-check-circle-o"></i> {% trans 'Published' %}</p>
                         {% endif %}
                       </li>
                       <li>

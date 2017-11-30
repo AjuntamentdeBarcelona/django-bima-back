@@ -150,6 +150,9 @@ a{
       .horizontal-gradient(@fourth, @third);
       transition: all 0.8s ease 0s;
     }
+    &:focus{
+      background-color: @third;
+    }
   }
   &.btn-default-gradient{
     .horizontal-gradient (@fourth, @third);
@@ -176,6 +179,16 @@ a{
       }
     }
   }
+}
+
+/* Popovers */
+.popover-title{
+  margin: 0;
+  padding: 10px 15px 7px 15px;
+  font-size: 15px;
+  color: @third;
+  text-transform: uppercase;
+  text-align: left;
 }
 
 /* modificacion plantilla menu */
