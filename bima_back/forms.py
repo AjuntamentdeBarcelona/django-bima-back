@@ -84,6 +84,13 @@ class AlbumPhotoCreateForm(TranslatableFormMixin, PhotoEditBase):
     """
     translatable_fields = (
         ('title', {'type': TranslatableFormMixin.CHAR, 'label': _('Title'), 'required': True, 'max_length': 128}),
+        ('keywords', {
+            'type': TranslatableFormMixin.SELECT_MULTILANG_TAG,
+            'label': _('Keywords'),
+            'required': getattr(settings, 'PHOTO_KEYWORDS_REQUIRED', False),
+            'data_view': 'keyword_search'}),
+        ('description', {'type': TranslatableFormMixin.TEXT, 'label': _('Description'),
+                         'required': False}),
     )
 
     upload_id = forms.CharField(widget=forms.widgets.HiddenInput())
@@ -96,14 +103,6 @@ class PhotoCreateForm(AlbumPhotoCreateForm):
     """
     Form to upload photos with an album field to select
     """
-    translatable_fields = (
-        ('title', {'type': TranslatableFormMixin.CHAR, 'label': _('Title'), 'required': True, 'max_length': 128}),
-        ('keywords', {
-            'type': TranslatableFormMixin.SELECT_MULTILANG_TAG,
-            'label': _('Keywords'),
-            'required': getattr(settings, 'PHOTO_KEYWORDS_REQUIRED', False),
-            'data_view': 'keyword_search'}),
-    )
     album = Select2Field(data_view='album_search', label=_('Album'))
 
 
