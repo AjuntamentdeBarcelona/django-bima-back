@@ -457,6 +457,8 @@ class PhotoCreateMultipleView(BaseCreateView):
                 for lang_code, _lang_name in settings.LANGUAGES:
                     title_key = 'title_{}'.format(lang_code)
                     params[title_key] = data.get(title_key, '')
+                    desc_key = 'description_{}'.format(lang_code)
+                    params[desc_key] = data.get(desc_key, '')
 
                 upload_photo.delay(params, self.request.user.id, self.request.user.token,
                                    self.request.LANGUAGE_CODE)
