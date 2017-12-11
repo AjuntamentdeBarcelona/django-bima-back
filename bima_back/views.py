@@ -439,7 +439,7 @@ class PhotoCreateMultipleView(BaseCreateView):
         """
         Start upload task for each photo submitted
         """
-        params = {}
+        params = {'keywords': prepare_keywords(data)}
         photos_ids = data['upload_id'].split(',')
         for photo in photos_ids:
             if photo:
@@ -452,7 +452,7 @@ class PhotoCreateMultipleView(BaseCreateView):
                     # date of the entry of the photo in the system
                     'categorize_date': format_date(datetime.now(), final="%Y-%m-%d", isoformat=False)
                 })
-                params['keywords'] = prepare_keywords(data)
+
                 # i18n fields
                 for lang_code, _lang_name in settings.LANGUAGES:
                     title_key = 'title_{}'.format(lang_code)
