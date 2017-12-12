@@ -89,6 +89,39 @@
         });
       });
 
+      $('.show-unassigned-choice').djangoSelect2({
+        // Add Unassigned choice when exists show-unassigned-choice class
+        ajax: {
+          data: function (params) {
+            var result = {
+              term: params.term,
+              page: params.page,
+              field_id: $(this).data('field_id')
+            }
+            var dependentFields = $(this).data('select2-dependent-fields')
+            if (dependentFields) {
+              dependentFields = dependentFields.trim().split(/\s+/)
+              $.each(dependentFields, function (i, dependentField) {
+                result[dependentField] = $('[name=' + dependentField + ']', $(this).closest('form')).val()
+              })
+            }
+            return result
+          },
+          processResults: function (data, page) {
+            var unassignedOption = {
+              id: {{ not_assigned_choice_id }},
+              text: '{{ not_assigned_choice_text }}'
+            };
+            data.results.push(unassignedOption)
+            return {
+              results: data.results,
+              pagination: {
+                more: data.more
+              }
+            }
+          }
+        }
+      })
     });
   </script>
 {% endblock page_js %}

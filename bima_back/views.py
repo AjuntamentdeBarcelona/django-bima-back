@@ -14,7 +14,8 @@ from django.utils.translation import ugettext as _
 from django.views.generic.base import View, TemplateView, RedirectView
 from django.views.generic.edit import FormView
 
-from .constants import CACHE_USER_PROFILE_PREFIX_KEY
+from .constants import CACHE_USER_PROFILE_PREFIX_KEY, NOT_ASSIGNED_AUTOCOMPLETE_CHOICE_ID, \
+    NOT_ASSIGNED_AUTOCOMPLETE_CHOICE_TEXT
 from .exports import LogReport
 from .forms import AlbumForm, PhotoCreateForm, UserForm, GalleryForm, PhotoEditForm, \
     CategoryForm, FlickrForm, LogFilterForm, PhotoEditMultipleForm, AdvancedSemanticSearchForm, \
@@ -138,14 +139,20 @@ class PhotoListView(PhotoMixin, BaseListView):
         kwargs = super().get_form_kwargs()
         kwargs.update({
             'album': get_choices(self.form_context.get('album'), text='title'),
-            'categories': get_choices(self.form_context.get('categories'), text='name'),
-            'gallery': get_choices(self.form_context.get('gallery'), text='title'),
+            'categories': get_choices(self.form_context.get('categories'), text='name', has_unassigned=True),
+            'gallery': get_choices(self.form_context.get('gallery'), text='title', has_unassigned=True),
         })
         if getattr(settings, 'PHOTO_TYPES_ENABLED', False):
             kwargs.update({
-                'photo_type': get_choices(self.form_context.get('photo_type'), text='name'),
+                'photo_type': get_choices(self.form_context.get('photo_type'), text='name', has_unassigned=True),
             })
         return kwargs
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['not_assigned_choice_id'] = NOT_ASSIGNED_AUTOCOMPLETE_CHOICE_ID
+        ctx['not_assigned_choice_text'] = NOT_ASSIGNED_AUTOCOMPLETE_CHOICE_TEXT
+        return ctx
 
 
 class GalleryListView(BaseListView):
