@@ -236,6 +236,22 @@ class UnpackingMixin(object):
                 self.fields[field].widget.choices = choices
 
 
+class UnassignedMixin(object):
+    """
+    Mixin to append Unassigned option
+    """
+    unassigned_field_names = ()
+    unassigned_field_class = 'show-unassigned-choice'
+
+    def __init__(self, *args, **kwargs):
+        """
+        This method append unassigned choice
+        """
+        super().__init__(*args, **kwargs)
+        for field_name in self.unassigned_field_names:
+            self.fields[field_name].widget.attrs.update({'class': self.unassigned_field_class})
+
+
 class MessageMixin(FormMessagesMixin):
     """
     Extended mixin from 'From message mixin' which set static message to display on the front page
