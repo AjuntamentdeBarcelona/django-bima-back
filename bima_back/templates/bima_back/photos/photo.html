@@ -62,6 +62,16 @@
     </div>
 {% endblock content_body %}
 
+{% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript">
+    var unassignedOption = {
+      id: {{ not_assigned_choice_id }},
+      text: '{{ not_assigned_choice_text }}'
+    };
+  </script>
+{% endblock javascript %}
+
 {% block page_js %}
   <script type="text/javascript">
     $(document).ready(function(){
@@ -108,11 +118,7 @@
             return result
           },
           processResults: function (data, page) {
-            var unassignedOption = {
-              id: {{ not_assigned_choice_id }},
-              text: '{{ not_assigned_choice_text }}'
-            };
-            data.results.push(unassignedOption)
+            data.results.push(unassignedOption);
             return {
               results: data.results,
               pagination: {
