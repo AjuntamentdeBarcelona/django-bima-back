@@ -10,7 +10,7 @@ from django.utils.translation import ugettext as _
 from geoposition.forms import GeopositionField
 
 from .fields import Select2Field, Select2MultipleField, Select2TagField
-from .mixins import UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin
+from .mixins import UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, UnassignedMixin
 from .constants import LOG_ACTIONS, PHOTO_STATUS_CHOICES, BLANK_CHOICES
 
 
@@ -354,7 +354,7 @@ class UserForm(forms.Form):
 
 # Filters
 
-class AdvancedSemanticSearchForm(UnpackingMixin, FilterBase):
+class AdvancedSemanticSearchForm(UnassignedMixin, UnpackingMixin, FilterBase):
     """
     Searcher form try to look for photos matching for the requested text.
     Searcher form try to look for photos matching for each one of next fields.
@@ -362,8 +362,10 @@ class AdvancedSemanticSearchForm(UnpackingMixin, FilterBase):
     - description
     """
     unpack_field_names = ('album', 'categories', 'gallery', )
+    unassigned_field_names = ('categories', 'gallery', )
     if getattr(settings, 'PHOTO_TYPES_ENABLED', False):
         unpack_field_names += ('photo_type', )
+        unassigned_field_names += ('photo_type', )
 
     # semantic search
     q = forms.CharField(help_text=_('Set text or part of text you want to search into the assets'), label=_('Text'))

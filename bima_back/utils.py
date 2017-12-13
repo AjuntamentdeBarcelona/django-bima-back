@@ -8,20 +8,25 @@ from django.conf import settings
 from django.core.cache import cache
 from django.utils.translation import ugettext as _
 
+from bima_back.constants import NOT_ASSIGNED_CHOICES
 
 logger = logging.getLogger(__name__)
 
 
-def get_choices(items, code='id', text='title'):
+def get_choices(items, code='id', text='title', has_unassigned=False):
     """
     Returns tuples to use in form selects
     :param items: expected a list of dictionaries
     :param code: dict-key to define the key of options
     :param text: dict-key to define the value of options
+    :param has_unassigned: define if unassigned option allowed
     """
+    choices = []
     if items:
-        return [(item.get(code), item.get(text, '--')) for item in items]
-    return []
+        choices = [(item.get(code), item.get(text, '--')) for item in items]
+    if has_unassigned:
+        choices = choices + NOT_ASSIGNED_CHOICES
+    return choices
 
 
 def get_tag_choices(items, code=None, text=None, language=None):
