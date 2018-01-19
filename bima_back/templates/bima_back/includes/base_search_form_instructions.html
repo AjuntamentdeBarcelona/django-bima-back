@@ -1,0 +1,100 @@
+{% load i18n %}
+<div class="generalInfo">
+  {% block instructions_general_info %}
+    <p>{% trans "El cercador és una eina del Banc d'Imatge que ens permet trobar arxius a partir de criteris diversos." %} </p>
+    <ul>{% trans "Ens permet fer tres tipus de cerca:" %}
+      <li><a href="#textLliure">{% trans "1. Text lliure" %}</a></li>
+      <li><a href="#cercaAvz">{% trans "2. Cerca avançada" %}</a></li>
+      <li><a href="#operadors">{% trans "3. Mitjançant operadors" %}</a></li>
+    </ul>
+  {% endblock instructions_general_info %}
+</div>
+<div class="info" id="textLliure">
+  {% block instructions_free_text %}
+    <h4>{% trans "1. Cerca per text lliure" %}</h4>
+    <ul>
+      <li>{% trans "Cerca la coincidència exacta de la paraula buscada en qualsevol dels camps de l'arxiu." %}</li>
+      <li>{% trans 'Es permeten cerques per múltiples paraules o frases, si es posen entre cometes ("").' %}</li>
+    </ul>
+    <div class="example">
+      <ul>
+        <i class="fa fa-angle-right"></i> {% trans "Alguns exemples de cerques són:" %}
+        <li>{% trans "· Collserola" %}</li>
+        <li>{% trans "· Collserola Hivern" %}</li>
+        <li>{% trans "· “Palau Robert”" %}</li>
+        <li>{% trans "· ”Palau Robert” jardins" %}</li>
+      </ul>
+    </div>
+  {% endblock instructions_free_text %}
+</div>
+<div class="info" id="cercaAvz">
+  {% block instructions_advanced_search %}
+    <h4>{% trans "2. Cerca avançada" %}</h4>
+    <ul>
+      <li>{% trans "Cerca dintre de camps específics (títol, descripció). També admet filtrar per Àlbums, Categories, Galeries i Estat de la publicació (arxius publicats, despublicats o tots)." %}</li>
+      <li>{% trans "En el cas del títol i la descripció, no cal que la paraula estigui completa. No s'admeten les cometes." %}</li>
+    </ul>
+    <div class="example">
+      <ul>
+        <i class="fa fa-angle-right"></i> {% trans "Alguns exemples de cerca per títol:" %}
+        <li>{% trans "· Sagrada Família" %}</li>
+        <li>{% trans '· Sagr - retornarà tots els resultats on el títol inclou el text "sagr"' %}</li>
+        <li>{% trans '· Collserola Hivern - No retornarà resultats ja que no hi ha cap arxiu en què el títol inclogui el text "Collserola Hivern"' %}</li>
+      </ul>
+    </div>
+  {% endblock instructions_advanced_search %}
+</div>
+<div class="info" id="operadors">
+  {% block instructions_operators %}
+    <h4>{% trans "3. Cerca mitjançant operadors" %}</h4>
+    <ul>
+      <li>{% trans "Ens permet buscar per camps específics de l'arxiu." %}</li>
+      <li>{% trans "Es permeten combinacions de múltiples operadors." %}</li>
+      <li>{% trans "Els operadors s'empren de la següent manera:" %} <span>{% trans "Operador:criteri-de-cerca" %}</span>.</li>
+    </ul>
+    <div class="list row">
+      <p>{% trans "Els operadors disponibles són els següents. S’introdueixen alguns exemples:" %}</p>
+      <ul class="col-md-6">
+        {% block instructions_operators_left %}
+          <li>{{ tags.status }}:0|1 <span>{% trans "0 és per a arxius despublicats, 1 és per arxius publicats" %}</span></li>
+          <li>{{ tags.original_file_name }}</li>
+          <li>{{ tags.district }} <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.district }}:Sants-Montjuïc</span></li>
+          <li>{{ tags.neighborhood }} <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.neighborhood }}:Sants</span></li>
+          <li>
+            {{ tags.address }}
+            <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.address }}:"G. v. de les Corts Catalanes, 181-247"</span>
+            <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.address }}:galileu</span>
+          </li>
+          <li>
+            {{ tags.postcode }}
+            <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.postcode }}:08014</span>
+          </li>
+          <li>
+            {{ tags.width }} <span>{% trans "- amplada original de la foto (en píxels)" %}</span>
+            <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.width }}:2835</span>
+          </li>
+        {% endblock instructions_operators_left %}
+      </ul>
+      <ul class="col-md-6">
+        {% block instructions_operators_right %}
+          <li>
+            {{ tags.height }} <span>{% trans "- altura original de la foto (en píxels)" %}</span>
+            <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.height }}:1890</span>
+          </li>
+          <li>
+            {{ tags.title }}:
+            <span>{% trans "cerca per títol" %}</span>
+            <span class="ej"><i class="fa fa-angle-right"></i> {{ tags.height }}:{% trans "familia" %}</span>
+          </li>
+          <li>{{ tags.description }} <span>{% trans "cerca per descripció" %}</span></li>
+          <li>{{ tags.album }} <span>{% trans "cerca pel títol i descripció de l'àlbum" %}</span></li>
+          <li>{{ tags.author }} <span>{% trans "cerca per nom i llinatges de l'autor" %}</span></li>
+          <li>{{ tags.copyright }} <span>{% trans "cerca pel títol de copyright" %}</span></li>
+          <li>{{ tags.restriction }} <span>{% trans "cerca pel títol de restriccions d'ús intern i extern" %}</span></li>
+        {% endblock instructions_operators_right %}
+      </ul>
+    </div>
+  {% endblock instructions_operators %}
+</div>
+{% block instructions_extra %}
+{% endblock instructions_extra %}
