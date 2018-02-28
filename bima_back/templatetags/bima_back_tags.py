@@ -375,12 +375,15 @@ def photo_thumbnail(photo):
         return static('bima_back/img/video.jpg')
     if photo['file_type'] == 'audio':
         return static('bima_back/img/audio.jpg')
+    if photo['file_type'] == 'file':
+        return static('bima_back/img/file.jpg')
     return static('bima_back/img/no-photo.jpg')
 
 
 FONT_AWESOME_CLASS_MAP = {
     'video': 'play-circle-o',
     'audio': 'volume-up',
+    'file': 'file',
     # 'photo': 'photo',
 }
 

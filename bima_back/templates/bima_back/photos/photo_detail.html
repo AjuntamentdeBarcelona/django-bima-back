@@ -64,6 +64,8 @@
                   <audio src="{{ instance.image_file }}" controls preload="none">
                     {% trans "Sorry, your browser doesn't support embedded audios." %}
                   </audio>
+                {% elif instance.file_type == 'file' %}
+                  <img src="{% static 'bima_back/img/file.jpg' %}" alt="{{ instance.title }}" />
                 {% elif instance.image_small_fit %}
                   <img src="{{ instance.image_small_fit }}" alt="{{ instance.title }}" {% if instance.image_medium %}class="modal-zoom"{% endif %} />
                 {% else %}
