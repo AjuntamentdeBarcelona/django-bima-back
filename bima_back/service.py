@@ -236,6 +236,12 @@ class DAMWebService(object):
 
     # galleries
 
+    def get_galleries_simple_list(self, **kwargs):
+        """
+        Galleries list with only 'id', 'title' and 'description' information
+        """
+        return self.action_or_logout(['galleries', 'flat', 'list'], params=kwargs)
+
     def get_galleries_list(self, **kwargs):
         return self.action_or_logout(['galleries', 'list'], params=kwargs)
 
