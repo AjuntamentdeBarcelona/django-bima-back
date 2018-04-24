@@ -137,7 +137,7 @@ class CategorySearchView(BaseSearchView):
 
 
 class GallerySearchView(BaseSearchView):
-    action_name = 'get_galleries_list'
+    action_name = 'get_galleries_simple_list'
     lookup_field = 'title'
     text_field = 'title'
     filter_by_user = True
