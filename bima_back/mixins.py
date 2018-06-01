@@ -370,7 +370,7 @@ class ModelMixin(object):
 
     @property
     def permissions(self):
-            return self.user.permissions
+        return self.user.permissions
 
 
 class AlbumMixin(ModelMixin):
