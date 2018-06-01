@@ -10,13 +10,14 @@ from django.core.exceptions import ValidationError
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import redirect
+from django.utils.module_loading import import_string
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.base import ContextMixin
 from django.views.generic.edit import FormMixin
 
 from .fields import TextField, Select2MultilangTagField
-from .service import DAMWebService, ServiceClientException
+from .service import ServiceClientException
 from .utils import get_language_codes
 
 
@@ -270,7 +271,6 @@ class ServiceClientMixin(MessageMixin, ContextMixin):
     """
     Mixin to get action to Web service
     """
-    client_class = DAMWebService
     restore_action_name = ''
     action_name = ''
 
@@ -297,7 +297,13 @@ class ServiceClientMixin(MessageMixin, ContextMixin):
         """
         :return: Client instance
         """
-        return self.client_class(self.request)
+        client_class_name = 'bima_back.service.DAMWebService'
+        if hasattr(settings, 'WEB_SERVICE_CLIENT_CLASS'):
+            client_class_name = settings.WEB_SERVICE_CLIENT_CLASS
+
+        client_class = import_string(client_class_name)
+
+        return client_class(self.request)
 
     def get_action_name(self):
         """
@@ -364,7 +370,7 @@ class ModelMixin(object):
 
     @property
     def permissions(self):
-        return self.user.permissions
+            return self.user.permissions
 
 
 class AlbumMixin(ModelMixin):
