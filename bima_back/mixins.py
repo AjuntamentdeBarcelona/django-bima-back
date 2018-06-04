@@ -298,7 +298,7 @@ class ServiceClientMixin(MessageMixin, ContextMixin):
         :return: Client instance
         """
         client_class_name = 'bima_back.service.DAMWebService'
-        if hasattr(settings, 'WEB_SERVICE_CLIENT_CLASS'):
+        if hasattr(settings, 'WEB_SERVICE_CLIENT_CLASS') and settings.WEB_SERVICE_CLIENT_CLASS:
             client_class_name = settings.WEB_SERVICE_CLIENT_CLASS
 
         client_class = import_string(client_class_name)

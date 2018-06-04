@@ -232,9 +232,12 @@ def is_available_cache():
     return settings.CACHE_ENABLED and 'dummycache' not in cache_backend.lower()
 
 
-def cache_set(key, value):
+def cache_set(key, value, timeout=None):
     if is_available_cache():
-        cache.set(key, value)
+        if timeout:
+            cache.set(key, value)
+        else:
+            cache.set(key, value, timeout)
 
 
 def cache_delete_startswith(key):
