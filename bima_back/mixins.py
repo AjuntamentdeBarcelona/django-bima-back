@@ -278,7 +278,7 @@ class ServiceClientMixin(MessageMixin, ContextMixin):
         try:
             return super().dispatch(request, *args, **kwargs)
         except ServiceClientException as exc:
-            if exc.code_error == 403:
+            if exc.code_error in (401, 403):
                 logout(request)
                 self.error_message(_("You don't have permissions to do this action! Log in."))
                 return redirect('home')

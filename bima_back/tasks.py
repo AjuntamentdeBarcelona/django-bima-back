@@ -36,7 +36,10 @@ def upload_photo(form_data, user_id, user_token, lang, create=True):
         chunk_size = config.PHOTO_UPLOAD_CHUNK_SIZE
 
         # request headers
-        authorization = {'Authorization': 'Token {}'.format(user_token)}
+        token_header = 'Token'
+        if hasattr(settings, 'IS_OAUTH_AUTH') and settings.IS_OAUTH_AUTH:
+            token_header = 'Bearer'
+        authorization = {'Authorization': '{} {}'.format(token_header, user_token)}
         headers = dict(authorization)
         headers.update({'Accept-Language': lang, 'content_type': MULTIPART_CONTENT})
 
