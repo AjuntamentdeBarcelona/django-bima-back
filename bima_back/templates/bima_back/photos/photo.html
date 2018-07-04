@@ -7,6 +7,11 @@
 
 {% block breadcrumbs %}{% endblock breadcrumbs %}
 
+{% block page_css_uncompress %}
+  <link rel="stylesheet" href="{% static 'bima_back/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'bima_back/css/set1.css' %}">
+{% endblock page_css_uncompress %}
+
 {% block search_form %}
 
   {# save search filter #}
