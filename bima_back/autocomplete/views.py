@@ -119,7 +119,7 @@ class UserCreateView(BaseSearchView):
 
 
 class AlbumSearchView(BaseSearchView):
-    action_name = 'get_albums_list'
+    action_name = 'get_albums_simple_list'
     lookup_field = 'title'
     text_field = 'title'
 

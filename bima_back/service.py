@@ -178,6 +178,12 @@ class DAMWebService(object):
 
     # albums
 
+    def get_albums_simple_list(self, **kwargs):
+        """
+        Albums list with only 'id', 'title' and 'description information
+        """
+        return self.action_or_logout(['albums', 'flat', 'list'], params=kwargs)
+
     def get_albums_list(self, **kwargs):
         return self.action_or_logout(['albums', 'list'], params=kwargs)
 
