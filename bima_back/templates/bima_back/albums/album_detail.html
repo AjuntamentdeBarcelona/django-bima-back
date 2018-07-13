@@ -1,6 +1,11 @@
 {% extends 'bima_back/detail.html' %}
 {% load i18n static bootstrap_pagination django_bootstrap_breadcrumbs %}
 
+{% block page_css_uncompress %}
+  <link rel="stylesheet" href="{% static 'bima_back/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'bima_back/css/set1.css' %}">
+{% endblock page_css_uncompress %}
+
 {% block content_header %}
   {{ block.super }}
   <div class="buttonsHeader">
