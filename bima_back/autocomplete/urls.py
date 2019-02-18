@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^group/$', views.GroupSearchView.as_view(), name='group_search'),
-    url(r'^user/$', views.UserCreateView.as_view(), name='user_search'),
+    url(r'^user/$', views.UserSearchView.as_view(), name='user_search'),
     url(r'^album/$', views.AlbumSearchView.as_view(), name='album_search'),
     url(r'^photo/$', views.PhotoSearchView.as_view(), name='photo_search'),
     url(r'^category/$', views.CategorySearchView.as_view(), name='category_search'),

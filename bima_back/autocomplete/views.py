@@ -111,11 +111,19 @@ class BaseSearchView(LoginRequiredMixin, ServiceClientMixin, View):
 class GroupSearchView(BaseSearchView):
     action_name = 'get_groups_list'
     lookup_field = 'name'
+    
 
-
-class UserCreateView(BaseSearchView):
+class UserSearchView(BaseSearchView):
+    """
+    User autocomplete should only search active users
+    """
     action_name = 'get_users_list'
     lookup_field = 'full_name'
+
+    def get_extra_action_kwargs(self):
+        extra_kwargs = super().get_extra_action_kwargs()
+        extra_kwargs.update({'is_active': True})
+        return extra_kwargs
 
 
 class AlbumSearchView(BaseSearchView):
