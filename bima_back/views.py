@@ -19,7 +19,8 @@ from .constants import CACHE_USER_PROFILE_PREFIX_KEY, NOT_ASSIGNED_AUTOCOMPLETE_
 from .exports import LogReport
 from .forms import AlbumForm, PhotoCreateForm, UserForm, GalleryForm, PhotoEditForm, \
     CategoryForm, FlickrForm, LogFilterForm, PhotoEditMultipleForm, AdvancedSemanticSearchForm, \
-    AlbumPhotoCreateForm, AlbumFlickrForm, CategoryFilterForm, YoutubeChannelForm, VimeoAccountForm
+    AlbumPhotoCreateForm, AlbumFlickrForm, CategoryFilterForm, YoutubeChannelForm, VimeoAccountForm, \
+    GalleryFilterForm, AlbumFilterForm
 from .mixins import ServiceClientMixin, LoggedServicePaginatorMixin, LoggedServiceMixin, FilterFormMixin, \
     PaginatorMixin, PhotoMixin, AlbumMixin, GalleryMixin, CategoryMixin
 from .models import MyChunkedUpload
@@ -83,7 +84,28 @@ class AlbumListView(BaseListView):
     template_name = 'bima_back/albums/album.html'
     lookup_object = 'albums'
     action_name = 'get_albums_list'
+    form_class = AlbumFilterForm
     active_section = 'album'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx['show_public_album'] = self.show_public_album(self.request.GET)
+        return ctx
+
+    def show_public_album(self, get_params):
+        """
+        Show public album when:
+        - We are in first page (no GET parameters or `page` parameter is 1).
+        And:
+        - No search has been done (no parameters different than page in GET or all parameters empty except page)
+        """
+
+        # Get parameters values other than page:
+        parameters_values = [get_params.get(parameter) for parameter in get_params if parameter != 'page']
+
+        is_first_page = get_params.get('page') == '1' or not get_params
+        no_search = not parameters_values or not any(parameters_values)
+        return is_first_page and no_search
 
 
 class PhotoListView(PhotoMixin, BaseListView):
@@ -159,6 +181,7 @@ class GalleryListView(BaseListView):
     template_name = 'bima_back/galleries/gallery.html'
     lookup_object = 'galleries'
     action_name = 'get_galleries_list'
+    form_class = GalleryFilterForm
     active_section = 'gallery'
 
 

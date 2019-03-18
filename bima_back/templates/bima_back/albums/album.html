@@ -18,10 +18,16 @@
   {% breadcrumb "Albums" "album_list" %}
 {% endblock breadcrumbs %}
 
-{% block content_body %}
+{% block search_form %}
+  <div class="box box-search categorySearch">
+    <h3 class="box-title"><i class="fa fa-search"></i> {% trans 'Search by' %}</h3>
+    {% include 'bima_back/forms/filter_form.html' %}
+  </div>
+{% endblock search_form %}
 
+{% block content_body %}
   {# public album #}
-  {% if not request.GET.page or request.GET.page == '1' %}
+  {% if show_public_album %}
   <div class="col-sm-6 col-md-4 col-lg-3 album public-album">
     <div class="item-lists">
       <div class="items-images">

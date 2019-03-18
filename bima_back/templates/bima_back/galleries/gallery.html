@@ -20,6 +20,13 @@
   {% breadcrumb trans_galleries "gallery_list" %}
 {% endblock breadcrumbs %}
 
+{% block search_form %}
+  <div class="box box-search categorySearch">
+    <h3 class="box-title"><i class="fa fa-search"></i> {% trans 'Search by' %}</h3>
+    {% include 'bima_back/forms/filter_form.html' %}
+  </div>
+{% endblock search_form %}
+
 {% block content_body %}
   {% for gallery in galleries %}
     <div class="col-sm-6 col-md-4 col-lg-3 gallery">

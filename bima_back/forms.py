@@ -430,3 +430,28 @@ class CategoryFilterForm(FilterBase):
     Form to filter categories by name
     """
     name = forms.CharField(label=_('Name'), max_length=128)
+
+
+class GalleryFilterForm(FilterBase):
+    """
+    Form to filter gallery by title and status (private/published)
+    """
+    ALL = ''
+    PRIVATE = 0
+    PUBLISHED = 1
+
+    STATUS_CHOICES = [
+        (ALL, _('All')),
+        (PRIVATE, _('Private')),
+        (PUBLISHED, _('Published')),
+    ]
+
+    title = forms.CharField(label=_('Title'), max_length=128)
+    status = forms.ChoiceField(label=_('Status'), choices=STATUS_CHOICES)
+
+
+class AlbumFilterForm(FilterBase):
+    """
+    Form to filter album by title
+    """
+    title = forms.CharField(label=_('Title'), max_length=128)

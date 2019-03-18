@@ -111,7 +111,7 @@ class BaseSearchView(LoginRequiredMixin, ServiceClientMixin, View):
 class GroupSearchView(BaseSearchView):
     action_name = 'get_groups_list'
     lookup_field = 'name'
-    
+
 
 class UserSearchView(BaseSearchView):
     """
