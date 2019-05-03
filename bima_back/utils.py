@@ -235,9 +235,9 @@ def is_available_cache():
 def cache_set(key, value, timeout=None):
     if is_available_cache():
         if timeout:
-            cache.set(key, value)
-        else:
             cache.set(key, value, timeout)
+        else:
+            cache.set(key, value)
 
 
 def cache_delete_startswith(key):
