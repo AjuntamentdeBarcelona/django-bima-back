@@ -23,6 +23,10 @@ class DAMUser(AbstractUser):
 class MyChunkedUpload(ChunkedUpload):
     user = models.ForeignKey(AUTH_USER_MODEL, verbose_name=_('user'), related_name='chunked_uploads', null=True)
 
+    class Meta:
+        verbose_name = _('My chunked upload')
+        verbose_name_plural = _('My chunked uploads')
+
 
 class PhotoFilter(models.Model):
     username = models.CharField(max_length=150, verbose_name=_('Username'))
