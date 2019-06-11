@@ -234,18 +234,10 @@ class CategoryListView(BaseListView):
         """
         final_result = []
         for result in results:
-            category = {'extra_info': {'children': len(result['ancestors'])}}
-            parent = category
-            for ancestor in result['ancestors']:
-                parent.update({
-                    'id': ancestor['id'],
-                    'name': ancestor['name'],
-                    'children': [{}],
-                })
-                parent = parent['children'][0]
-            parent.update({
+            category = {'extra_info': {'children': result['extra_info']['children']}}
+            category.update({
                 'id': result['id'],
-                'name': result['name'],
+                'name': '{} | ({})'.format(result['name'], result['extra_info']['parent']['title']),
                 'children': [{}],
             })
             final_result.append(category)
