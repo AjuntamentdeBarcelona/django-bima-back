@@ -235,9 +235,13 @@ class CategoryListView(BaseListView):
         final_result = []
         for result in results:
             category = {'extra_info': {'children': result['extra_info']['children']}}
+            if result['extra_info']['parent']:
+                name = '{} | ({})'.format(result['name'], result['extra_info']['parent']['title'])
+            else:
+                name = '{}'.format(result['name'])
             category.update({
                 'id': result['id'],
-                'name': '{} | ({})'.format(result['name'], result['extra_info']['parent']['title']),
+                'name': name,
                 'children': [{}],
             })
             final_result.append(category)
