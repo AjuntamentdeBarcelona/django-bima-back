@@ -6,6 +6,7 @@
     <div class="alert alert-danger hidden" id="error-message" role="alert"
      data-error-message="{% trans 'An error has occurred. Please, try again.' %}"
      data-max-size-message="{% trans 'Sorry, the maximum file size allowed is' %} {{ config.MAX_FILE_SIZE }} {% trans 'MB' %}"
+     data-max-photo-file-size-message="{% trans 'Sorry, the maximum image file size allowed is' %} {{ config.MAX_PHOTO_FILE_SIZE }} {% trans 'MB' %}"
      data-file-type-message="{% trans 'Sorry, only gif, png, jpg, jpeg, tif, tiff, psd, eps, ai, mov, mpeg4, mp4, avi, wmv, mpegps, flv, 3gpp, webm, aiff, wav, flac, alac, ogg, mp2, mp3, aac, amr, wma and pdf formats are allowed.' %}">
       <p></p>
     </div>
@@ -15,7 +16,7 @@
       <input class="form-control" id="id_image" name="image" placeholder="{% trans 'assets' %}" type="file" multiple="multiple"
        data-chunk-url="{% url 'api_chunked_upload' %}" data-chunk-complete-url="{% url 'api_chunked_upload_complete' %}"
        data-delete-title="{% trans 'Delete' %}" data-max-file-size="{{ config.MAX_FILE_SIZE }}"
-       data-chunk-size="{{ config.PHOTO_UPLOAD_CHUNK_SIZE }}">
+       data-max-photo-file-size="{{ config.MAX_PHOTO_FILE_SIZE }}" data-chunk-size="{{ config.PHOTO_UPLOAD_CHUNK_SIZE }}">
     </div>
 
     <div class="progress progress-sm active hidden">
