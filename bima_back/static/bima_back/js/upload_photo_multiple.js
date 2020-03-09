@@ -15,7 +15,8 @@ $(document).ready(function(){
   var success_alert = $(".file-success");
   var error_div = $("#error-message");
   var drag_info = $(".infoDrag");
-  var max_photo_size = parseInt(image_input.attr('data-max-file-size'))*1000000; // MB to bytes
+  var max_file_size = parseInt(image_input.attr('data-max-file-size'))*1000000; // MB to bytes
+  var max_photo_size = parseInt(image_input.attr('data-max-photo-file-size'))*1000000; // MB to bytes
   var chunk_size = parseInt(image_input.attr('data-chunk-size'));
 
   // chunk variables
@@ -167,10 +168,15 @@ $(document).ready(function(){
 
       // validations
       var file = data.files[0];
-      if(file.size > max_photo_size){
+      var imageFileTypesAccepted = /(\.|\/)(gif|jpe?g|png|tif?f)$/i; // Removed .psd, .eps and .ai
+      if(imageFileTypesAccepted.test(file.name) && max_photo_size > 0 && file.size > max_photo_size) {
+        visuals_error("data-max-photo-file-size-message");
+        return;
+      } else if(file.size > max_file_size) {
         visuals_error("data-max-size-message");
         return;
       }
+
       var acceptFileTypes = /(\.|\/)(gif|jpe?g|png|tif?f|psd|eps|ai|mov|mpeg4|mp4|avi|wmv|mpegps|flv|3gpp|webm|aiff|wav|flac|alac|ogg|mp2|mp3|aac|amr|wma|pdf)$/i;
       if(!acceptFileTypes.test(file.name)) {
         visuals_error("data-file-type-message");

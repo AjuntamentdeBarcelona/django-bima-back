@@ -185,6 +185,11 @@ class PhotoEditForm(UnpackingMixin, FieldsetFormMixin, TranslatableFormMixin, Ph
                 _('Sorry, the maximum file size allowed is'),
                 config.MAX_FILE_SIZE,
                 _('MB')),
+            'data-max-photo-file-size': config.MAX_PHOTO_FILE_SIZE,
+            'data-max-photo-file-size-message': "{} {} {}".format(
+                _('Sorry, the maximum image file size allowed is'),
+                config.MAX_PHOTO_FILE_SIZE,
+                _('MB')),
             'data-file-type-message': "{}: {}.".format(
                 _('Sorry, only the following formats are allowed'),
                 ', '.join(FORMATS)),
