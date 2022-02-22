@@ -68,7 +68,7 @@ def upload_photo(form_data, user_id, user_token, lang, create=True):
         for chunk_file in chunks:
             data.update(**{'file': ContentFile(chunk_file)})
             client.transports[0].headers._data['Content-Range'] = 'bytes {}-{}/{}'.format(
-                offset, offset + len(chunk_file), image_file.size)
+                offset, offset + len(chunk_file) -1, image_file.size)
             response = client.action(schema, request_path, params=data)
             offset = response['offset']
             img_id = response['id']

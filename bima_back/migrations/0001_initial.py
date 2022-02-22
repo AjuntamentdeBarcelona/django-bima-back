@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('upload_id', models.CharField(default=chunked_upload.models.generate_upload_id, editable=False, max_length=32, unique=True)),
-                ('file', models.FileField(max_length=255, upload_to=chunked_upload.models.generate_filename)),
+                ('file', models.FileField(max_length=255, upload_to=chunked_upload.settings.UPLOAD_TO)),
                 ('filename', models.CharField(max_length=255)),
                 ('offset', models.BigIntegerField(default=0)),
                 ('created_on', models.DateTimeField(auto_now_add=True)),

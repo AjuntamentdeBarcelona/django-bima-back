@@ -22,13 +22,15 @@ class WSAuthenticationBackend(object):
     Otherwise system will not authenticate.
     """
 
-    def authenticate(self, username=None, password=None):
+    def authenticate(self, request, **kwargs):
         """
         Authentication through API request using coreapi.
         :param username:
         :param password:
         :return: user instance
         """
+        username = kwargs.get('username')
+        password = kwargs.get('password')
         # initialize client
         client = coreapi.Client()
         api_url = join(settings.WS_BASE_URL, PRIVATE_API_SCHEMA_URL)
@@ -48,7 +50,7 @@ class WSAuthenticationBackend(object):
         schema = client.get(api_url)
 
         # get user data and save it in cache
-        user_data = client.action(schema, ['whoami', 'list'])
+        user_data = client.action(schema, ['whoami', 'read'])
         is_superuser = config.ADMIN_ID in user_data['groups'] or user_data['is_superuser']
         user_params = {
             'id': user_data['id'],

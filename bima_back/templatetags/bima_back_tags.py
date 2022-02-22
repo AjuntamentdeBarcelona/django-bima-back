@@ -6,9 +6,9 @@ import six
 from bima_back.models import PhotoFilter
 
 from constance import config
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 from django.conf import settings
-from django.core.urlresolvers import resolve, reverse
+from django.urls import resolve, reverse
 from django.forms.widgets import CheckboxInput, RadioSelect
 from django.template import Library
 from django.template.defaultfilters import stringfilter, slugify, truncatechars
@@ -170,7 +170,7 @@ def children_tag(permission, search, category):
     }
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_ordered_keywords(keywords):
     """
     :return: a dictionary with keywords_lang: tags.
@@ -247,7 +247,7 @@ def get_download_dimension(instance, size):
     return popover_string(width, height)
 
 
-@register.assignment_tag
+@register.simple_tag
 def get_download_filename(instance, extension='jpg'):
     """
     Returns the filename after changing the extension
@@ -335,7 +335,7 @@ def go_back_url(breadcrumbs):
     return reverse(prev_page['view'])
 
 
-@register.assignment_tag
+@register.simple_tag
 def list_pages(page_urls):
     """
     Returns a list with the number of the pages of the paginator

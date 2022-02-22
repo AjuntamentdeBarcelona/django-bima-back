@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import ugettext as _
 
-from chunked_upload.models import ChunkedUpload
+from chunked_upload.models import AbstractChunkedUpload
 
 AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'bima_back.DAMUser')
 
@@ -20,8 +20,9 @@ class DAMUser(AbstractUser):
             super(AbstractUser, self).save(*args, **kwargs)
 
 
-class MyChunkedUpload(ChunkedUpload):
-    user = models.ForeignKey(AUTH_USER_MODEL, verbose_name=_('user'), related_name='chunked_uploads', null=True)
+class MyChunkedUpload(AbstractChunkedUpload):
+    user = models.ForeignKey(AUTH_USER_MODEL, verbose_name=_('user'), related_name='my_chunked_uploads', null=True,
+                             on_delete=models.RESTRICT)
 
     class Meta:
         verbose_name = _('My chunked upload')
