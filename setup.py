@@ -5,18 +5,18 @@ from setuptools import find_packages, setup
 
 INSTALL_REQUIRES = [
     'coreapi>=2.0.9,<2.1',
-    'django-bootstrap-breadcrumbs>=0.8.1,<0.9',
-    'django-bootstrap-pagination>=1.6.2,<1.7',
-    'django-braces>=1.10,<1.12',
-    'django-chunked-upload==1.1.1',
-    'django-compressor>=2.1,<2.2',
-    'django-constance[database]>=1.3.3,<2',
-    'django-geoposition>=0.3,<0.4',
-    'django-rq>=0.9.4,<1',
-    'django_select2>=5.8.8,<5.11',
+    'django-bootstrap-breadcrumbs==0.9.1',
+    'django-bootstrap-pagination==1.7.1',
+    'django-braces==1.14.0',
+    'django-chunked-upload==2.0.0',
+    'django-compressor==2.4',
+    'django-constance[database]==2.8.0',
+    'django-geoposition-2@git+https://git@github.com/pramon-apsl/django-geoposition.git',
+    'django-rq==2.4.0',
+    'django_select2==7.6.1',
     'django-widget-tweaks>=1.4.1,<1.5',
-    'pytz>=2016.6.1',
-    'serpy>=0.1.1,<1.2',
+    'pytz==2021.1',
+    'serpy==0.3.1',
 ]
 
 

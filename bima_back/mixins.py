@@ -418,19 +418,31 @@ class PhotoMixin(ModelMixin):
 
     @property
     def photo_author_selected(self):
-        return self.instance['author'], self.instance['extra_info']['author_display']
+        extra_info = self.instance['extra_info']
+        if 'author_display' in extra_info and extra_info['author_display']:
+            return self.instance['author'], extra_info['author_display']
+        return None, ''
 
     @property
     def photo_copyright_selected(self):
-        return self.instance['copyright'], self.instance['extra_info']['copyright_display']
+        extra_info = self.instance['extra_info']
+        if 'copyright_display' in extra_info and extra_info['copyright_display']:
+            return self.instance['copyright'], extra_info['copyright_display']
+        return None, ''
 
     @property
     def photo_internal_restriction_selected(self):
-        return self.instance['internal_usage_restriction'], self.instance['extra_info']['internal_restriction_display']
+        extra_info = self.instance['extra_info']
+        if 'internal_restriction_display' in extra_info and extra_info['internal_restriction_display']:
+            return self.instance['internal_restriction'], extra_info['internal_restriction_display']
+        return None, ''
 
     @property
     def photo_external_restriction_selected(self):
-        return self.instance['external_usage_restriction'], self.instance['extra_info']['external_restriction_display']
+        extra_info = self.instance['extra_info']
+        if 'external_usage_restriction' in extra_info and extra_info['external_usage_restriction']:
+            return self.instance['external_usage_restriction'], extra_info['external_usage_restriction']
+        return None, ''
 
     @property
     def photo_type_selected(self):
